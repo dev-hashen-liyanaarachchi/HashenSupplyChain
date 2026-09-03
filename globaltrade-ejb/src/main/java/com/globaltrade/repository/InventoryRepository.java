@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.PersistenceContext;
 import com.globaltrade.entity.Inventory;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class InventoryRepository {
 
     public Optional<Inventory> findByWarehouseAndProductWithLock(Long warehouseId, Long productId) {
         return em.createQuery(
-            "SELECT i FROM Inventory i WHERE i.warehouse.id = :wId AND i.product.id = :pId", Inventory.class)
+                        "SELECT i FROM Inventory i WHERE i.warehouse.id = :wId AND i.product.id = :pId", Inventory.class)
                 .setParameter("wId", warehouseId)
                 .setParameter("pId", productId)
                 .setLockMode(LockModeType.PESSIMISTIC_WRITE)
@@ -38,7 +39,7 @@ public class InventoryRepository {
 
     public List<Inventory> findLowStockItems() {
         return em.createQuery(
-            "SELECT i FROM Inventory i WHERE i.availableQty <= i.reorderThreshold", Inventory.class)
+                        "SELECT i FROM Inventory i WHERE i.availableQty <= i.reorderThreshold", Inventory.class)
                 .getResultList();
     }
 }

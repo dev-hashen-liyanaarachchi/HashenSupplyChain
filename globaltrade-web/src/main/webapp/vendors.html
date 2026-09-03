@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
     <style>
         *, html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, strong, small, label, input, select, button, table, th, td, tr, thead, tbody {
             font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif !important;
@@ -28,184 +29,245 @@
 </head>
 <body>
 
-    <div class="app-container wide">
-        <!-- Brand Header -->
-        <header class="brand-header">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
-                        👑 Back to Admin Control
-                    </a>
-                    <a href="carriers.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0f2fe; color: #0369a1;">
-                        🚛 Regional Carrier Fleets
-                    </a>
-                    <a href="shipments.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
-                        🚚 Logistics & Shipments
-                    </a>
-                    <a href="finance.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #dcfce7; color: #15803d;">
-                        💳 Finance & Duty Billing
-                    </a>
-                    <a href="customs.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
-                        🛃 Customs Portal
-                    </a>
-                    <a href="timers.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #b45309;">
-                        ⏰ EJB Timers Monitor
-                    </a>
-                    <a href="index.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;">
-                        🌐 Main Portal
-                    </a>
-                </div>
-                <div class="brand-logo" style="margin-bottom:0; background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                </div>
+<nav class="gt-navbar">
+    <div class="gt-nav-container">
+        <a href="index.html" class="gt-brand">
+            <div class="gt-brand-logo">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
+                </svg>
             </div>
-            <h1 class="brand-name">📊 Supplier SLA & Vendor Performance Analytics Station</h1>
-            <p class="brand-subtitle">Database-Driven Vendor SLA Audit, On-Time Fulfillment Tracking & Performance Ratings (vendor_performances table)</p>
-        </header>
-
-        <!-- Main Content -->
-        <main class="auth-card">
-            <!-- Alert Banner -->
-            <div id="alertBox" class="alert"></div>
-
-            <!-- Role Badge Header -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-                <div>
-                    <h2 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">
-                        International Vendor Performance & Quality Ratings
-                    </h2>
-                    <p style="font-size: 12px; color: var(--text-muted);">Real-time supplier compliance, fulfillment accuracy, and delivery SLA metrics backed by JPA EJB Timers</p>
-                </div>
-                <span class="user-badge" style="background: #f3e8ff; color: #6b21a8;">📊 PROCUREMENT_AUDITOR</span>
+            <div>
+                <div class="gt-brand-title">GlobalTrade Logistics</div>
+                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
             </div>
+        </a>
+        <div class="gt-nav-links">
+            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
+            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
+            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
+            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
+            <a href="vendor.html" class="gt-nav-link active">🤝 Vendor</a>
+            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
+            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
+            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
+            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
+            <a href="admin.html" class="gt-nav-link">👑 Admin</a>
+        </div>
+        <div class="gt-user-profile">
+            <span class="user-badge">Vendor Directory</span>
+        </div>
+    </div>
+</nav>
 
-            <!-- Metrics Grid -->
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #7c3aed;">📊</div>
-                    <div>
-                        <div class="metric-val" id="cntEvaluatedVendors">4 Vendors</div>
-                        <div class="metric-label">Evaluated Suppliers</div>
-                    </div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #059669;">🎯</div>
-                    <div>
-                        <div class="metric-val" id="valAvgFulfillment">98.2%</div>
-                        <div class="metric-label">Avg Fulfillment Score</div>
-                    </div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #2563eb;">⏱️</div>
-                    <div>
-                        <div class="metric-val" id="valAvgOnTime">99.1%</div>
-                        <div class="metric-label">On-Time Delivery Rate</div>
-                    </div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #d97706;">⭐</div>
-                    <div>
-                        <div class="metric-val">4.9 / 5.0</div>
-                        <div class="metric-label">Quality & Compliance Rating</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Layout Grid -->
-            <div class="vendor-layout" style="margin-top: 28px;">
-                
-                <!-- LEFT: VENDOR PERFORMANCE TABLE -->
-                <div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                        <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                            📋 Vendor Performance Ledger (vendor_performances Table)
-                        </h3>
-                        <button type="button" id="btnRefreshVendors" class="btn-secondary" style="width: auto; padding: 6px 12px; font-size: 11px;">
-                            🔄 Refresh Audit Ledger
-                        </button>
-                    </div>
-
-                    <div style="overflow-x: auto;">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Audit ID & Supplier</th>
-                                    <th>Fulfillment Score</th>
-                                    <th>On-Time Delivery Rate</th>
-                                    <th>Quality Rating</th>
-                                    <th>Evaluated Timestamp</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody id="vendorTableBody">
-                                <tr>
-                                    <td colspan="6" style="text-align: center; color: var(--text-muted);">Loading vendor performance ledger...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- RIGHT: TRIGGER MANUAL SUPPLIER AUDIT FORM -->
-                <div style="background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; position: sticky; top: 20px; height: fit-content;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin-top:0; margin-bottom: 14px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">
-                        📊 Execute Vendor Compliance Audit
-                    </h3>
-
-                    <form id="evalVendorForm">
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <label class="form-label" for="selectVendor" style="font-size: 11px;">Select Supplier Company <span>*</span></label>
-                            <select id="selectVendor" class="form-control" style="padding-left: 10px; font-size: 12px;" required>
-                                <option value="1">Bosch Medical Logistics GmbH</option>
-                                <option value="2">Siemens Healthcare Logistics</option>
-                                <option value="3">Global Cargo Forwarders USA</option>
-                                <option value="4">Tech Mart Hardware Lanka</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <label class="form-label" for="inputFulfillment" style="font-size: 11px;">Fulfillment Score (%) <span>*</span></label>
-                            <input type="number" id="inputFulfillment" class="form-control" style="padding-left: 10px; font-size: 12px;" value="98.5" min="0" max="100" step="0.1" required>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <label class="form-label" for="inputOnTime" style="font-size: 11px;">On-Time Delivery Rate (%) <span>*</span></label>
-                            <input type="number" id="inputOnTime" class="form-control" style="padding-left: 10px; font-size: 12px;" value="99.2" min="0" max="100" step="0.1" required>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 14px;">
-                            <label class="form-label" for="inputQuality" style="font-size: 11px;">Quality Rating (1.0 to 5.0 ⭐) <span>*</span></label>
-                            <input type="number" id="inputQuality" class="form-control" style="padding-left: 10px; font-size: 12px;" value="4.9" min="1.0" max="5.0" step="0.1" required>
-                        </div>
-
-                        <button type="submit" id="btnSubmitAudit" class="btn-primary" style="width: 100%; margin-top: 0; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
-                            <span class="btn-text">📊 Save Evaluation to vendor_performances</span>
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="actions-grid" style="margin-top: 36px;">
-                <a href="admin.html" class="btn-secondary" style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+<div class="app-container wide">
+    <!-- Brand Header -->
+    <header class="brand-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <a href="admin.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
                     👑 Back to Admin Control
                 </a>
-                <a href="index.html" class="btn-primary" style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
-                    Sign Out
+                <a href="carriers.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0f2fe; color: #0369a1;">
+                    🚛 Regional Carrier Fleets
+                </a>
+                <a href="shipments.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
+                    🚚 Logistics & Shipments
+                </a>
+                <a href="finance.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dcfce7; color: #15803d;">
+                    💳 Finance & Duty Billing
+                </a>
+                <a href="customs.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
+                    🛃 Customs Portal
+                </a>
+                <a href="timers.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #b45309;">
+                    ⏰ EJB Timers Monitor
+                </a>
+                <a href="index.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;">
+                    🌐 Main Portal
                 </a>
             </div>
-        </main>
+            <div class="brand-logo"
+                 style="margin-bottom:0; background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                </svg>
+            </div>
+        </div>
+        <h1 class="brand-name">📊 Supplier SLA & Vendor Performance Analytics Station</h1>
+        <p class="brand-subtitle">Database-Driven Vendor SLA Audit, On-Time Fulfillment Tracking & Performance Ratings
+            (vendor_performances table)</p>
+    </header>
 
-        <footer>
-            &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-        </footer>
-    </div>
+    <!-- Main Content -->
+    <main class="auth-card">
+        <!-- Alert Banner -->
+        <div id="alertBox" class="alert"></div>
 
-    <script src="js/vendors.js"></script>
-    <script src="js/notifications.js"></script>
+        <!-- Role Badge Header -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+            <div>
+                <h2 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">
+                    International Vendor Performance & Quality Ratings
+                </h2>
+                <p style="font-size: 12px; color: var(--text-muted);">Real-time supplier compliance, fulfillment
+                    accuracy, and delivery SLA metrics backed by JPA EJB Timers</p>
+            </div>
+            <span class="user-badge" style="background: #f3e8ff; color: #6b21a8;">📊 PROCUREMENT_AUDITOR</span>
+        </div>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #7c3aed;">📊</div>
+                <div>
+                    <div class="metric-val" id="cntEvaluatedVendors">4 Vendors</div>
+                    <div class="metric-label">Evaluated Suppliers</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #059669;">🎯</div>
+                <div>
+                    <div class="metric-val" id="valAvgFulfillment">98.2%</div>
+                    <div class="metric-label">Avg Fulfillment Score</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #2563eb;">⏱️</div>
+                <div>
+                    <div class="metric-val" id="valAvgOnTime">99.1%</div>
+                    <div class="metric-label">On-Time Delivery Rate</div>
+                </div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #d97706;">⭐</div>
+                <div>
+                    <div class="metric-val">4.9 / 5.0</div>
+                    <div class="metric-label">Quality & Compliance Rating</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Layout Grid -->
+        <div class="vendor-layout" style="margin-top: 28px;">
+
+            <!-- LEFT: VENDOR PERFORMANCE TABLE -->
+            <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
+                        📋 Vendor Performance Ledger (vendor_performances Table)
+                    </h3>
+                    <button type="button" id="btnRefreshVendors" class="btn-secondary"
+                            style="width: auto; padding: 6px 12px; font-size: 11px;">
+                        🔄 Refresh Audit Ledger
+                    </button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                        <tr>
+                            <th>Audit ID & Supplier</th>
+                            <th>Fulfillment Score</th>
+                            <th>On-Time Delivery Rate</th>
+                            <th>Quality Rating</th>
+                            <th>Evaluated Timestamp</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="vendorTableBody">
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: var(--text-muted);">Loading vendor
+                                performance ledger...
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- RIGHT: TRIGGER MANUAL SUPPLIER AUDIT FORM -->
+            <div style="background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; position: sticky; top: 20px; height: fit-content;">
+                <h3 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin-top:0; margin-bottom: 14px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">
+                    📊 Execute Vendor Compliance Audit
+                </h3>
+
+                <form id="evalVendorForm">
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label class="form-label" for="selectVendor" style="font-size: 11px;">Select Supplier Company
+                            <span>*</span></label>
+                        <select id="selectVendor" class="form-control" style="padding-left: 10px; font-size: 12px;"
+                                required>
+                            <option value="1">Bosch Medical Logistics GmbH</option>
+                            <option value="2">Siemens Healthcare Logistics</option>
+                            <option value="3">Global Cargo Forwarders USA</option>
+                            <option value="4">Tech Mart Hardware Lanka</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label class="form-label" for="inputFulfillment" style="font-size: 11px;">Fulfillment Score (%)
+                            <span>*</span></label>
+                        <input type="number" id="inputFulfillment" class="form-control"
+                               style="padding-left: 10px; font-size: 12px;" value="98.5" min="0" max="100" step="0.1"
+                               required>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 10px;">
+                        <label class="form-label" for="inputOnTime" style="font-size: 11px;">On-Time Delivery Rate (%)
+                            <span>*</span></label>
+                        <input type="number" id="inputOnTime" class="form-control"
+                               style="padding-left: 10px; font-size: 12px;" value="99.2" min="0" max="100" step="0.1"
+                               required>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 14px;">
+                        <label class="form-label" for="inputQuality" style="font-size: 11px;">Quality Rating (1.0 to 5.0
+                            ⭐) <span>*</span></label>
+                        <input type="number" id="inputQuality" class="form-control"
+                               style="padding-left: 10px; font-size: 12px;" value="4.9" min="1.0" max="5.0" step="0.1"
+                               required>
+                    </div>
+
+                    <button type="submit" id="btnSubmitAudit" class="btn-primary"
+                            style="width: 100%; margin-top: 0; background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);">
+                        <span class="btn-text">📊 Save Evaluation to vendor_performances</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions-grid" style="margin-top: 36px;">
+            <a href="admin.html" class="btn-secondary"
+               style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+                👑 Back to Admin Control
+            </a>
+            <a href="index.html" class="btn-primary"
+               style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
+                Sign Out
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+    </footer>
+</div>
+
+<script src="js/vendors.js"></script>
+<script src="js/notifications.js"></script>
 </body>
 </html>

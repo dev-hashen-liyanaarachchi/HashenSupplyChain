@@ -7,46 +7,125 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
-    <div class="app-container wide">
-        <header class="brand-header">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-                <div style="display: flex; gap: 8px;">
-                    <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">👑 Back to Admin Control</a>
-                    <a href="index.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none;">Main Portal</a>
-                </div>
-                <div class="brand-logo" style="margin-bottom:0;"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg></div>
-            </div>
-            <h1 class="brand-name">✈️ Logistics & Fleet Dispatch Portal</h1>
-            <p class="brand-subtitle">Cargo Route Optimization & Carrier Tracking System</p>
-        </header>
 
-        <main class="auth-card">
-            <div class="metrics-grid">
-                <div class="metric-card"><div class="metric-icon">🚢</div><div><div class="metric-val">14 Active</div><div class="metric-label">International Cargo Ships</div></div></div>
-                <div class="metric-card"><div class="metric-icon">🗺️</div><div><div class="metric-val">Dynamic Active</div><div class="metric-label">Route Optimization SLA</div></div></div>
-                <div class="metric-card"><div class="metric-icon">🚀</div><div><div class="metric-val">1.4s Speed</div><div class="metric-label">Manifest Processing</div></div></div>
+<nav class="gt-navbar">
+    <div class="gt-nav-container">
+        <a href="index.html" class="gt-brand">
+            <div class="gt-brand-logo">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
+                </svg>
             </div>
-
-            <div style="margin-bottom: 24px;">
-                <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">🚢 Cargo Manifest & Fleet Tracking</h3>
-                <table class="data-table">
-                    <thead><tr><th>Tracking No</th><th>Origin -> Destination</th><th>Carrier Name</th><th>Status</th></tr></thead>
-                    <tbody>
-                        <tr><td>TRK-88990</td><td>Hamburg (DE) -> Colombo (LK)</td><td>Maersk Line Shipping</td><td><span class="badge-status badge-active">DEPARTED PORT</span></td></tr>
-                        <tr><td>TRK-88991</td><td>Stuttgart (DE) -> Singapore (SG)</td><td>DHL Express Cargo</td><td><span class="badge-status badge-pending">CUSTOMS CLEARANCE</span></td></tr>
-                    </tbody>
-                </table>
+            <div>
+                <div class="gt-brand-title">GlobalTrade Logistics</div>
+                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
             </div>
-
-            <div class="actions-grid">
-                <a href="admin.html" class="btn-secondary" style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">👑 Back to Admin Control</a>
-                <a href="index.html" class="btn-primary" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align:center;">Sign Out</a>
-            </div>
-        </main>
-        <footer>&copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.</footer>
+        </a>
+        <div class="gt-nav-links">
+            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
+            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
+            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
+            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
+            <a href="vendor.html" class="gt-nav-link">🤝 Vendor</a>
+            <a href="logistics.html" class="gt-nav-link active">🚚 Logistics</a>
+            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
+            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
+            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
+            <a href="admin.html" class="gt-nav-link">👑 Admin</a>
+        </div>
+        <div class="gt-user-profile">
+            <span class="user-badge">Logistics Coordinator</span>
+        </div>
     </div>
+</nav>
+<div class="app-container wide">
+    <header class="brand-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px;">
+                <a href="admin.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">👑
+                    Back to Admin Control</a>
+                <a href="index.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none;">Main Portal</a>
+            </div>
+            <div class="brand-logo" style="margin-bottom:0;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+            </div>
+        </div>
+        <h1 class="brand-name">✈️ Logistics & Fleet Dispatch Portal</h1>
+        <p class="brand-subtitle">Cargo Route Optimization & Carrier Tracking System</p>
+    </header>
+
+    <main class="auth-card">
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon">🚢</div>
+                <div>
+                    <div class="metric-val">14 Active</div>
+                    <div class="metric-label">International Cargo Ships</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🗺️</div>
+                <div>
+                    <div class="metric-val">Dynamic Active</div>
+                    <div class="metric-label">Route Optimization SLA</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon">🚀</div>
+                <div>
+                    <div class="metric-val">1.4s Speed</div>
+                    <div class="metric-label">Manifest Processing</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 24px;">
+            <h3 style="font-size: 16px; font-weight: 700; margin-bottom: 12px;">🚢 Cargo Manifest & Fleet Tracking</h3>
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>Tracking No</th>
+                    <th>Origin -> Destination</th>
+                    <th>Carrier Name</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>TRK-88990</td>
+                    <td>Hamburg (DE) -> Colombo (LK)</td>
+                    <td>Maersk Line Shipping</td>
+                    <td><span class="badge-status badge-active">DEPARTED PORT</span></td>
+                </tr>
+                <tr>
+                    <td>TRK-88991</td>
+                    <td>Stuttgart (DE) -> Singapore (SG)</td>
+                    <td>DHL Express Cargo</td>
+                    <td><span class="badge-status badge-pending">CUSTOMS CLEARANCE</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="actions-grid">
+            <a href="admin.html" class="btn-secondary"
+               style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">👑 Back to Admin
+                Control</a>
+            <a href="index.html" class="btn-primary"
+               style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align:center;">Sign
+                Out</a>
+        </div>
+    </main>
+    <footer>&copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.</footer>
+</div>
 </body>
 </html>

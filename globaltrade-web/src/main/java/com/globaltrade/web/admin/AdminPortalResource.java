@@ -5,6 +5,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import com.globaltrade.service.AdminManagementService;
+
 import java.util.*;
 
 @Path("/admin")
@@ -15,7 +16,8 @@ public class AdminPortalResource {
     @EJB
     private AdminManagementService adminManagementService;
 
-    public record AdminUserRequest(String username, String password, String email, Long roleId) {}
+    public record AdminUserRequest(String username, String password, String email, Long roleId) {
+    }
 
     @GET
     @Path("/status")

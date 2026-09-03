@@ -3,6 +3,7 @@ package com.globaltrade.entity;
 import jakarta.persistence.*;
 import com.globaltrade.enums.ShipmentStatus;
 import com.globaltrade.enums.ShipmentType;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -56,7 +57,8 @@ public class Shipment implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Shipment() {}
+    public Shipment() {
+    }
 
     public Shipment(String trackingNumber, Order order, ShipmentType shipmentType, Warehouse originWarehouse, Address destinationAddress, LocalDateTime estimatedDelivery) {
         this.trackingNumber = trackingNumber;
@@ -67,42 +69,107 @@ public class Shipment implements Serializable {
         this.estimatedDelivery = estimatedDelivery;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getTrackingNumber() { return trackingNumber; }
-    public void setTrackingNumber(String trackingNumber) { this.trackingNumber = trackingNumber; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Order getOrder() { return order; }
-    public void setOrder(Order order) { this.order = order; }
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
 
-    public Carrier getCarrier() { return carrier; }
-    public void setCarrier(Carrier carrier) { this.carrier = carrier; }
+    public void setTrackingNumber(String trackingNumber) {
+        this.trackingNumber = trackingNumber;
+    }
 
-    public ShipmentType getShipmentType() { return shipmentType; }
-    public void setShipmentType(ShipmentType shipmentType) { this.shipmentType = shipmentType; }
+    public Order getOrder() {
+        return order;
+    }
 
-    public ShipmentStatus getStatus() { return status; }
-    public void setStatus(ShipmentStatus status) { this.status = status; }
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
-    public Warehouse getOriginWarehouse() { return originWarehouse; }
-    public void setOriginWarehouse(Warehouse originWarehouse) { this.originWarehouse = originWarehouse; }
+    public Carrier getCarrier() {
+        return carrier;
+    }
 
-    public Address getDestinationAddress() { return destinationAddress; }
-    public void setDestinationAddress(Address destinationAddress) { this.destinationAddress = destinationAddress; }
+    public void setCarrier(Carrier carrier) {
+        this.carrier = carrier;
+    }
 
-    public LocalDateTime getEstimatedDelivery() { return estimatedDelivery; }
-    public void setEstimatedDelivery(LocalDateTime estimatedDelivery) { this.estimatedDelivery = estimatedDelivery; }
+    public ShipmentType getShipmentType() {
+        return shipmentType;
+    }
 
-    public LocalDateTime getActualDelivery() { return actualDelivery; }
-    public void setActualDelivery(LocalDateTime actualDelivery) { this.actualDelivery = actualDelivery; }
+    public void setShipmentType(ShipmentType shipmentType) {
+        this.shipmentType = shipmentType;
+    }
 
-    public String getDriverName() { return driverName; }
-    public void setDriverName(String driverName) { this.driverName = driverName; }
+    public ShipmentStatus getStatus() {
+        return status;
+    }
 
-    public String getVehicleNo() { return vehicleNo; }
-    public void setVehicleNo(String vehicleNo) { this.vehicleNo = vehicleNo; }
+    public void setStatus(ShipmentStatus status) {
+        this.status = status;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public Warehouse getOriginWarehouse() {
+        return originWarehouse;
+    }
+
+    public void setOriginWarehouse(Warehouse originWarehouse) {
+        this.originWarehouse = originWarehouse;
+    }
+
+    public Address getDestinationAddress() {
+        return destinationAddress;
+    }
+
+    public void setDestinationAddress(Address destinationAddress) {
+        this.destinationAddress = destinationAddress;
+    }
+
+    public LocalDateTime getEstimatedDelivery() {
+        return estimatedDelivery;
+    }
+
+    public void setEstimatedDelivery(LocalDateTime estimatedDelivery) {
+        this.estimatedDelivery = estimatedDelivery;
+    }
+
+    public LocalDateTime getActualDelivery() {
+        return actualDelivery;
+    }
+
+    public void setActualDelivery(LocalDateTime actualDelivery) {
+        this.actualDelivery = actualDelivery;
+    }
+
+    public String getDriverName() {
+        return driverName;
+    }
+
+    public void setDriverName(String driverName) {
+        this.driverName = driverName;
+    }
+
+    public String getVehicleNo() {
+        return vehicleNo;
+    }
+
+    public void setVehicleNo(String vehicleNo) {
+        this.vehicleNo = vehicleNo;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

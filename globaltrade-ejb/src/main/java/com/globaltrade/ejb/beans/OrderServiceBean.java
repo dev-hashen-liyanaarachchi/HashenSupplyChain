@@ -20,6 +20,7 @@ import com.globaltrade.enums.OrderStatus;
 import com.globaltrade.exception.InventoryException;
 import com.globaltrade.exception.OrderException;
 import com.globaltrade.repository.OrderRepository;
+
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -76,7 +77,7 @@ public class OrderServiceBean implements OrderService {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public Order updateOrderStatus(Long orderId, OrderStatus status) throws OrderException {
         Order order = orderRepository.findById(orderId)
-            .orElseThrow(() -> new OrderException("NOT_FOUND", "Order not found with ID: " + orderId));
+                .orElseThrow(() -> new OrderException("NOT_FOUND", "Order not found with ID: " + orderId));
         order.setStatus(status);
         return orderRepository.update(order);
     }

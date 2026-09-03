@@ -6,6 +6,7 @@ import jakarta.persistence.PersistenceContext;
 import com.globaltrade.entity.Warehouse;
 import com.globaltrade.entity.Address;
 import com.globaltrade.entity.Country;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class WarehouseService {
 
     public Warehouse createWarehouse(String name, String streetLine1, String city, String state, String postalCode, String countryCode, Integer maxCapacity) {
         String ccode = (countryCode != null && !countryCode.isBlank()) ? countryCode.toUpperCase() : "LK";
-        
+
         Country country = em.createQuery("SELECT c FROM Country c WHERE c.code = :code", Country.class)
                 .setParameter("code", ccode)
                 .getResultStream().findFirst()

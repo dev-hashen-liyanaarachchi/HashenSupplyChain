@@ -12,5 +12,7 @@ public class ShipmentException extends GlobalTradeException {
         this.trackingNumber = trackingNumber;
     }
 
-    public String getTrackingNumber() { return trackingNumber; }
+    public String getTrackingNumber() {
+        return trackingNumber;
+    }
 }

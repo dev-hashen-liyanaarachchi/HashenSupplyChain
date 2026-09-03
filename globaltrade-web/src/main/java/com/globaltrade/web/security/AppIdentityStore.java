@@ -7,6 +7,7 @@ import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
 import jakarta.security.enterprise.identitystore.IdentityStore;
 import com.globaltrade.entity.User;
+
 import java.util.Set;
 
 import jakarta.ejb.EJB;

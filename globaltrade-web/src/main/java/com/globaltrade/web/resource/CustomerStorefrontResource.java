@@ -7,6 +7,7 @@ import jakarta.ws.rs.core.Response;
 import com.globaltrade.entity.Product;
 import com.globaltrade.entity.Inventory;
 import com.globaltrade.service.InventoryService;
+
 import java.util.*;
 
 @Path("/storefront")
@@ -17,7 +18,8 @@ public class CustomerStorefrontResource {
     @EJB
     private InventoryService inventoryService;
 
-    public record CartItemRequest(Long productId, Integer qty) {}
+    public record CartItemRequest(Long productId, Integer qty) {
+    }
 
     public record CheckoutRequest(
             String customerName,
@@ -31,7 +33,8 @@ public class CustomerStorefrontResource {
             Long warehouseId,
             String paymentMethod,
             List<CartItemRequest> items
-    ) {}
+    ) {
+    }
 
     @GET
     @Path("/products")
@@ -84,7 +87,8 @@ public class CustomerStorefrontResource {
             String originCountryCode,
             String destinationCountryCode,
             Double totalWeightKg
-    ) {}
+    ) {
+    }
 
     @POST
     @Path("/quote")
@@ -140,7 +144,8 @@ public class CustomerStorefrontResource {
         }
     }
 
-    public record StatusUpdateRequest(Long orderId, String status) {}
+    public record StatusUpdateRequest(Long orderId, String status) {
+    }
 
     @GET
     @Path("/orders")

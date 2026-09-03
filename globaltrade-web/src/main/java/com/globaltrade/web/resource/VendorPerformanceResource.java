@@ -23,7 +23,8 @@ public class VendorPerformanceResource {
             Double fulfillmentScore,
             Double onTimeDeliveryRate,
             Double qualityRating
-    ) {}
+    ) {
+    }
 
     @GET
     @Path("/performance")

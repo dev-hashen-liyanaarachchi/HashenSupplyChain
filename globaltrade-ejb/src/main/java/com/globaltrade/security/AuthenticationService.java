@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import com.globaltrade.entity.User;
 import com.globaltrade.exception.GlobalTradeException;
+
 import java.util.Optional;
 import java.util.logging.Logger;
 

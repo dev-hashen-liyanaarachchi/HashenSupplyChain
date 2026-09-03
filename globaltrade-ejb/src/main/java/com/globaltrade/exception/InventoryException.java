@@ -16,7 +16,15 @@ public class InventoryException extends GlobalTradeException {
         this.availableQty = availableQty;
     }
 
-    public String getSku() { return sku; }
-    public int getRequestedQty() { return requestedQty; }
-    public int getAvailableQty() { return availableQty; }
+    public String getSku() {
+        return sku;
+    }
+
+    public int getRequestedQty() {
+        return requestedQty;
+    }
+
+    public int getAvailableQty() {
+        return availableQty;
+    }
 }

@@ -203,7 +203,9 @@ document.addEventListener('DOMContentLoaded', () => {
         dossierModal.style.display = 'flex';
     }
 
-    btnCloseModal?.addEventListener('click', () => { dossierModal.style.display = 'none'; });
+    btnCloseModal?.addEventListener('click', () => {
+        dossierModal.style.display = 'none';
+    });
 
     btnModalApprove?.addEventListener('click', () => {
         if (currentSelectedDocId) {
@@ -228,8 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/customs/review`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ documentId, officerName, approve, notes })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({documentId, officerName, approve, notes})
             });
 
             const data = await res.json();

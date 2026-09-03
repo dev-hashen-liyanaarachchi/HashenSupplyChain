@@ -8,5 +8,6 @@ import com.globaltrade.exception.PaymentException;
 @Local
 public interface PaymentService {
     Payment processPayment(Long orderId, Double amount, PaymentMethod method) throws PaymentException;
+
     Payment getPaymentByOrderId(Long orderId);
 }

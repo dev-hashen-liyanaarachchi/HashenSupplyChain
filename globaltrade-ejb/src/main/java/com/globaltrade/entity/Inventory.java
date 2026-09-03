@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -35,7 +36,8 @@ public class Inventory implements Serializable {
     @Column(name = "reorder_threshold", nullable = false)
     private Integer reorderThreshold = 100;
 
-    public Inventory() {}
+    public Inventory() {
+    }
 
     public Inventory(Warehouse warehouse, Product product, Integer availableQty, Integer reorderThreshold) {
         this.warehouse = warehouse;
@@ -56,27 +58,67 @@ public class Inventory implements Serializable {
         this.reorderThreshold = reorderThreshold;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Warehouse getWarehouse() { return warehouse; }
-    public void setWarehouse(Warehouse warehouse) { this.warehouse = warehouse; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
 
-    public Vendor getVendor() { return vendor; }
-    public void setVendor(Vendor vendor) { this.vendor = vendor; }
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
 
-    public Double getUnitPrice() { return unitPrice; }
-    public void setUnitPrice(Double unitPrice) { this.unitPrice = unitPrice; }
+    public Product getProduct() {
+        return product;
+    }
 
-    public Integer getAvailableQty() { return availableQty; }
-    public void setAvailableQty(Integer availableQty) { this.availableQty = availableQty; }
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
-    public Integer getReservedQty() { return reservedQty; }
-    public void setReservedQty(Integer reservedQty) { this.reservedQty = reservedQty; }
+    public Vendor getVendor() {
+        return vendor;
+    }
 
-    public Integer getReorderThreshold() { return reorderThreshold; }
-    public void setReorderThreshold(Integer reorderThreshold) { this.reorderThreshold = reorderThreshold; }
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Integer getAvailableQty() {
+        return availableQty;
+    }
+
+    public void setAvailableQty(Integer availableQty) {
+        this.availableQty = availableQty;
+    }
+
+    public Integer getReservedQty() {
+        return reservedQty;
+    }
+
+    public void setReservedQty(Integer reservedQty) {
+        this.reservedQty = reservedQty;
+    }
+
+    public Integer getReorderThreshold() {
+        return reorderThreshold;
+    }
+
+    public void setReorderThreshold(Integer reorderThreshold) {
+        this.reorderThreshold = reorderThreshold;
+    }
 }

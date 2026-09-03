@@ -2,6 +2,7 @@ package com.globaltrade.entity;
 
 import jakarta.persistence.*;
 import com.globaltrade.enums.InventoryTransactionType;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -30,7 +31,8 @@ public class InventoryTransaction implements Serializable {
     @Column(name = "timestamp", nullable = false, updatable = false)
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    public InventoryTransaction() {}
+    public InventoryTransaction() {
+    }
 
     public InventoryTransaction(Inventory inventory, InventoryTransactionType transactionType, Integer quantityChanged, String performedBy) {
         this.inventory = inventory;
@@ -39,21 +41,51 @@ public class InventoryTransaction implements Serializable {
         this.performedBy = performedBy;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Inventory getInventory() { return inventory; }
-    public void setInventory(Inventory inventory) { this.inventory = inventory; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public InventoryTransactionType getTransactionType() { return transactionType; }
-    public void setTransactionType(InventoryTransactionType transactionType) { this.transactionType = transactionType; }
+    public Inventory getInventory() {
+        return inventory;
+    }
 
-    public Integer getQuantityChanged() { return quantityChanged; }
-    public void setQuantityChanged(Integer quantityChanged) { this.quantityChanged = quantityChanged; }
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
 
-    public String getPerformedBy() { return performedBy; }
-    public void setPerformedBy(String performedBy) { this.performedBy = performedBy; }
+    public InventoryTransactionType getTransactionType() {
+        return transactionType;
+    }
 
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+    public void setTransactionType(InventoryTransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public Integer getQuantityChanged() {
+        return quantityChanged;
+    }
+
+    public void setQuantityChanged(Integer quantityChanged) {
+        this.quantityChanged = quantityChanged;
+    }
+
+    public String getPerformedBy() {
+        return performedBy;
+    }
+
+    public void setPerformedBy(String performedBy) {
+        this.performedBy = performedBy;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 }

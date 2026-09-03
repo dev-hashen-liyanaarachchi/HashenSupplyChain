@@ -15,6 +15,7 @@ import com.globaltrade.entity.Warehouse;
 import com.globaltrade.dto.InventoryDTO;
 import com.globaltrade.exception.InventoryException;
 import com.globaltrade.repository.InventoryRepository;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -37,7 +38,7 @@ public class InventoryServiceBean implements InventoryService {
         LOGGER.info("[CMT MANDATORY] Reserving stock for Warehouse ID: " + warehouseId + ", Product ID: " + productId + ", Qty: " + quantity);
 
         Inventory inventory = inventoryRepository.findByWarehouseAndProductWithLock(warehouseId, productId)
-            .orElse(null);
+                .orElse(null);
 
         if (inventory == null || inventory.getAvailableQty() < quantity) {
             Product product = em.find(Product.class, productId);
@@ -56,7 +57,7 @@ public class InventoryServiceBean implements InventoryService {
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
     public void deductStock(Long warehouseId, Long productId, int quantity) throws InventoryException {
         Inventory inventory = inventoryRepository.findByWarehouseAndProductWithLock(warehouseId, productId)
-            .orElse(null);
+                .orElse(null);
 
         if (inventory == null || inventory.getReservedQty() < quantity) {
             Product product = em.find(Product.class, productId);

@@ -61,7 +61,7 @@ public class FinanceService {
         }
 
         LOGGER.info("[FINANCE DUTY SETTLEMENT] Settling import duty tax $" + doc.getDutyFee() + " for Doc #" + documentId + " by " + financeOfficer);
-        
+
         doc.setSettlementStatus("DUTY_SETTLED_AND_DISPATCHED");
         doc.setAssignedCarrier(carrierName != null ? carrierName : "DHL Express International Air Fleet");
         doc.setStatus(CustomsDocumentStatus.APPROVED);

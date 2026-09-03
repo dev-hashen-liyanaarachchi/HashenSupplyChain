@@ -6,6 +6,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import com.globaltrade.entity.*;
 import com.globaltrade.service.InventoryService;
+
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,8 @@ public class InventoryResource {
             String description,
             Long categoryId,
             Long brandId
-    ) {}
+    ) {
+    }
 
     public record AddInventoryRequest(
             Long warehouseId,
@@ -35,9 +37,11 @@ public class InventoryResource {
             Double unitPrice,
             Integer availableQty,
             Integer reorderThreshold
-    ) {}
+    ) {
+    }
 
-    public record SimpleNamedRequest(String name) {}
+    public record SimpleNamedRequest(String name) {
+    }
 
     @GET
     @Path("/hscodes")

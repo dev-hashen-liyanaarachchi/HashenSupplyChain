@@ -15,5 +15,6 @@ public class CustomsExceptionMapper implements ExceptionMapper<CustomsException>
                 .build();
     }
 
-    public static record ErrorMessage(int status, String error, String message) {}
+    public static record ErrorMessage(int status, String error, String message) {
+    }
 }

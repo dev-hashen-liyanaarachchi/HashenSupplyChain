@@ -8,6 +8,7 @@ import com.globaltrade.ejb.interfaces.TrackingService;
 import com.globaltrade.entity.Shipment;
 import com.globaltrade.entity.TrackingEvent;
 import com.globaltrade.repository.ShipmentRepository;
+
 import java.util.List;
 
 @Stateless
@@ -22,7 +23,7 @@ public class TrackingServiceBean implements TrackingService {
     @Override
     public TrackingEvent addTrackingEvent(String trackingNumber, String location, String description) {
         Shipment shipment = shipmentRepository.findByTrackingNumber(trackingNumber)
-            .orElseThrow(() -> new IllegalArgumentException("Shipment not found with tracking #" + trackingNumber));
+                .orElseThrow(() -> new IllegalArgumentException("Shipment not found with tracking #" + trackingNumber));
 
         TrackingEvent event = new TrackingEvent(shipment, location, description);
         em.persist(event);

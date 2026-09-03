@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -18,19 +19,35 @@ public class ProductImage implements Serializable {
     @Column(name = "image_url", nullable = false, length = 255)
     private String imageUrl;
 
-    public ProductImage() {}
+    public ProductImage() {
+    }
 
     public ProductImage(Product product, String imageUrl) {
         this.product = product;
         this.imageUrl = imageUrl;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getImageUrl() { return imageUrl; }
-    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

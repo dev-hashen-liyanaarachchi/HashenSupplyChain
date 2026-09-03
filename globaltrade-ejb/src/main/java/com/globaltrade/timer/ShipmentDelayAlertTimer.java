@@ -2,6 +2,7 @@ package com.globaltrade.timer;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.*;
+
 import java.io.Serializable;
 import java.util.logging.Logger;
 
@@ -44,7 +45,13 @@ public class ShipmentDelayAlertTimer {
 
     public static class DelayAlertData implements Serializable {
         private final String trackingNumber;
-        public DelayAlertData(String trackingNumber) { this.trackingNumber = trackingNumber; }
-        public String getTrackingNumber() { return trackingNumber; }
+
+        public DelayAlertData(String trackingNumber) {
+            this.trackingNumber = trackingNumber;
+        }
+
+        public String getTrackingNumber() {
+            return trackingNumber;
+        }
     }
 }

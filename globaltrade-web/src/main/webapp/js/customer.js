@@ -48,9 +48,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Pre-defined Warehouse Mapping
     const WAREHOUSES = {
-        'LK': { id: 2, name: 'Colombo Logistics Depot (LK)', flag: '🇱🇰', country: 'LK', desc: 'Optimal fulfillment for South Asian region' },
-        'DE': { id: 1, name: 'Frankfurt Central Depot (DE)', flag: '🇩🇪', country: 'DE', desc: 'Central hub for European Union & UK' },
-        'US': { id: 4, name: 'USA New York Air Hub (US)', flag: '🇺🇸', country: 'US', desc: 'North America express hub' }
+        'LK': {
+            id: 2,
+            name: 'Colombo Logistics Depot (LK)',
+            flag: '🇱🇰',
+            country: 'LK',
+            desc: 'Optimal fulfillment for South Asian region'
+        },
+        'DE': {
+            id: 1,
+            name: 'Frankfurt Central Depot (DE)',
+            flag: '🇩🇪',
+            country: 'DE',
+            desc: 'Central hub for European Union & UK'
+        },
+        'US': {id: 4, name: 'USA New York Air Hub (US)', flag: '🇺🇸', country: 'US', desc: 'North America express hub'}
     };
 
     function showAlert(message, type = 'error') {
@@ -135,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (cartSubtotal) cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
         if (cartTotal) cartTotal.textContent = `$${grandTotal.toFixed(2)}`;
 
-        return { subtotal, shippingCost, grandTotal, isDomestic, originCountry };
+        return {subtotal, shippingCost, grandTotal, isDomestic, originCountry};
     }
 
     custDestCountry?.addEventListener('change', calculateShippingCost);
@@ -236,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (existing) {
             existing.qty += qtyToAdd;
         } else {
-            cart.push({ id, sku, name, price, weightKg, qty: qtyToAdd });
+            cart.push({id, sku, name, price, weightKg, qty: qtyToAdd});
         }
         calculateShippingCost();
         showAlert(`Added ${qtyToAdd}x "${name}" (${(weightKg * qtyToAdd).toFixed(2)} kg) to shopping cart!`, 'success');
@@ -381,8 +393,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/storefront/orders/status`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ orderId, status: 'DELIVERED' })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({orderId, status: 'DELIVERED'})
             });
 
             const data = await res.json();
@@ -525,8 +537,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    btnCloseTrackModal?.addEventListener('click', () => { modalOrderTracking.style.display = 'none'; });
-    btnDoneTrackModal?.addEventListener('click', () => { modalOrderTracking.style.display = 'none'; });
+    btnCloseTrackModal?.addEventListener('click', () => {
+        modalOrderTracking.style.display = 'none';
+    });
+    btnDoneTrackModal?.addEventListener('click', () => {
+        modalOrderTracking.style.display = 'none';
+    });
 
     checkoutForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -563,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/storefront/checkout`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     customerName,
                     phone: fullPhone,
@@ -575,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     originCountryCode,
                     warehouseId: currentWarehouseId,
                     paymentMethod,
-                    items: cart.map(i => ({ productId: i.id, qty: i.qty }))
+                    items: cart.map(i => ({productId: i.id, qty: i.qty}))
                 })
             });
 
@@ -583,7 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (res.ok || res.status === 201) {
                 showAlert(`🎉 Order #${data.orderNumber} placed & confirmed! Shipment Tracking: ${data.trackingNumber || 'TRK-DHL-89100'} | Total: $${data.totalAmount.toFixed(2)} (${data.carrierName})`, 'success');
-                
+
                 // Reset cart
                 cart = [];
                 updateCartUI();

@@ -25,7 +25,7 @@ public class ShipmentItemService {
 
         Order order = shipment.getOrder();
         List<OrderItem> orderItems = em.createQuery(
-                "SELECT oi FROM OrderItem oi WHERE oi.order.id = :oid", OrderItem.class)
+                        "SELECT oi FROM OrderItem oi WHERE oi.order.id = :oid", OrderItem.class)
                 .setParameter("oid", order.getId())
                 .getResultList();
 
@@ -48,7 +48,7 @@ public class ShipmentItemService {
 
     public List<ShipmentItem> getAllShipmentItems() {
         List<ShipmentItem> list = em.createQuery(
-                "SELECT DISTINCT si FROM ShipmentItem si LEFT JOIN FETCH si.shipment s LEFT JOIN FETCH si.orderItem oi LEFT JOIN FETCH oi.product p ORDER BY si.id DESC", ShipmentItem.class)
+                        "SELECT DISTINCT si FROM ShipmentItem si LEFT JOIN FETCH si.shipment s LEFT JOIN FETCH si.orderItem oi LEFT JOIN FETCH oi.product p ORDER BY si.id DESC", ShipmentItem.class)
                 .getResultList();
 
         if (list.isEmpty()) {
@@ -60,7 +60,7 @@ public class ShipmentItemService {
             }
 
             list = em.createQuery(
-                    "SELECT DISTINCT si FROM ShipmentItem si LEFT JOIN FETCH si.shipment s LEFT JOIN FETCH si.orderItem oi LEFT JOIN FETCH oi.product p ORDER BY si.id DESC", ShipmentItem.class)
+                            "SELECT DISTINCT si FROM ShipmentItem si LEFT JOIN FETCH si.shipment s LEFT JOIN FETCH si.orderItem oi LEFT JOIN FETCH oi.product p ORDER BY si.id DESC", ShipmentItem.class)
                     .getResultList();
         }
         return list;
@@ -68,7 +68,7 @@ public class ShipmentItemService {
 
     public List<ShipmentItem> getShipmentItemsByShipment(Long shipmentId) {
         return em.createQuery(
-                "SELECT DISTINCT si FROM ShipmentItem si LEFT JOIN FETCH si.shipment s LEFT JOIN FETCH si.orderItem oi LEFT JOIN FETCH oi.product p WHERE si.shipment.id = :sid ORDER BY si.id ASC", ShipmentItem.class)
+                        "SELECT DISTINCT si FROM ShipmentItem si LEFT JOIN FETCH si.shipment s LEFT JOIN FETCH si.orderItem oi LEFT JOIN FETCH oi.product p WHERE si.shipment.id = :sid ORDER BY si.id ASC", ShipmentItem.class)
                 .setParameter("sid", shipmentId)
                 .getResultList();
     }

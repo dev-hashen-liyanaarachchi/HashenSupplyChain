@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -18,7 +19,8 @@ public class Category implements Serializable {
     @JoinColumn(name = "parent_category_id")
     private Category parentCategory;
 
-    public Category() {}
+    public Category() {
+    }
 
     public Category(String name) {
         this.name = name;
@@ -29,12 +31,27 @@ public class Category implements Serializable {
         this.parentCategory = parentCategory;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Category getParentCategory() { return parentCategory; }
-    public void setParentCategory(Category parentCategory) { this.parentCategory = parentCategory; }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Category getParentCategory() {
+        return parentCategory;
+    }
+
+    public void setParentCategory(Category parentCategory) {
+        this.parentCategory = parentCategory;
+    }
 }

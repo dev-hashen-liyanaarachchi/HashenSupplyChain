@@ -5,6 +5,7 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+
 import java.time.Instant;
 import java.util.logging.Logger;
 

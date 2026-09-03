@@ -26,9 +26,14 @@ public class AdminResource {
     @EJB
     private WarehouseService warehouseService;
 
-    public record OrderStatusUpdate(Long orderId, String status) {}
-    public record ShipmentStatusUpdate(Long shipmentId, String status) {}
-    public record CustomsReviewRequest(Long documentId, String officerName, Boolean approve, String notes) {}
+    public record OrderStatusUpdate(Long orderId, String status) {
+    }
+
+    public record ShipmentStatusUpdate(Long shipmentId, String status) {
+    }
+
+    public record CustomsReviewRequest(Long documentId, String officerName, Boolean approve, String notes) {
+    }
 
     @GET
     @Path("/dashboard-stats")

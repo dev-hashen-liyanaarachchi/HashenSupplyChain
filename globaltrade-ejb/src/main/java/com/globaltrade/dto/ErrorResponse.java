@@ -7,7 +7,8 @@ public class ErrorResponse implements Serializable {
     private String message;
     private int statusCode;
 
-    public ErrorResponse() {}
+    public ErrorResponse() {
+    }
 
     public ErrorResponse(String error, String message, int statusCode) {
         this.error = error;
@@ -19,12 +20,27 @@ public class ErrorResponse implements Serializable {
         return new ErrorResponse(error, message, statusCode);
     }
 
-    public String getError() { return error; }
-    public void setError(String error) { this.error = error; }
+    public String getError() {
+        return error;
+    }
 
-    public String getMessage() { return message; }
-    public void setMessage(String message) { this.message = message; }
+    public void setError(String error) {
+        this.error = error;
+    }
 
-    public int getStatusCode() { return statusCode; }
-    public void setStatusCode(int statusCode) { this.statusCode = statusCode; }
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 }

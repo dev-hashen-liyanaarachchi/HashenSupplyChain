@@ -5,6 +5,7 @@ import jakarta.ejb.SessionContext;
 import jakarta.interceptor.AroundInvoke;
 import jakarta.interceptor.InvocationContext;
 import jakarta.interceptor.Interceptor;
+
 import java.util.logging.Logger;
 
 @Interceptor
@@ -18,8 +19,8 @@ public class SecurityInterceptor {
     @AroundInvoke
     public Object checkSecurityContext(InvocationContext context) throws Exception {
         String methodName = context.getMethod().getName();
-        String principalName = (sessionContext != null && sessionContext.getCallerPrincipal() != null) 
-            ? sessionContext.getCallerPrincipal().getName() : "UNAUTHENTICATED";
+        String principalName = (sessionContext != null && sessionContext.getCallerPrincipal() != null)
+                ? sessionContext.getCallerPrincipal().getName() : "UNAUTHENTICATED";
 
         LOGGER.info("[SECURITY INTERCEPTOR] Verifying security context for Principal: " + principalName + " on Method: " + methodName);
         return context.proceed();

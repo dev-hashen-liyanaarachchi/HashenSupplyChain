@@ -12,5 +12,7 @@ public class PaymentException extends GlobalTradeException {
         this.transactionRef = transactionRef;
     }
 
-    public String getTransactionRef() { return transactionRef; }
+    public String getTransactionRef() {
+        return transactionRef;
+    }
 }

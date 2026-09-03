@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,24 +19,40 @@ public class Role implements Serializable {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
-        name = "role_permissions",
-        joinColumns = @JoinColumn(name = "role_id")
+            name = "role_permissions",
+            joinColumns = @JoinColumn(name = "role_id")
     )
     @Column(name = "permission", nullable = false, length = 100)
     private Set<String> permissions = new HashSet<>();
 
-    public Role() {}
+    public Role() {
+    }
 
     public Role(String name) {
         this.name = name;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Set<String> getPermissions() { return permissions; }
-    public void setPermissions(Set<String> permissions) { this.permissions = permissions; }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<String> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Set<String> permissions) {
+        this.permissions = permissions;
+    }
 }

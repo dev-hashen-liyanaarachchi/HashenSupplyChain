@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import com.globaltrade.entity.*;
 import com.globaltrade.enums.*;
+
 import java.util.*;
 
 @Stateless
@@ -274,11 +275,22 @@ public class InventoryService {
         if (warehouse == null) {
             String whName;
             String whCity;
-            if (requestedOrigin.equals("US")) { whName = "USA New York Air Cargo Center"; whCity = "New York"; }
-            else if (requestedOrigin.equals("JP")) { whName = "Japan Tokyo Cargo Hub"; whCity = "Tokyo"; }
-            else if (requestedOrigin.equals("DE")) { whName = "Germany Hamburg Export Hub"; whCity = "Hamburg"; }
-            else if (requestedOrigin.equals("SG")) { whName = "Singapore Port Sea Freight Hub"; whCity = "Singapore"; }
-            else { whName = "Colombo Logistics Depot"; whCity = "Colombo"; }
+            if (requestedOrigin.equals("US")) {
+                whName = "USA New York Air Cargo Center";
+                whCity = "New York";
+            } else if (requestedOrigin.equals("JP")) {
+                whName = "Japan Tokyo Cargo Hub";
+                whCity = "Tokyo";
+            } else if (requestedOrigin.equals("DE")) {
+                whName = "Germany Hamburg Export Hub";
+                whCity = "Hamburg";
+            } else if (requestedOrigin.equals("SG")) {
+                whName = "Singapore Port Sea Freight Hub";
+                whCity = "Singapore";
+            } else {
+                whName = "Colombo Logistics Depot";
+                whCity = "Colombo";
+            }
 
             if (warehouseService == null) {
                 warehouseService = new WarehouseService();
@@ -390,7 +402,8 @@ public class InventoryService {
         if (paymentMethod != null && !paymentMethod.isBlank()) {
             try {
                 pMethod = com.globaltrade.enums.PaymentMethod.valueOf(paymentMethod.trim().toUpperCase());
-            } catch (Exception ex) {}
+            } catch (Exception ex) {
+            }
         }
         String txnRef = "TXN-GT-" + System.currentTimeMillis() + "-" + (100 + new Random().nextInt(899));
         com.globaltrade.entity.Payment payment = new com.globaltrade.entity.Payment(order, txnRef, pMethod, totalAmount);
@@ -409,7 +422,7 @@ public class InventoryService {
             // Deduct stock quantity from inventory for assigned warehouse & product
             if (warehouse != null && pr != null) {
                 List<Inventory> invList = em.createQuery(
-                        "SELECT i FROM Inventory i WHERE i.product.id = :pid AND i.warehouse.id = :wid", Inventory.class)
+                                "SELECT i FROM Inventory i WHERE i.product.id = :pid AND i.warehouse.id = :wid", Inventory.class)
                         .setParameter("pid", pid)
                         .setParameter("wid", warehouse.getId())
                         .getResultList();
@@ -425,7 +438,7 @@ public class InventoryService {
                     em.persist(tx);
                 } else {
                     List<Inventory> globalInv = em.createQuery(
-                            "SELECT i FROM Inventory i WHERE i.product.id = :pid", Inventory.class)
+                                    "SELECT i FROM Inventory i WHERE i.product.id = :pid", Inventory.class)
                             .setParameter("pid", pid)
                             .getResultList();
                     if (!globalInv.isEmpty()) {
@@ -623,7 +636,7 @@ public class InventoryService {
 
     public List<Map<String, Object>> getAllShipments() {
         List<Shipment> list = em.createQuery(
-                "SELECT DISTINCT s FROM Shipment s LEFT JOIN FETCH s.order o LEFT JOIN FETCH s.originWarehouse w LEFT JOIN FETCH w.address wa LEFT JOIN FETCH wa.country wc LEFT JOIN FETCH s.destinationAddress da LEFT JOIN FETCH da.country dac ORDER BY s.id DESC", Shipment.class)
+                        "SELECT DISTINCT s FROM Shipment s LEFT JOIN FETCH s.order o LEFT JOIN FETCH s.originWarehouse w LEFT JOIN FETCH w.address wa LEFT JOIN FETCH wa.country wc LEFT JOIN FETCH s.destinationAddress da LEFT JOIN FETCH da.country dac ORDER BY s.id DESC", Shipment.class)
                 .getResultList();
 
         return list.stream().map(s -> {

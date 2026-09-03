@@ -2,6 +2,7 @@ package com.globaltrade.entity;
 
 import jakarta.persistence.*;
 import com.globaltrade.enums.CustomsDocumentStatus;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -66,7 +67,8 @@ public class CustomsDocument implements Serializable {
     @Column(name = "freight_charge")
     private Double freightCharge = 180.00;
 
-    public CustomsDocument() {}
+    public CustomsDocument() {
+    }
 
     public CustomsDocument(Shipment shipment, String documentType, String hsCode) {
         this.shipment = shipment;
@@ -74,57 +76,147 @@ public class CustomsDocument implements Serializable {
         this.hsCode = hsCode;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Shipment getShipment() { return shipment; }
-    public void setShipment(Shipment shipment) { this.shipment = shipment; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDocumentType() { return documentType; }
-    public void setDocumentType(String documentType) { this.documentType = documentType; }
+    public Shipment getShipment() {
+        return shipment;
+    }
 
-    public String getHsCode() { return hsCode; }
-    public void setHsCode(String hsCode) { this.hsCode = hsCode; }
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;
+    }
 
-    public CustomsDocumentStatus getStatus() { return status; }
-    public void setStatus(CustomsDocumentStatus status) { this.status = status; }
+    public String getDocumentType() {
+        return documentType;
+    }
 
-    public String getInspectedBy() { return inspectedBy; }
-    public void setInspectedBy(String inspectedBy) { this.inspectedBy = inspectedBy; }
+    public void setDocumentType(String documentType) {
+        this.documentType = documentType;
+    }
 
-    public LocalDateTime getSubmittedAt() { return submittedAt; }
-    public void setSubmittedAt(LocalDateTime submittedAt) { this.submittedAt = submittedAt; }
+    public String getHsCode() {
+        return hsCode;
+    }
 
-    public Double getDeclaredValue() { return declaredValue; }
-    public void setDeclaredValue(Double declaredValue) { this.declaredValue = declaredValue; }
+    public void setHsCode(String hsCode) {
+        this.hsCode = hsCode;
+    }
 
-    public Double getDutyFee() { return dutyFee; }
-    public void setDutyFee(Double dutyFee) { this.dutyFee = dutyFee; }
+    public CustomsDocumentStatus getStatus() {
+        return status;
+    }
 
-    public String getOriginCountry() { return originCountry; }
-    public void setOriginCountry(String originCountry) { this.originCountry = originCountry; }
+    public void setStatus(CustomsDocumentStatus status) {
+        this.status = status;
+    }
 
-    public String getDestinationCountry() { return destinationCountry; }
-    public void setDestinationCountry(String destinationCountry) { this.destinationCountry = destinationCountry; }
+    public String getInspectedBy() {
+        return inspectedBy;
+    }
 
-    public String getExporterName() { return exporterName; }
-    public void setExporterName(String exporterName) { this.exporterName = exporterName; }
+    public void setInspectedBy(String inspectedBy) {
+        this.inspectedBy = inspectedBy;
+    }
 
-    public String getImporterName() { return importerName; }
-    public void setImporterName(String importerName) { this.importerName = importerName; }
+    public LocalDateTime getSubmittedAt() {
+        return submittedAt;
+    }
 
-    public String getPackingListItems() { return packingListItems; }
-    public void setPackingListItems(String packingListItems) { this.packingListItems = packingListItems; }
+    public void setSubmittedAt(LocalDateTime submittedAt) {
+        this.submittedAt = submittedAt;
+    }
 
-    public LocalDateTime getClearanceDeadline() { return clearanceDeadline; }
-    public void setClearanceDeadline(LocalDateTime clearanceDeadline) { this.clearanceDeadline = clearanceDeadline; }
+    public Double getDeclaredValue() {
+        return declaredValue;
+    }
 
-    public String getSettlementStatus() { return settlementStatus; }
-    public void setSettlementStatus(String settlementStatus) { this.settlementStatus = settlementStatus; }
+    public void setDeclaredValue(Double declaredValue) {
+        this.declaredValue = declaredValue;
+    }
 
-    public String getAssignedCarrier() { return assignedCarrier; }
-    public void setAssignedCarrier(String assignedCarrier) { this.assignedCarrier = assignedCarrier; }
+    public Double getDutyFee() {
+        return dutyFee;
+    }
 
-    public Double getFreightCharge() { return freightCharge; }
-    public void setFreightCharge(Double freightCharge) { this.freightCharge = freightCharge; }
+    public void setDutyFee(Double dutyFee) {
+        this.dutyFee = dutyFee;
+    }
+
+    public String getOriginCountry() {
+        return originCountry;
+    }
+
+    public void setOriginCountry(String originCountry) {
+        this.originCountry = originCountry;
+    }
+
+    public String getDestinationCountry() {
+        return destinationCountry;
+    }
+
+    public void setDestinationCountry(String destinationCountry) {
+        this.destinationCountry = destinationCountry;
+    }
+
+    public String getExporterName() {
+        return exporterName;
+    }
+
+    public void setExporterName(String exporterName) {
+        this.exporterName = exporterName;
+    }
+
+    public String getImporterName() {
+        return importerName;
+    }
+
+    public void setImporterName(String importerName) {
+        this.importerName = importerName;
+    }
+
+    public String getPackingListItems() {
+        return packingListItems;
+    }
+
+    public void setPackingListItems(String packingListItems) {
+        this.packingListItems = packingListItems;
+    }
+
+    public LocalDateTime getClearanceDeadline() {
+        return clearanceDeadline;
+    }
+
+    public void setClearanceDeadline(LocalDateTime clearanceDeadline) {
+        this.clearanceDeadline = clearanceDeadline;
+    }
+
+    public String getSettlementStatus() {
+        return settlementStatus;
+    }
+
+    public void setSettlementStatus(String settlementStatus) {
+        this.settlementStatus = settlementStatus;
+    }
+
+    public String getAssignedCarrier() {
+        return assignedCarrier;
+    }
+
+    public void setAssignedCarrier(String assignedCarrier) {
+        this.assignedCarrier = assignedCarrier;
+    }
+
+    public Double getFreightCharge() {
+        return freightCharge;
+    }
+
+    public void setFreightCharge(Double freightCharge) {
+        this.freightCharge = freightCharge;
+    }
 }

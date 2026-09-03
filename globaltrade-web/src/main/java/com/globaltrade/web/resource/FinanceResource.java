@@ -18,7 +18,8 @@ public class FinanceResource {
     @EJB
     private FinanceService financeService;
 
-    public record SettlementRequest(Long documentId, String carrierName, String financeOfficer) {}
+    public record SettlementRequest(Long documentId, String carrierName, String financeOfficer) {
+    }
 
     @GET
     @Path("/ledger")

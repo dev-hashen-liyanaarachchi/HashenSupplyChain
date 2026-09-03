@@ -7,168 +7,217 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
 
-    <div class="app-container wide">
-        <!-- Brand Header -->
-        <header class="brand-header">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
-                        👑 Back to Admin Control
-                    </a>
-                    <a href="inventory.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #ccfbf1; color: #0f766e;">
-                        📦 Master Inventory
-                    </a>
-                    <a href="warehouse.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #92400e;">
-                        🏬 Warehouse Depots
-                    </a>
-                </div>
-                <div class="brand-logo" style="margin-bottom:0; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                </div>
+<nav class="gt-navbar">
+    <div class="gt-nav-container">
+        <a href="index.html" class="gt-brand">
+            <div class="gt-brand-logo">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
+                </svg>
             </div>
-            <h1 class="brand-name">🏬 Warehouse Order Allocation & Pick-Pack Fulfillment Center</h1>
-            <p class="brand-subtitle">Single Warehouse Operations View, Order Packing Roster & Real-Time Depot Inventory Stock</p>
-        </header>
-
-        <!-- Main Content -->
-        <main class="auth-card">
-            <!-- Alert Banner -->
-            <div id="alertBox" class="alert"></div>
-
-            <!-- Single Warehouse Selector Bar -->
-            <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1.5px solid #bfdbfe; border-radius: var(--radius-md); padding: 18px; margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                    <div>
-                        <label class="form-label" for="selectWarehouseFilter" style="font-size: 13px; font-weight: 700; color: #1e40af;">
-                            🏬 SELECT WAREHOUSE DEPOT (SINGLE OPERATIONAL VIEW):
-                        </label>
-                        <select id="selectWarehouseFilter" class="form-control" style="width: auto; min-width: 320px; padding-left: 12px; font-size: 13px; font-weight: 600; color: #1e3a8a;">
-                            <option value="ALL">🌐 ALL Global Warehouse Depots Combined</option>
-                            <option value="LK" selected>🇱🇰 Colombo Logistics Depot (LK)</option>
-                            <option value="DE">🇩🇪 Hamburg Export Hub (DE)</option>
-                            <option value="JP">🇯🇵 Tokyo Cargo Hub (JP)</option>
-                            <option value="US">🇺🇸 USA New York Air Cargo Center (US)</option>
-                            <option value="SG">🇸🇬 Singapore Port Sea Freight Hub (SG)</option>
-                        </select>
-                    </div>
-                    <span class="user-badge" style="background: #dbeafe; color: #1e40af; padding: 8px 16px;">
-                        🏭 WAREHOUSE_MANAGER VIEW
-                    </span>
-                </div>
+            <div>
+                <div class="gt-brand-title">GlobalTrade Logistics</div>
+                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
             </div>
+        </a>
+        <div class="gt-nav-links">
+            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
+            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
+            <a href="orders.html" class="gt-nav-link active">🏬 Orders</a>
+            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
+            <a href="vendor.html" class="gt-nav-link">🤝 Vendor</a>
+            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
+            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
+            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
+            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
+            <a href="admin.html" class="gt-nav-link">👑 Admin</a>
+        </div>
+        <div class="gt-user-profile">
+            <span class="user-badge">Fulfillment Agent</span>
+        </div>
+    </div>
+</nav>
 
-            <!-- Warehouse Metric Summary Cards -->
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #2563eb;">📦</div>
-                    <div>
-                        <div class="metric-val" id="metricTotalOrders">0 Orders</div>
-                        <div class="metric-label">Allocated Depot Orders</div>
-                    </div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #d97706;">⏳</div>
-                    <div>
-                        <div class="metric-val" id="metricPacking">0 Orders</div>
-                        <div class="metric-label">In Pick & Pack Process</div>
-                    </div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #059669;">✅</div>
-                    <div>
-                        <div class="metric-val" id="metricPackedReady">0 Orders</div>
-                        <div class="metric-label">Packed & Ready for Dispatch</div>
-                    </div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #7c3aed;">🏬</div>
-                    <div>
-                        <div class="metric-val" id="metricDepotStock">0 Stock Units</div>
-                        <div class="metric-label">Available Depot Inventory</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- SECTION 1: WAREHOUSE ORDERS FULFILLMENT ROSTER -->
-            <div style="margin-top: 24px; margin-bottom: 32px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                        📋 Allocated Customer Orders & Pick-Pack Packing Roster
-                    </h3>
-                    <button type="button" id="btnRefreshOrders" class="btn-secondary" style="width: auto; padding: 6px 12px; font-size: 11px;">
-                        🔄 Refresh Orders
-                    </button>
-                </div>
-
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Order Ref</th>
-                                <th>Customer & Contact</th>
-                                <th>Delivery Destination</th>
-                                <th>Ordered Products & Qty</th>
-                                <th>Total Amount</th>
-                                <th>Order Status</th>
-                                <th>Warehouse Pack Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="warehouseOrdersTableBody">
-                            <tr>
-                                <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading allocated warehouse orders...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- SECTION 2: SINGLE WAREHOUSE PRODUCT STOCK MANIFEST -->
-            <div style="margin-bottom: 24px;">
-                <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px;">
-                    🏬 Current Warehouse Depot Inventory Stock Manifest
-                </h3>
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Warehouse Depot</th>
-                                <th>Product SKU & Name</th>
-                                <th>Supplying Vendor</th>
-                                <th>Unit Price ($)</th>
-                                <th>Available Stock Qty</th>
-                                <th>Reorder Threshold</th>
-                                <th>Stock Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="depotStockTableBody">
-                            <tr>
-                                <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading warehouse stock manifest...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Actions -->
-            <div class="actions-grid" style="margin-top: 32px;">
-                <a href="admin.html" class="btn-secondary" style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+<div class="app-container wide">
+    <!-- Brand Header -->
+    <header class="brand-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <a href="admin.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
                     👑 Back to Admin Control
                 </a>
-                <a href="index.html" class="btn-primary" style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
-                    Sign Out
+                <a href="inventory.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #ccfbf1; color: #0f766e;">
+                    📦 Master Inventory
+                </a>
+                <a href="warehouse.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #92400e;">
+                    🏬 Warehouse Depots
                 </a>
             </div>
-        </main>
+            <div class="brand-logo"
+                 style="margin-bottom:0; background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                </svg>
+            </div>
+        </div>
+        <h1 class="brand-name">🏬 Warehouse Order Allocation & Pick-Pack Fulfillment Center</h1>
+        <p class="brand-subtitle">Single Warehouse Operations View, Order Packing Roster & Real-Time Depot Inventory
+            Stock</p>
+    </header>
 
-        <footer>
-            &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-        </footer>
-    </div>
+    <!-- Main Content -->
+    <main class="auth-card">
+        <!-- Alert Banner -->
+        <div id="alertBox" class="alert"></div>
 
-    <script src="js/orders.js"></script>
+        <!-- Single Warehouse Selector Bar -->
+        <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border: 1.5px solid #bfdbfe; border-radius: var(--radius-md); padding: 18px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <label class="form-label" for="selectWarehouseFilter"
+                           style="font-size: 13px; font-weight: 700; color: #1e40af;">
+                        🏬 SELECT WAREHOUSE DEPOT (SINGLE OPERATIONAL VIEW):
+                    </label>
+                    <select id="selectWarehouseFilter" class="form-control"
+                            style="width: auto; min-width: 320px; padding-left: 12px; font-size: 13px; font-weight: 600; color: #1e3a8a;">
+                        <option value="ALL">🌐 ALL Global Warehouse Depots Combined</option>
+                        <option value="LK" selected>🇱🇰 Colombo Logistics Depot (LK)</option>
+                        <option value="DE">🇩🇪 Hamburg Export Hub (DE)</option>
+                        <option value="JP">🇯🇵 Tokyo Cargo Hub (JP)</option>
+                        <option value="US">🇺🇸 USA New York Air Cargo Center (US)</option>
+                        <option value="SG">🇸🇬 Singapore Port Sea Freight Hub (SG)</option>
+                    </select>
+                </div>
+                <span class="user-badge" style="background: #dbeafe; color: #1e40af; padding: 8px 16px;">
+                        🏭 WAREHOUSE_MANAGER VIEW
+                    </span>
+            </div>
+        </div>
+
+        <!-- Warehouse Metric Summary Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #2563eb;">📦</div>
+                <div>
+                    <div class="metric-val" id="metricTotalOrders">0 Orders</div>
+                    <div class="metric-label">Allocated Depot Orders</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #d97706;">⏳</div>
+                <div>
+                    <div class="metric-val" id="metricPacking">0 Orders</div>
+                    <div class="metric-label">In Pick & Pack Process</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #059669;">✅</div>
+                <div>
+                    <div class="metric-val" id="metricPackedReady">0 Orders</div>
+                    <div class="metric-label">Packed & Ready for Dispatch</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #7c3aed;">🏬</div>
+                <div>
+                    <div class="metric-val" id="metricDepotStock">0 Stock Units</div>
+                    <div class="metric-label">Available Depot Inventory</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: WAREHOUSE ORDERS FULFILLMENT ROSTER -->
+        <div style="margin-top: 24px; margin-bottom: 32px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
+                    📋 Allocated Customer Orders & Pick-Pack Packing Roster
+                </h3>
+                <button type="button" id="btnRefreshOrders" class="btn-secondary"
+                        style="width: auto; padding: 6px 12px; font-size: 11px;">
+                    🔄 Refresh Orders
+                </button>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Order Ref</th>
+                        <th>Customer & Contact</th>
+                        <th>Delivery Destination</th>
+                        <th>Ordered Products & Qty</th>
+                        <th>Total Amount</th>
+                        <th>Order Status</th>
+                        <th>Warehouse Pack Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="warehouseOrdersTableBody">
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading allocated
+                            warehouse orders...
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION 2: SINGLE WAREHOUSE PRODUCT STOCK MANIFEST -->
+        <div style="margin-bottom: 24px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px;">
+                🏬 Current Warehouse Depot Inventory Stock Manifest
+            </h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Warehouse Depot</th>
+                        <th>Product SKU & Name</th>
+                        <th>Supplying Vendor</th>
+                        <th>Unit Price ($)</th>
+                        <th>Available Stock Qty</th>
+                        <th>Reorder Threshold</th>
+                        <th>Stock Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="depotStockTableBody">
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading warehouse stock
+                            manifest...
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-grid" style="margin-top: 32px;">
+            <a href="admin.html" class="btn-secondary"
+               style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+                👑 Back to Admin Control
+            </a>
+            <a href="index.html" class="btn-primary"
+               style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
+                Sign Out
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+    </footer>
+</div>
+
+<script src="js/orders.js"></script>
 </body>
 </html>

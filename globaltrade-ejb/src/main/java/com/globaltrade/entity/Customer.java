@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -28,7 +29,8 @@ public class Customer implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    public Customer() {}
+    public Customer() {
+    }
 
     public Customer(User user, String firstName, String lastName, String phone, Address address) {
         this.user = user;
@@ -38,21 +40,51 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public User getUser() {
+        return user;
+    }
 
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public String getPhone() { return phone; }
-    public void setPhone(String phone) { this.phone = phone; }
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

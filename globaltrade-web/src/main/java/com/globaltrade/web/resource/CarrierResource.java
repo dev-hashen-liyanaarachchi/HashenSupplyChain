@@ -27,14 +27,16 @@ public class CarrierResource {
             String contactPhone,
             String contactEmail,
             String fleetSize
-    ) {}
+    ) {
+    }
 
     public record HandoverRequest(
             Long shipmentId,
             Long carrierId,
             String driverName,
             String vehicleNo
-    ) {}
+    ) {
+    }
 
     @GET
     public Response getAllCarriers() {
@@ -66,7 +68,8 @@ public class CarrierResource {
             if (req.carrierType() != null) {
                 try {
                     type = ShipmentType.valueOf(req.carrierType().toUpperCase());
-                } catch (Exception ignored) {}
+                } catch (Exception ignored) {
+                }
             }
 
             Carrier carrier = new Carrier(req.name(), type, req.countryCode() != null ? req.countryCode() : "LK");

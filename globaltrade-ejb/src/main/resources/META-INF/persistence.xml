@@ -36,7 +36,8 @@
         <class>com.globaltrade.entity.RefreshToken</class>
 
         <properties>
-            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
+            <property name="hibernate.transaction.jta.platform"
+                      value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>

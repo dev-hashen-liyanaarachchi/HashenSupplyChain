@@ -14,7 +14,8 @@ public class ShippingRateService {
         private String weightTierLabel;
         private String deliveryEstimate;
 
-        public ShippingQuote() {}
+        public ShippingQuote() {
+        }
 
         public ShippingQuote(boolean domestic, String shipmentType, String carrierName, double totalWeightKg, double shippingFee, String weightTierLabel, String deliveryEstimate) {
             this.domestic = domestic;
@@ -26,26 +27,61 @@ public class ShippingRateService {
             this.deliveryEstimate = deliveryEstimate;
         }
 
-        public boolean isDomestic() { return domestic; }
-        public void setDomestic(boolean domestic) { this.domestic = domestic; }
+        public boolean isDomestic() {
+            return domestic;
+        }
 
-        public String getShipmentType() { return shipmentType; }
-        public void setShipmentType(String shipmentType) { this.shipmentType = shipmentType; }
+        public void setDomestic(boolean domestic) {
+            this.domestic = domestic;
+        }
 
-        public String getCarrierName() { return carrierName; }
-        public void setCarrierName(String carrierName) { this.carrierName = carrierName; }
+        public String getShipmentType() {
+            return shipmentType;
+        }
 
-        public double getTotalWeightKg() { return totalWeightKg; }
-        public void setTotalWeightKg(double totalWeightKg) { this.totalWeightKg = totalWeightKg; }
+        public void setShipmentType(String shipmentType) {
+            this.shipmentType = shipmentType;
+        }
 
-        public double getShippingFee() { return shippingFee; }
-        public void setShippingFee(double shippingFee) { this.shippingFee = shippingFee; }
+        public String getCarrierName() {
+            return carrierName;
+        }
 
-        public String getWeightTierLabel() { return weightTierLabel; }
-        public void setWeightTierLabel(String weightTierLabel) { this.weightTierLabel = weightTierLabel; }
+        public void setCarrierName(String carrierName) {
+            this.carrierName = carrierName;
+        }
 
-        public String getDeliveryEstimate() { return deliveryEstimate; }
-        public void setDeliveryEstimate(String deliveryEstimate) { this.deliveryEstimate = deliveryEstimate; }
+        public double getTotalWeightKg() {
+            return totalWeightKg;
+        }
+
+        public void setTotalWeightKg(double totalWeightKg) {
+            this.totalWeightKg = totalWeightKg;
+        }
+
+        public double getShippingFee() {
+            return shippingFee;
+        }
+
+        public void setShippingFee(double shippingFee) {
+            this.shippingFee = shippingFee;
+        }
+
+        public String getWeightTierLabel() {
+            return weightTierLabel;
+        }
+
+        public void setWeightTierLabel(String weightTierLabel) {
+            this.weightTierLabel = weightTierLabel;
+        }
+
+        public String getDeliveryEstimate() {
+            return deliveryEstimate;
+        }
+
+        public void setDeliveryEstimate(String deliveryEstimate) {
+            this.deliveryEstimate = deliveryEstimate;
+        }
     }
 
     public ShippingQuote calculateShippingQuote(String originCountryCode, String destinationCountryCode, double totalWeightKg) {

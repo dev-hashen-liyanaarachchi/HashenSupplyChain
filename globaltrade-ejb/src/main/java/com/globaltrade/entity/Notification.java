@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -28,7 +29,8 @@ public class Notification implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Notification() {}
+    public Notification() {
+    }
 
     public Notification(User recipient, String title, String message) {
         this.recipient = recipient;
@@ -36,21 +38,51 @@ public class Notification implements Serializable {
         this.message = message;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public User getRecipient() { return recipient; }
-    public void setRecipient(User recipient) { this.recipient = recipient; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
+    public User getRecipient() {
+        return recipient;
+    }
 
-    public String getMessage() { return message; }
-    public void setMessage(String message) { this.message = message; }
+    public void setRecipient(User recipient) {
+        this.recipient = recipient;
+    }
 
-    public boolean isReadStatus() { return readStatus; }
-    public void setReadStatus(boolean readStatus) { this.readStatus = readStatus; }
+    public String getTitle() {
+        return title;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isReadStatus() {
+        return readStatus;
+    }
+
+    public void setReadStatus(boolean readStatus) {
+        this.readStatus = readStatus;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

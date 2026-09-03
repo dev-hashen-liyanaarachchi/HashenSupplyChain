@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/timers/trigger/${timerKey}`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                headers: {'Content-Type': 'application/json'}
             });
 
             const data = await res.json();

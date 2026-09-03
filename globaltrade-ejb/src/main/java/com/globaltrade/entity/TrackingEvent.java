@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -25,7 +26,8 @@ public class TrackingEvent implements Serializable {
     @Column(name = "timestamp", nullable = false, updatable = false)
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    public TrackingEvent() {}
+    public TrackingEvent() {
+    }
 
     public TrackingEvent(Shipment shipment, String location, String description) {
         this.shipment = shipment;
@@ -33,18 +35,43 @@ public class TrackingEvent implements Serializable {
         this.description = description;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Shipment getShipment() { return shipment; }
-    public void setShipment(Shipment shipment) { this.shipment = shipment; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getLocation() { return location; }
-    public void setLocation(String location) { this.location = location; }
+    public Shipment getShipment() {
+        return shipment;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setShipment(Shipment shipment) {
+        this.shipment = shipment;
+    }
 
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 }

@@ -12,5 +12,7 @@ public class CarrierException extends GlobalTradeException {
         this.carrierName = carrierName;
     }
 
-    public String getCarrierName() { return carrierName; }
+    public String getCarrierName() {
+        return carrierName;
+    }
 }

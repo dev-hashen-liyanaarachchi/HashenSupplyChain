@@ -28,18 +28,22 @@ public class NotificationResource {
             m.put("message", n.getMessage());
             m.put("readStatus", n.isReadStatus());
             m.put("createdAt", n.getCreatedAt() != null ? n.getCreatedAt().toString() : "");
-            
+
             // Extract category and severity
             String category = "GENERAL";
             if (n.getTitle().contains("CUSTOMS")) category = "CUSTOMS";
             else if (n.getTitle().contains("INVENTORY") || n.getTitle().contains("Stock")) category = "INVENTORY";
-            else if (n.getTitle().contains("LOGISTICS") || n.getTitle().contains("Shipment") || n.getTitle().contains("Cargo")) category = "LOGISTICS";
+            else if (n.getTitle().contains("LOGISTICS") || n.getTitle().contains("Shipment") || n.getTitle().contains("Cargo"))
+                category = "LOGISTICS";
             else if (n.getTitle().contains("VENDOR")) category = "VENDOR";
 
             String severity = "INFO";
-            if (n.getTitle().contains("Alert") || n.getTitle().contains("Low") || n.getMessage().contains("reached threshold")) severity = "CRITICAL";
-            else if (n.getTitle().contains("Required") || n.getTitle().contains("Approaching") || n.getMessage().contains("48-hr")) severity = "WARNING";
-            else if (n.getTitle().contains("Advanced") || n.getTitle().contains("Completed") || n.getMessage().contains("departed")) severity = "SUCCESS";
+            if (n.getTitle().contains("Alert") || n.getTitle().contains("Low") || n.getMessage().contains("reached threshold"))
+                severity = "CRITICAL";
+            else if (n.getTitle().contains("Required") || n.getTitle().contains("Approaching") || n.getMessage().contains("48-hr"))
+                severity = "WARNING";
+            else if (n.getTitle().contains("Advanced") || n.getTitle().contains("Completed") || n.getMessage().contains("departed"))
+                severity = "SUCCESS";
 
             m.put("category", category);
             m.put("severity", severity);

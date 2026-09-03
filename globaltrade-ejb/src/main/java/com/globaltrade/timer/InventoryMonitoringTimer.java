@@ -7,6 +7,7 @@ import jakarta.ejb.Startup;
 import com.globaltrade.ejb.interfaces.InventoryService;
 import com.globaltrade.service.NotificationService;
 import com.globaltrade.entity.Inventory;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -30,7 +31,7 @@ public class InventoryMonitoringTimer {
         List<Inventory> lowStock = inventoryService.checkLowStockItems();
         for (Inventory item : lowStock) {
             LOGGER.warning("[LOW STOCK ALERT] Product: " + item.getProduct().getName() + " (SKU: " + item.getProduct().getSku() +
-                ") at Warehouse: " + item.getWarehouse().getName() + " has " + item.getAvailableQty() + " units available.");
+                    ") at Warehouse: " + item.getWarehouse().getName() + " has " + item.getAvailableQty() + " units available.");
             if (notificationService != null) {
                 notificationService.createNotification("Low Stock Reorder Alert", "Product SKU " + item.getProduct().getSku() + " at " + item.getWarehouse().getName() + " reached threshold (" + item.getAvailableQty() + " units). Auto-supplier PO generated.", "INVENTORY", "CRITICAL");
             }

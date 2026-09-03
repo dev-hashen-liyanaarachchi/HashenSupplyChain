@@ -3,6 +3,7 @@ package com.globaltrade.entity;
 import jakarta.persistence.*;
 import com.globaltrade.enums.PaymentMethod;
 import com.globaltrade.enums.PaymentStatus;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -35,7 +36,8 @@ public class Payment implements Serializable {
     @Column(name = "timestamp", nullable = false, updatable = false)
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    public Payment() {}
+    public Payment() {
+    }
 
     public Payment(Order order, String transactionReference, PaymentMethod paymentMethod, Double amount) {
         this.order = order;
@@ -44,24 +46,59 @@ public class Payment implements Serializable {
         this.amount = amount;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Order getOrder() { return order; }
-    public void setOrder(Order order) { this.order = order; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getTransactionReference() { return transactionReference; }
-    public void setTransactionReference(String transactionReference) { this.transactionReference = transactionReference; }
+    public Order getOrder() {
+        return order;
+    }
 
-    public PaymentMethod getPaymentMethod() { return paymentMethod; }
-    public void setPaymentMethod(PaymentMethod paymentMethod) { this.paymentMethod = paymentMethod; }
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
-    public PaymentStatus getPaymentStatus() { return paymentStatus; }
-    public void setPaymentStatus(PaymentStatus paymentStatus) { this.paymentStatus = paymentStatus; }
+    public String getTransactionReference() {
+        return transactionReference;
+    }
 
-    public Double getAmount() { return amount; }
-    public void setAmount(Double amount) { this.amount = amount; }
+    public void setTransactionReference(String transactionReference) {
+        this.transactionReference = transactionReference;
+    }
 
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+    public PaymentMethod getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public Double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 }

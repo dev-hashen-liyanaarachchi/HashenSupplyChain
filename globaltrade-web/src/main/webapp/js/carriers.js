@@ -153,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/carriers/handover`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ shipmentId, carrierId, driverName, vehicleNo })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({shipmentId, carrierId, driverName, vehicleNo})
             });
 
             const data = await res.json();
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/carriers`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     name,
                     countryCode,

@@ -12,5 +12,7 @@ public class CustomsException extends GlobalTradeException {
         this.hsCode = hsCode;
     }
 
-    public String getHsCode() { return hsCode; }
+    public String getHsCode() {
+        return hsCode;
+    }
 }

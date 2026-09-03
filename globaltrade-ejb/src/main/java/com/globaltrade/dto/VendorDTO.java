@@ -7,7 +7,8 @@ public class VendorDTO implements Serializable {
     private String taxIdentificationNumber;
     private Long addressId;
 
-    public VendorDTO() {}
+    public VendorDTO() {
+    }
 
     public VendorDTO(String companyName, String taxIdentificationNumber, Long addressId) {
         this.companyName = companyName;
@@ -15,12 +16,27 @@ public class VendorDTO implements Serializable {
         this.addressId = addressId;
     }
 
-    public String getCompanyName() { return companyName; }
-    public void setCompanyName(String companyName) { this.companyName = companyName; }
+    public String getCompanyName() {
+        return companyName;
+    }
 
-    public String getTaxIdentificationNumber() { return taxIdentificationNumber; }
-    public void setTaxIdentificationNumber(String taxIdentificationNumber) { this.taxIdentificationNumber = taxIdentificationNumber; }
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
 
-    public Long getAddressId() { return addressId; }
-    public void setAddressId(Long addressId) { this.addressId = addressId; }
+    public String getTaxIdentificationNumber() {
+        return taxIdentificationNumber;
+    }
+
+    public void setTaxIdentificationNumber(String taxIdentificationNumber) {
+        this.taxIdentificationNumber = taxIdentificationNumber;
+    }
+
+    public Long getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Long addressId) {
+        this.addressId = addressId;
+    }
 }

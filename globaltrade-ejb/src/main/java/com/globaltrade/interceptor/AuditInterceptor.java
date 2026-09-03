@@ -8,6 +8,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import com.globaltrade.entity.AuditLog;
 import jakarta.interceptor.Interceptor;
+
 import java.util.logging.Logger;
 
 @Interceptor
@@ -24,8 +25,8 @@ public class AuditInterceptor {
     @AroundInvoke
     public Object logInvocation(InvocationContext context) throws Exception {
         String methodName = context.getMethod().getDeclaringClass().getSimpleName() + "." + context.getMethod().getName();
-        String caller = (sessionContext != null && sessionContext.getCallerPrincipal() != null) 
-            ? sessionContext.getCallerPrincipal().getName() : "ANONYMOUS";
+        String caller = (sessionContext != null && sessionContext.getCallerPrincipal() != null)
+                ? sessionContext.getCallerPrincipal().getName() : "ANONYMOUS";
 
         long startTime = System.currentTimeMillis();
         LOGGER.info("[AUDIT INTERCEPTOR START] Principal: " + caller + " -> Target: " + methodName);

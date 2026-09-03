@@ -2,6 +2,7 @@ package com.globaltrade.entity;
 
 import jakarta.persistence.*;
 import com.globaltrade.enums.ShipmentType;
+
 import java.io.Serializable;
 
 @Entity
@@ -37,7 +38,8 @@ public class Carrier implements Serializable {
     @Column(name = "operating_status", length = 30)
     private String operatingStatus = "ACTIVE";
 
-    public Carrier() {}
+    public Carrier() {
+    }
 
     public Carrier(String name, ShipmentType carrierType, String countryCode) {
         this.name = name;
@@ -45,30 +47,75 @@ public class Carrier implements Serializable {
         this.countryCode = countryCode;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public ShipmentType getCarrierType() { return carrierType; }
-    public void setCarrierType(ShipmentType carrierType) { this.carrierType = carrierType; }
+    public String getName() {
+        return name;
+    }
 
-    public String getApiEndpoint() { return apiEndpoint; }
-    public void setApiEndpoint(String apiEndpoint) { this.apiEndpoint = apiEndpoint; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getCountryCode() { return countryCode; }
-    public void setCountryCode(String countryCode) { this.countryCode = countryCode; }
+    public ShipmentType getCarrierType() {
+        return carrierType;
+    }
 
-    public String getContactPhone() { return contactPhone; }
-    public void setContactPhone(String contactPhone) { this.contactPhone = contactPhone; }
+    public void setCarrierType(ShipmentType carrierType) {
+        this.carrierType = carrierType;
+    }
 
-    public String getContactEmail() { return contactEmail; }
-    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+    public String getApiEndpoint() {
+        return apiEndpoint;
+    }
 
-    public String getFleetSize() { return fleetSize; }
-    public void setFleetSize(String fleetSize) { this.fleetSize = fleetSize; }
+    public void setApiEndpoint(String apiEndpoint) {
+        this.apiEndpoint = apiEndpoint;
+    }
 
-    public String getOperatingStatus() { return operatingStatus; }
-    public void setOperatingStatus(String operatingStatus) { this.operatingStatus = operatingStatus; }
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public String getContactPhone() {
+        return contactPhone;
+    }
+
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
+
+    public String getFleetSize() {
+        return fleetSize;
+    }
+
+    public void setFleetSize(String fleetSize) {
+        this.fleetSize = fleetSize;
+    }
+
+    public String getOperatingStatus() {
+        return operatingStatus;
+    }
+
+    public void setOperatingStatus(String operatingStatus) {
+        this.operatingStatus = operatingStatus;
+    }
 }

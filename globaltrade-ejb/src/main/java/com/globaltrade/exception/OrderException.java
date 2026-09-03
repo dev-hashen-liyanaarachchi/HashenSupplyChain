@@ -12,5 +12,7 @@ public class OrderException extends GlobalTradeException {
         this.orderNumber = orderNumber;
     }
 
-    public String getOrderNumber() { return orderNumber; }
+    public String getOrderNumber() {
+        return orderNumber;
+    }
 }

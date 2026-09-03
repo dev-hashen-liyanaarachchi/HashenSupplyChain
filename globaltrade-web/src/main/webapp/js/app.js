@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function switchTab(tab) {
         hideAlert();
         appContainer.classList.remove('wide');
-        
+
         loginTab.classList.toggle('active', tab === 'login');
         registerTab.classList.toggle('active', tab === 'register');
         vendorTab.classList.toggle('active', tab === 'vendor');
@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`${API_BASE}/auth/login`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password})
             });
 
             const data = await response.json();
@@ -163,8 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`${API_BASE}/auth/register`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, email, password, role })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, email, password, role})
             });
 
             const data = await response.json();
@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`${API_BASE}/auth/register`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     username: username,
                     email: email,

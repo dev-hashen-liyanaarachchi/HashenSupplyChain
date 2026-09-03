@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Create Drawer Markup
     const drawerOverlay = document.createElement('div');
     drawerOverlay.className = 'notif-drawer-overlay';
-    
+
     const drawer = document.createElement('div');
     drawer.className = 'notif-drawer';
     drawer.innerHTML = `
@@ -271,16 +271,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('btnClearNotifs')?.addEventListener('click', async () => {
         try {
-            await fetch(`${API_BASE}/notifications/clear`, { method: 'POST' });
+            await fetch(`${API_BASE}/notifications/clear`, {method: 'POST'});
             loadNotifications();
-        } catch (err) {}
+        } catch (err) {
+        }
     });
 
     // Show Floating Toast Popup
     function showToast(title, message, severity = 'info') {
         const toast = document.createElement('div');
         toast.className = `toast-card ${severity.toLowerCase()}`;
-        
+
         let icon = '🔔';
         if (severity === 'CRITICAL') icon = '🚨';
         else if (severity === 'WARNING') icon = '⚠️';

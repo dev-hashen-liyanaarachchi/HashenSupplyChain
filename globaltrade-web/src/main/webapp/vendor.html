@@ -7,156 +7,205 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
 
-    <div class="app-container wide">
-        <!-- Brand Header -->
-        <header class="brand-header">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-                <div style="display: flex; gap: 8px;">
-                    <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
-                        👑 Back to Admin Control
-                    </a>
-                    <a href="inventory.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #ccfbf1; color: #0f766e;">
-                        📦 Inventory Control
-                    </a>
-                </div>
-                <div class="brand-logo" style="margin-bottom:0; background: linear-gradient(135deg, #059669 0%, #0d9488 100%);">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                </div>
+<nav class="gt-navbar">
+    <div class="gt-nav-container">
+        <a href="index.html" class="gt-brand">
+            <div class="gt-brand-logo">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
+                </svg>
             </div>
-            <h1 class="brand-name">🏢 Corporate Vendor Onboarding & Supply Portal</h1>
-            <p class="brand-subtitle">Real-time Supplier Product Catalog, Stock Allocation & HS Customs Classification Manifest</p>
-        </header>
-
-        <!-- Main Card Container -->
-        <main class="auth-card">
-            <!-- Alert Banner -->
-            <div id="alertBox" class="alert"></div>
-
-            <!-- Vendor Profile Banner -->
-            <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 1.5px solid #a7f3d0; border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                    <div>
-                        <h2 style="font-size: 18px; font-weight: 700; color: #047857;" id="venCompName">Bosch Logistics GmbH</h2>
-                        <p style="font-size: 13px; color: #065f46;" id="venTaxCode">Tax ID / TIN: DE-TAX-998877</p>
-                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;" id="venUserAcc">Account User: vendor_bosch</p>
-                    </div>
-                    <span class="badge-status badge-active" id="venStatusBadge" style="padding: 8px 16px; font-size: 12px; letter-spacing: 0.5px;">
-                        VERIFIED VENDOR PORTAL
-                    </span>
-                </div>
+            <div>
+                <div class="gt-brand-title">GlobalTrade Logistics</div>
+                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
             </div>
+        </a>
+        <div class="gt-nav-links">
+            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
+            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
+            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
+            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
+            <a href="vendor.html" class="gt-nav-link active">🤝 Vendor</a>
+            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
+            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
+            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
+            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
+            <a href="admin.html" class="gt-nav-link">👑 Admin</a>
+        </div>
+        <div class="gt-user-profile">
+            <span class="user-badge">Vendor Portal</span>
+        </div>
+    </div>
+</nav>
 
-            <!-- Vendor Metric Cards -->
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #047857;">🏬</div>
-                    <div>
-                        <div class="metric-val" id="venStatusVal">ACTIVE VENDOR</div>
-                        <div class="metric-label">Supplier Status</div>
-                    </div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #2563eb;">📦</div>
-                    <div>
-                        <div class="metric-val" id="venTotalProducts">0 Products</div>
-                        <div class="metric-label">Registered Master Catalog</div>
-                    </div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-icon" style="color: #d97706;">🏬</div>
-                    <div>
-                        <div class="metric-val" id="venTotalStock">0 Stock Units</div>
-                        <div class="metric-label">Warehouse Stock Allocated</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Vendor Product Catalog Table -->
-            <div style="margin-bottom: 28px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                        📦 Live Master Product Catalog & HS Customs Tariff
-                    </h3>
-                    <button type="button" id="btnRefreshVendorData" class="btn-secondary" style="width: auto; padding: 6px 12px; font-size: 11px;">
-                        🔄 Refresh Database Data
-                    </button>
-                </div>
-
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>SKU Code</th>
-                                <th>Product Name</th>
-                                <th>Category & Brand</th>
-                                <th>Unit Price ($)</th>
-                                <th>Gross Weight (kg)</th>
-                                <th>HS Tariff Code</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="vendorProductsTableBody">
-                            <tr>
-                                <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading live catalog data from database...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Vendor Warehouse Stock Allocations Manifest -->
-            <div style="margin-bottom: 24px;">
-                <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px;">
-                    🏬 Warehouse Stock Allocations Manifest
-                </h3>
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Warehouse Depot</th>
-                                <th>Product SKU & Name</th>
-                                <th>Supplying Vendor</th>
-                                <th>Unit Price ($)</th>
-                                <th>Available Stock Qty</th>
-                                <th>Reorder Threshold</th>
-                                <th>Stock Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="vendorStockTableBody">
-                            <tr>
-                                <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading warehouse stock allocations...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- JWT Security Tokens -->
-            <div class="form-group">
-                <label class="form-label">Access Token (Bearer JWT)</label>
-                <div class="token-box" id="venAccessToken">-</div>
-            </div>
-
-            <!-- Actions -->
-            <div class="actions-grid">
-                <a href="admin.html" class="btn-secondary" style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+<div class="app-container wide">
+    <!-- Brand Header -->
+    <header class="brand-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px;">
+                <a href="admin.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
                     👑 Back to Admin Control
                 </a>
-                <button type="button" class="btn-primary" id="btnVendorLogout" style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                    Sign Out
+                <a href="inventory.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #ccfbf1; color: #0f766e;">
+                    📦 Inventory Control
+                </a>
+            </div>
+            <div class="brand-logo"
+                 style="margin-bottom:0; background: linear-gradient(135deg, #059669 0%, #0d9488 100%);">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+            </div>
+        </div>
+        <h1 class="brand-name">🏢 Corporate Vendor Onboarding & Supply Portal</h1>
+        <p class="brand-subtitle">Real-time Supplier Product Catalog, Stock Allocation & HS Customs Classification
+            Manifest</p>
+    </header>
+
+    <!-- Main Card Container -->
+    <main class="auth-card">
+        <!-- Alert Banner -->
+        <div id="alertBox" class="alert"></div>
+
+        <!-- Vendor Profile Banner -->
+        <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 1.5px solid #a7f3d0; border-radius: var(--radius-md); padding: 20px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <h2 style="font-size: 18px; font-weight: 700; color: #047857;" id="venCompName">Bosch Logistics
+                        GmbH</h2>
+                    <p style="font-size: 13px; color: #065f46;" id="venTaxCode">Tax ID / TIN: DE-TAX-998877</p>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;" id="venUserAcc">Account User:
+                        vendor_bosch</p>
+                </div>
+                <span class="badge-status badge-active" id="venStatusBadge"
+                      style="padding: 8px 16px; font-size: 12px; letter-spacing: 0.5px;">
+                        VERIFIED VENDOR PORTAL
+                    </span>
+            </div>
+        </div>
+
+        <!-- Vendor Metric Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #047857;">🏬</div>
+                <div>
+                    <div class="metric-val" id="venStatusVal">ACTIVE VENDOR</div>
+                    <div class="metric-label">Supplier Status</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #2563eb;">📦</div>
+                <div>
+                    <div class="metric-val" id="venTotalProducts">0 Products</div>
+                    <div class="metric-label">Registered Master Catalog</div>
+                </div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-icon" style="color: #d97706;">🏬</div>
+                <div>
+                    <div class="metric-val" id="venTotalStock">0 Stock Units</div>
+                    <div class="metric-label">Warehouse Stock Allocated</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vendor Product Catalog Table -->
+        <div style="margin-bottom: 28px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
+                    📦 Live Master Product Catalog & HS Customs Tariff
+                </h3>
+                <button type="button" id="btnRefreshVendorData" class="btn-secondary"
+                        style="width: auto; padding: 6px 12px; font-size: 11px;">
+                    🔄 Refresh Database Data
                 </button>
             </div>
-        </main>
 
-        <footer>
-            &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-        </footer>
-    </div>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>SKU Code</th>
+                        <th>Product Name</th>
+                        <th>Category & Brand</th>
+                        <th>Unit Price ($)</th>
+                        <th>Gross Weight (kg)</th>
+                        <th>HS Tariff Code</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="vendorProductsTableBody">
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading live catalog data
+                            from database...
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <script src="js/vendor.js"></script>
+        <!-- Vendor Warehouse Stock Allocations Manifest -->
+        <div style="margin-bottom: 24px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px;">
+                🏬 Warehouse Stock Allocations Manifest
+            </h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Warehouse Depot</th>
+                        <th>Product SKU & Name</th>
+                        <th>Supplying Vendor</th>
+                        <th>Unit Price ($)</th>
+                        <th>Available Stock Qty</th>
+                        <th>Reorder Threshold</th>
+                        <th>Stock Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="vendorStockTableBody">
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading warehouse stock
+                            allocations...
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- JWT Security Tokens -->
+        <div class="form-group">
+            <label class="form-label">Access Token (Bearer JWT)</label>
+            <div class="token-box" id="venAccessToken">-</div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions-grid">
+            <a href="admin.html" class="btn-secondary"
+               style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+                👑 Back to Admin Control
+            </a>
+            <button type="button" class="btn-primary" id="btnVendorLogout"
+                    style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                Sign Out
+            </button>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+    </footer>
+</div>
+
+<script src="js/vendor.js"></script>
 </body>
 </html>

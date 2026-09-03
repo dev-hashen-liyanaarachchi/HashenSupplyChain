@@ -4,6 +4,7 @@ import jakarta.annotation.Resource;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.ejb.SessionContext;
 import jakarta.ejb.Stateless;
+
 import java.security.Principal;
 import java.util.logging.Logger;
 
@@ -29,8 +30,8 @@ public class AuthorizationService {
 
     public void checkPermission(String requiredRole) throws SecurityException {
         if (!isCallerInRole(requiredRole)) {
-            String caller = sessionContext != null && sessionContext.getCallerPrincipal() != null 
-                ? sessionContext.getCallerPrincipal().getName() : "ANONYMOUS";
+            String caller = sessionContext != null && sessionContext.getCallerPrincipal() != null
+                    ? sessionContext.getCallerPrincipal().getName() : "ANONYMOUS";
             throw new SecurityException("Access Denied: Caller [" + caller + "] does not possess required role [" + requiredRole + "]");
         }
     }

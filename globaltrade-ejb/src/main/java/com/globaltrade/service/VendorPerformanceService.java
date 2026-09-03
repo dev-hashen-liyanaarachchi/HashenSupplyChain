@@ -19,7 +19,7 @@ public class VendorPerformanceService {
 
     public List<VendorPerformance> getAllVendorPerformances() {
         List<VendorPerformance> list = em.createQuery(
-                "SELECT DISTINCT vp FROM VendorPerformance vp LEFT JOIN FETCH vp.vendor v LEFT JOIN FETCH v.user u ORDER BY vp.id DESC", VendorPerformance.class)
+                        "SELECT DISTINCT vp FROM VendorPerformance vp LEFT JOIN FETCH vp.vendor v LEFT JOIN FETCH v.user u ORDER BY vp.id DESC", VendorPerformance.class)
                 .getResultList();
 
         if (list.isEmpty()) {
@@ -44,7 +44,7 @@ public class VendorPerformanceService {
             }
 
             list = em.createQuery(
-                    "SELECT DISTINCT vp FROM VendorPerformance vp LEFT JOIN FETCH vp.vendor v LEFT JOIN FETCH v.user u ORDER BY vp.id DESC", VendorPerformance.class)
+                            "SELECT DISTINCT vp FROM VendorPerformance vp LEFT JOIN FETCH vp.vendor v LEFT JOIN FETCH v.user u ORDER BY vp.id DESC", VendorPerformance.class)
                     .getResultList();
         }
         return list;

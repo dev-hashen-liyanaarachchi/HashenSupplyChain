@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/vendors/evaluate`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     vendorId: parseInt(vendorId),
                     fulfillmentScore: parseFloat(fulfillmentScore),

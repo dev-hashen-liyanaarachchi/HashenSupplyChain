@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -24,7 +25,8 @@ public class Warehouse implements Serializable {
     @Column(name = "current_capacity", nullable = false)
     private Integer currentCapacity = 0;
 
-    public Warehouse() {}
+    public Warehouse() {
+    }
 
     public Warehouse(String name, Address address, Integer maxCapacity) {
         this.name = name;
@@ -32,18 +34,43 @@ public class Warehouse implements Serializable {
         this.maxCapacity = maxCapacity;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public String getName() {
+        return name;
+    }
 
-    public Integer getMaxCapacity() { return maxCapacity; }
-    public void setMaxCapacity(Integer maxCapacity) { this.maxCapacity = maxCapacity; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Integer getCurrentCapacity() { return currentCapacity; }
-    public void setCurrentCapacity(Integer currentCapacity) { this.currentCapacity = currentCapacity; }
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Integer getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(Integer maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public Integer getCurrentCapacity() {
+        return currentCapacity;
+    }
+
+    public void setCurrentCapacity(Integer currentCapacity) {
+        this.currentCapacity = currentCapacity;
+    }
 }

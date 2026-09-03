@@ -6,6 +6,7 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import com.globaltrade.ejb.interfaces.VendorService;
 import com.globaltrade.entity.Vendor;
+
 import java.util.List;
 import java.util.logging.Logger;
 

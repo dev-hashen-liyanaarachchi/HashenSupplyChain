@@ -9,6 +9,7 @@ import com.globaltrade.entity.Address;
 import com.globaltrade.entity.Vendor;
 import com.globaltrade.dto.VendorDTO;
 import com.globaltrade.repository.VendorRepository;
+
 import java.util.List;
 
 @Stateless
@@ -31,7 +32,7 @@ public class VendorServiceBean implements VendorService {
     @Override
     public Vendor updateVendorRating(Long vendorId, Double rating) {
         Vendor vendor = vendorRepository.findById(vendorId)
-            .orElseThrow(() -> new IllegalArgumentException("Vendor not found with ID: " + vendorId));
+                .orElseThrow(() -> new IllegalArgumentException("Vendor not found with ID: " + vendorId));
         return vendorRepository.update(vendor);
     }
 

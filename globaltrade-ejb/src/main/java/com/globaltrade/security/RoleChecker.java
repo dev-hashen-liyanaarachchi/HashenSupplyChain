@@ -2,6 +2,7 @@ package com.globaltrade.security;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import com.globaltrade.entity.Role;
+
 import java.util.Set;
 
 @ApplicationScoped

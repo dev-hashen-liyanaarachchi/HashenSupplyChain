@@ -29,7 +29,7 @@ public class TrackingEventService {
 
     public List<TrackingEvent> getEventsForShipment(Long shipmentId) {
         List<TrackingEvent> events = em.createQuery(
-                "SELECT t FROM TrackingEvent t WHERE t.shipment.id = :sid ORDER BY t.timestamp ASC", TrackingEvent.class)
+                        "SELECT t FROM TrackingEvent t WHERE t.shipment.id = :sid ORDER BY t.timestamp ASC", TrackingEvent.class)
                 .setParameter("sid", shipmentId)
                 .getResultList();
 
@@ -40,7 +40,7 @@ public class TrackingEventService {
                 recordTrackingEvent(s, "Government Customs Office", "Customs clearance inspection passed successfully.");
                 recordTrackingEvent(s, "Carrier Flight Dispatch", "Consolidated cargo loaded onto flight " + (s.getTrackingNumber() != null ? s.getTrackingNumber() : "TRK-DHL-91823"));
                 events = em.createQuery(
-                        "SELECT t FROM TrackingEvent t WHERE t.shipment.id = :sid ORDER BY t.timestamp ASC", TrackingEvent.class)
+                                "SELECT t FROM TrackingEvent t WHERE t.shipment.id = :sid ORDER BY t.timestamp ASC", TrackingEvent.class)
                         .setParameter("sid", shipmentId)
                         .getResultList();
             }

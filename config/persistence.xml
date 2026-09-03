@@ -39,7 +39,8 @@
         <class>com.globaltrade.entity.HsCode</class>
 
         <properties>
-            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
+            <property name="hibernate.transaction.jta.platform"
+                      value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
             <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.show_sql" value="true"/>

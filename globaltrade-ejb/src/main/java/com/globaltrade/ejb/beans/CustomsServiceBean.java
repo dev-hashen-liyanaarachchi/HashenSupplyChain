@@ -12,6 +12,7 @@ import com.globaltrade.entity.CustomsDocument;
 import com.globaltrade.entity.Shipment;
 import com.globaltrade.enums.CustomsDocumentStatus;
 import com.globaltrade.exception.CustomsException;
+
 import java.util.logging.Logger;
 
 @Stateless

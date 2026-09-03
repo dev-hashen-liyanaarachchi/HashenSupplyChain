@@ -17,7 +17,15 @@ public enum HsCodeCategory {
         this.dutyRate = dutyRate;
     }
 
-    public String getCode() { return code; }
-    public String getDescription() { return description; }
-    public double getDutyRate() { return dutyRate; }
+    public String getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getDutyRate() {
+        return dutyRate;
+    }
 }

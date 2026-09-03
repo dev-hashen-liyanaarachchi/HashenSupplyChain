@@ -45,7 +45,9 @@ document.addEventListener('DOMContentLoaded', () => {
         alertBox.style.display = 'block';
         alertBox.className = `alert alert-${type}`;
         alertBox.textContent = msg;
-        setTimeout(() => { alertBox.style.display = 'none'; }, 4500);
+        setTimeout(() => {
+            alertBox.style.display = 'none';
+        }, 4500);
     }
 
     // Load Dashboard Stats
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderOrdersTable() {
         if (!tblAdminOrders) return;
         const selectedStatus = filterOrderStatus ? filterOrderStatus.value : 'ALL';
-        
+
         let filtered = cachedOrders;
         if (selectedStatus !== 'ALL') {
             filtered = cachedOrders.filter(o => o.status === selectedStatus);
@@ -176,12 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update Order Status
-    window.updateOrderStatus = async function(orderId, newStatus) {
+    window.updateOrderStatus = async function (orderId, newStatus) {
         try {
             const res = await fetch(`${API_BASE}/admin/orders/status`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ orderId, status: newStatus })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({orderId, status: newStatus})
             });
 
             if (res.ok) {
@@ -230,12 +232,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update Shipment Status
-    window.updateShipmentStatus = async function(shipmentId, newStatus) {
+    window.updateShipmentStatus = async function (shipmentId, newStatus) {
         try {
             const res = await fetch(`${API_BASE}/admin/shipments/status`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ shipmentId, status: newStatus })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({shipmentId, status: newStatus})
             });
 
             if (res.ok) {
@@ -299,11 +301,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Review Customs Document
-    window.reviewCustoms = async function(documentId, approve) {
+    window.reviewCustoms = async function (documentId, approve) {
         try {
             const res = await fetch(`${API_BASE}/admin/customs/review`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     documentId,
                     approve,

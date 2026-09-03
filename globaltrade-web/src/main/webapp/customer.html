@@ -7,23 +7,27 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
     <style>
         .storefront-layout {
             display: grid;
             grid-template-columns: 1fr 420px;
             gap: 28px;
         }
+
         @media (max-width: 960px) {
             .storefront-layout {
                 grid-template-columns: 1fr;
             }
         }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 16px;
         }
+
         .product-card {
             background: #ffffff;
             border: 1.5px solid var(--border-color);
@@ -34,11 +38,13 @@
             justify-content: space-between;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
+
         .product-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
             border-color: var(--primary-color);
         }
+
         .cart-drawer {
             background: #f8fafc;
             border: 1.5px solid var(--border-color);
@@ -47,6 +53,7 @@
             position: sticky;
             top: 20px;
         }
+
         .cart-item-row {
             display: flex;
             align-items: center;
@@ -59,297 +66,383 @@
 </head>
 <body>
 
-    <div class="app-container wide">
-        <!-- Brand Header -->
-        <header class="brand-header">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-                <div style="display: flex; gap: 8px;">
-                    <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
-                        👑 Back to Admin Control
-                    </a>
-                    <a href="index.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none;">
-                        Main Portal
-                    </a>
+<nav class="gt-navbar">
+    <div class="gt-nav-container">
+        <a href="index.html" class="gt-brand">
+            <div class="gt-brand-logo">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
+                </svg>
+            </div>
+            <div>
+                <div class="gt-brand-title">GlobalTrade Logistics</div>
+                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
+            </div>
+        </a>
+        <div class="gt-nav-links">
+            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
+            <a href="customer.html" class="gt-nav-link active">🛒 Store</a>
+            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
+            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
+            <a href="vendor.html" class="gt-nav-link">🤝 Vendor</a>
+            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
+            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
+            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
+            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
+            <a href="admin.html" class="gt-nav-link">👑 Admin</a>
+        </div>
+        <div class="gt-user-profile">
+            <span class="user-badge">Customer Portal</span>
+        </div>
+    </div>
+</nav>
+
+<div class="app-container wide">
+    <!-- Brand Header -->
+    <header class="brand-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px;">
+                <a href="admin.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
+                    👑 Back to Admin Control
+                </a>
+                <a href="index.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none;">
+                    Main Portal
+                </a>
+            </div>
+            <div class="brand-logo" style="margin-bottom:0;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+            </div>
+        </div>
+        <h1 class="brand-name">🛒 Tech Mart Customer Storefront & Checkout</h1>
+        <p class="brand-subtitle">Smart Automatic Warehouse Auto-Routing & Dynamic Domestic vs Overseas Shipping
+            Calculation</p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="auth-card">
+        <!-- Alert Banner -->
+        <div id="alertBox" class="alert"></div>
+
+        <!-- Storefront Main Grid Layout -->
+        <div class="storefront-layout">
+
+            <!-- LEFT: PRODUCTS CATALOG GRID -->
+            <div>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                    <h2 style="font-size: 18px; font-weight: 700; color: var(--primary-color);">
+                        🛍️ Tech Mart Available Product Catalog
+                    </h2>
+                    <button type="button" id="btnRefreshCatalog" class="btn-secondary"
+                            style="width: auto; padding: 6px 12px; font-size: 12px;">
+                        🔄 Refresh Catalog
+                    </button>
                 </div>
-                <div class="brand-logo" style="margin-bottom:0;">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+
+                <div id="productsGrid" class="products-grid">
+                    <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 32px;">
+                        Loading Tech Mart catalog...
+                    </div>
                 </div>
             </div>
-            <h1 class="brand-name">🛒 Tech Mart Customer Storefront & Checkout</h1>
-            <p class="brand-subtitle">Smart Automatic Warehouse Auto-Routing & Dynamic Domestic vs Overseas Shipping Calculation</p>
-        </header>
 
-        <!-- Main Content -->
-        <main class="auth-card">
-            <!-- Alert Banner -->
-            <div id="alertBox" class="alert"></div>
+            <!-- RIGHT: SHOPPING CART & CHECKOUT DRAWER -->
+            <div class="cart-drawer">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin:0;">
+                        🛒 Shopping Cart
+                    </h3>
+                    <span class="user-badge" id="cartCountBadge" style="background: var(--primary-color); color: #fff;">0 Items</span>
+                </div>
 
-            <!-- Storefront Main Grid Layout -->
-            <div class="storefront-layout">
-                
-                <!-- LEFT: PRODUCTS CATALOG GRID -->
-                <div>
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
-                        <h2 style="font-size: 18px; font-weight: 700; color: var(--primary-color);">
-                            🛍️ Tech Mart Available Product Catalog
-                        </h2>
-                        <button type="button" id="btnRefreshCatalog" class="btn-secondary" style="width: auto; padding: 6px 12px; font-size: 12px;">
-                            🔄 Refresh Catalog
-                        </button>
+                <!-- Cart Items Container -->
+                <div id="cartItemsList" style="max-height: 200px; overflow-y: auto; margin-bottom: 16px;">
+                    <p style="font-size: 13px; color: var(--text-muted); text-align: center; padding: 16px 0;">
+                        Your shopping cart is empty.<br>Choose quantity & click "Add to Cart" to start.
+                    </p>
+                </div>
+
+                <!-- Cart Total & Shipping Calculation Summary -->
+                <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                        <span>Products Subtotal:</span>
+                        <span id="cartSubtotal" style="font-weight: 600;">$0.00</span>
                     </div>
-
-                    <div id="productsGrid" class="products-grid">
-                        <div style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 32px;">
-                            Loading Tech Mart catalog...
-                        </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
+                        <span id="shippingLabel">Shipping Charge:</span>
+                        <span id="shippingCostText" style="font-weight: 600; color: #2563eb;">$15.00</span>
+                    </div>
+                    <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;" id="shippingTypeDesc">
+                        Local Domestic Express (Same Country)
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; border-top: 1px solid var(--border-color); padding-top: 8px; color: var(--primary-color);">
+                        <span>Total Payable Amount:</span>
+                        <span id="cartTotal">$0.00</span>
                     </div>
                 </div>
 
-                <!-- RIGHT: SHOPPING CART & CHECKOUT DRAWER -->
-                <div class="cart-drawer">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; border-bottom: 2px solid var(--border-color); padding-bottom: 10px;">
-                        <h3 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin:0;">
-                            🛒 Shopping Cart
-                        </h3>
-                        <span class="user-badge" id="cartCountBadge" style="background: var(--primary-color); color: #fff;">0 Items</span>
+                <!-- Smart Warehouse Auto-Routing Info Box -->
+                <div id="smartWhBadge"
+                     style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-sm); padding:10px 12px; margin-bottom:14px; font-size:12px; color:#1e40af; line-height:1.4;">
+                    🏬 <strong>Smart Auto-Routing Active:</strong><br>
+                    <span id="smartWhName">Auto-Assigned Nearest Depot: Colombo Depot (LK)</span>
+                </div>
+
+                <!-- Checkout Form -->
+                <form id="checkoutForm">
+                    <div class="form-group" style="margin-bottom: 8px;">
+                        <label class="form-label" for="custName" style="font-size: 11px;">Customer Full Name / Company
+                            <span>*</span></label>
+                        <input type="text" id="custName" class="form-control"
+                               style="padding-left: 10px; font-size: 12px;" placeholder="Enter full name or company"
+                               required>
                     </div>
 
-                    <!-- Cart Items Container -->
-                    <div id="cartItemsList" style="max-height: 200px; overflow-y: auto; margin-bottom: 16px;">
-                        <p style="font-size: 13px; color: var(--text-muted); text-align: center; padding: 16px 0;">
-                            Your shopping cart is empty.<br>Choose quantity & click "Add to Cart" to start.
-                        </p>
-                    </div>
-
-                    <!-- Cart Total & Shipping Calculation Summary -->
-                    <div style="background: #ffffff; border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 12px; margin-bottom: 16px;">
-                        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-                            <span>Products Subtotal:</span>
-                            <span id="cartSubtotal" style="font-weight: 600;">$0.00</span>
+                    <div class="form-row" style="margin-bottom: 8px;">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label class="form-label" for="custPhonePrefix" style="font-size: 11px;">Phone Code</label>
+                            <select id="custPhonePrefix" class="form-control"
+                                    style="padding-left: 6px; font-size: 12px;">
+                                <option value="+94">+94 (LK)</option>
+                                <option value="+49">+49 (DE)</option>
+                                <option value="+1">+1 (US)</option>
+                                <option value="+65">+65 (SG)</option>
+                            </select>
                         </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px;">
-                            <span id="shippingLabel">Shipping Charge:</span>
-                            <span id="shippingCostText" style="font-weight: 600; color: #2563eb;">$15.00</span>
-                        </div>
-                        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 8px;" id="shippingTypeDesc">
-                            Local Domestic Express (Same Country)
-                        </div>
-                        <div style="display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; border-top: 1px solid var(--border-color); padding-top: 8px; color: var(--primary-color);">
-                            <span>Total Payable Amount:</span>
-                            <span id="cartTotal">$0.00</span>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label class="form-label" for="custPhone" style="font-size: 11px;">Phone Number
+                                <span>*</span></label>
+                            <input type="text" id="custPhone" class="form-control"
+                                   style="padding-left: 10px; font-size: 12px;" placeholder="77 123 4567" required>
                         </div>
                     </div>
 
-                    <!-- Smart Warehouse Auto-Routing Info Box -->
-                    <div id="smartWhBadge" style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:var(--radius-sm); padding:10px 12px; margin-bottom:14px; font-size:12px; color:#1e40af; line-height:1.4;">
-                        🏬 <strong>Smart Auto-Routing Active:</strong><br>
-                        <span id="smartWhName">Auto-Assigned Nearest Depot: Colombo Depot (LK)</span>
+                    <div class="form-group" style="margin-bottom: 8px;">
+                        <label class="form-label" for="custEmail" style="font-size: 11px;">Email Address <span>*</span></label>
+                        <input type="email" id="custEmail" class="form-control"
+                               style="padding-left: 10px; font-size: 12px;" placeholder="name@example.com" required>
                     </div>
 
-                    <!-- Checkout Form -->
-                    <form id="checkoutForm">
-                        <div class="form-group" style="margin-bottom: 8px;">
-                            <label class="form-label" for="custName" style="font-size: 11px;">Customer Full Name / Company <span>*</span></label>
-                            <input type="text" id="custName" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="Enter full name or company" required>
-                        </div>
-
-                        <div class="form-row" style="margin-bottom: 8px;">
-                            <div class="form-group" style="margin-bottom:0;">
-                                <label class="form-label" for="custPhonePrefix" style="font-size: 11px;">Phone Code</label>
-                                <select id="custPhonePrefix" class="form-control" style="padding-left: 6px; font-size: 12px;">
-                                    <option value="+94">+94 (LK)</option>
-                                    <option value="+49">+49 (DE)</option>
-                                    <option value="+1">+1 (US)</option>
-                                    <option value="+65">+65 (SG)</option>
-                                </select>
-                            </div>
-                            <div class="form-group" style="margin-bottom:0;">
-                                <label class="form-label" for="custPhone" style="font-size: 11px;">Phone Number <span>*</span></label>
-                                <input type="text" id="custPhone" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="77 123 4567" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 8px;">
-                            <label class="form-label" for="custEmail" style="font-size: 11px;">Email Address <span>*</span></label>
-                            <input type="email" id="custEmail" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="name@example.com" required>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 12px;">
-                            <label class="form-label" style="font-size: 11px; display:flex; align-items:center; justify-content:space-between;">
-                                <span>🤖 Dispatch Warehouse Depot (Origin)</span>
-                                <span style="color:#047857; font-weight:700; font-size:10px; background:#d1fae5; padding:2px 8px; border-radius:12px; border:1px solid #6ee7b7;">
+                    <div class="form-group" style="margin-bottom: 12px;">
+                        <label class="form-label"
+                               style="font-size: 11px; display:flex; align-items:center; justify-content:space-between;">
+                            <span>🤖 Dispatch Warehouse Depot (Origin)</span>
+                            <span style="color:#047857; font-weight:700; font-size:10px; background:#d1fae5; padding:2px 8px; border-radius:12px; border:1px solid #6ee7b7;">
                                     ⚡ Smart Auto-Routed
                                 </span>
-                            </label>
-                            <div id="autoRoutedWarehouseCard" style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s ease;">
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <div style="font-size: 22px; line-height:1;" id="autoRoutedFlag">🇱🇰</div>
-                                    <div>
-                                        <div style="font-weight: 700; font-size: 12px; color: #0f172a;" id="autoRoutedName">Colombo Logistics Depot (LK)</div>
-                                        <div style="font-size: 10px; color: #64748b;" id="autoRoutedReason">Nearest fulfillment depot to target destination</div>
+                        </label>
+                        <div id="autoRoutedWarehouseCard"
+                             style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; transition: all 0.3s ease;">
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="font-size: 22px; line-height:1;" id="autoRoutedFlag">🇱🇰</div>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 12px; color: #0f172a;" id="autoRoutedName">
+                                        Colombo Logistics Depot (LK)
+                                    </div>
+                                    <div style="font-size: 10px; color: #64748b;" id="autoRoutedReason">Nearest
+                                        fulfillment depot to target destination
                                     </div>
                                 </div>
-                                <span style="font-size: 10px; font-weight: 600; color: #047857; background: #ecfdf5; padding: 3px 8px; border-radius: 12px; border: 1px solid #a7f3d0;" id="autoRoutedBadge">
+                            </div>
+                            <span style="font-size: 10px; font-weight: 600; color: #047857; background: #ecfdf5; padding: 3px 8px; border-radius: 12px; border: 1px solid #a7f3d0;"
+                                  id="autoRoutedBadge">
                                     🟢 Optimal Route
                                 </span>
-                            </div>
-                            <!-- Hidden input holding auto-selected warehouse value (e.g. "LK|2", "DE|1", "US|4") -->
-                            <input type="hidden" id="custWarehouseOrigin" value="LK|2">
                         </div>
-
-                        <div class="form-group" style="margin-bottom: 8px;">
-                            <label class="form-label" for="custDestCountry" style="font-size: 11px;">Customer Delivery Country (Destination) <span>*</span></label>
-                            <select id="custDestCountry" class="form-control" style="padding-left: 10px; font-size: 12px;" required>
-                                <option value="LK">🇱🇰 Sri Lanka (LK)</option>
-                                <option value="DE">🇩🇪 Germany (DE)</option>
-                                <option value="US">🇺🇸 United States (US)</option>
-                                <option value="SG">🇸🇬 Singapore (SG)</option>
-                                <option value="JP">🇯🇵 Japan (JP)</option>
-                                <option value="GB">🇬🇧 United Kingdom (GB)</option>
-                                <option value="AU">🇦🇺 Australia (AU)</option>
-                                <option value="AE">🇦🇪 United Arab Emirates (AE)</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 8px;">
-                            <label class="form-label" for="custAddress" style="font-size: 11px;">Street Address & City <span>*</span></label>
-                            <input type="text" id="custAddress" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="Enter street address, city" required>
-                        </div>
-
-                        <div class="form-group" style="margin-bottom: 14px;">
-                            <label class="form-label" for="custPayment" style="font-size: 11px;">Payment Settlement <span>*</span></label>
-                            <select id="custPayment" class="form-control" style="padding-left: 10px; font-size: 12px;" required>
-                                <option value="CARD">💳 Instant Credit Card</option>
-                                <option value="JTA_TRANSFER">🔐 JTA Bank Settlement (Commit)</option>
-                                <option value="WIRE">🏦 Corporate Wire Transfer</option>
-                            </select>
-                        </div>
-
-                        <button type="submit" id="btnCheckout" class="btn-primary" style="width: 100%; margin-top: 0; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
-                            <span class="spinner"></span>
-                            <span class="btn-text">💳 Place Order & Save to Database</span>
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Customer Orders History Manifest -->
-            <div style="margin-top: 24px;">
-                <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px;">
-                    📜 Customer Orders & Package Tracking History
-                </h3>
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Order Ref</th>
-                                <th>Customer & Phone</th>
-                                <th>Route & Freight Type</th>
-                                <th>Shipping Cost</th>
-                                <th>Total Amount</th>
-                                <th>Estimate</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ordersTableBody">
-                            <tr>
-                                <td colspan="7" style="text-align: center; color: var(--text-muted);">No placed orders yet. Submit your first order above!</td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </main>
-
-        <!-- Complete End-to-End Order & Carrier Tracking Modal -->
-        <div id="modalOrderTracking" class="modal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; padding: 16px;">
-            <div style="background: #ffffff; width: 100%; max-width: 780px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); overflow: hidden; animation: modalSlideIn 0.3s ease;">
-                
-                <!-- Modal Header -->
-                <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;">
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <h3 style="font-size: 18px; font-weight: 700; margin: 0; color: #ffffff;" id="trackModalOrderRef">#ORD-2026-00109</h3>
-                            <span class="user-badge" id="trackModalStatusBadge" style="background: #38bdf8; color: #0f172a; font-size: 11px;">IN TRANSIT</span>
-                        </div>
-                        <p style="font-size: 12px; color: #94a3b8; margin: 4px 0 0 0;" id="trackModalCustomerDesc">Customer: John Doe | Tracking Ref: TRK-DHL-91823</p>
-                    </div>
-                    <button type="button" id="btnCloseTrackModal" style="background: rgba(255,255,255,0.1); border: none; color: #ffffff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">✕</button>
-                </div>
-
-                <!-- Modal Body -->
-                <div style="padding: 24px; max-height: 80vh; overflow-y: auto;">
-                    
-                    <!-- 5-Step Supply Chain Stepper -->
-                    <div style="margin-bottom: 24px;">
-                        <h4 style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 14px;">
-                            📦 Live Cross-Border Supply Chain Journey
-                        </h4>
-                        <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 14px; gap: 6px; flex-wrap: wrap;" id="trackModalStepper">
-                            <!-- Step items will be injected by js -->
-                        </div>
+                        <!-- Hidden input holding auto-selected warehouse value (e.g. "LK|2", "DE|1", "US|4") -->
+                        <input type="hidden" id="custWarehouseOrigin" value="LK|2">
                     </div>
 
-                    <!-- Order Details & Carrier Info Grid -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
-                        
-                        <!-- Left Box: Order & Product Items -->
-                        <div style="background: #f1f5f9; border-radius: 12px; padding: 16px; border: 1px solid #cbd5e1;">
-                            <h5 style="font-size: 13px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 10px;">
-                                🛍️ Product Order Breakdown
-                            </h5>
-                            <div style="font-size: 12px; color: #334155; line-height: 1.6;" id="trackModalProductItems">
-                                Loading items...
-                            </div>
-                        </div>
-
-                        <!-- Right Box: Customs & Carrier Dispatch -->
-                        <div style="background: #eff6ff; border-radius: 12px; padding: 16px; border: 1px solid #bfdbfe;">
-                            <h5 style="font-size: 13px; font-weight: 700; color: #1e40af; margin-top: 0; margin-bottom: 10px;">
-                                ✈️ Carrier Dispatch & Customs Clearance
-                            </h5>
-                            <div style="font-size: 12px; color: #1e3a8a; line-height: 1.6;">
-                                <div><strong>Assigned Freight Carrier:</strong> <span id="trackModalCarrierName" style="color: #2563eb; font-weight: 700;">DHL Express International</span></div>
-                                <div><strong>Local Driver Agent:</strong> <span id="trackModalDriverName" style="color: #047857; font-weight: 700;">Agent K. Perera</span></div>
-                                <div><strong>Dispatch Vehicle License:</strong> <span id="trackModalVehicleNo" style="color: #1e40af; font-weight: 700;">WP-BC-8910</span></div>
-                                <div><strong>Origin Depot:</strong> <span id="trackModalOriginDepot">USA New York Air Cargo Hub (US)</span></div>
-                                <div><strong>Customs Clearance:</strong> <span id="trackModalCustomsStatus" style="color: #059669; font-weight: 700;">APPROVED & PASSED</span></div>
-                                <div><strong>Import Tariff Duty:</strong> <span id="trackModalDutyStatus" style="color: #15803d; font-weight: 700;">SETTLED BY FINANCE</span></div>
-                                <div><strong>Estimated Delivery:</strong> <span id="trackModalEstimate">3-5 Business Days</span></div>
-                            </div>
-                        </div>
+                    <div class="form-group" style="margin-bottom: 8px;">
+                        <label class="form-label" for="custDestCountry" style="font-size: 11px;">Customer Delivery
+                            Country (Destination) <span>*</span></label>
+                        <select id="custDestCountry" class="form-control" style="padding-left: 10px; font-size: 12px;"
+                                required>
+                            <option value="LK">🇱🇰 Sri Lanka (LK)</option>
+                            <option value="DE">🇩🇪 Germany (DE)</option>
+                            <option value="US">🇺🇸 United States (US)</option>
+                            <option value="SG">🇸🇬 Singapore (SG)</option>
+                            <option value="JP">🇯🇵 Japan (JP)</option>
+                            <option value="GB">🇬🇧 United Kingdom (GB)</option>
+                            <option value="AU">🇦🇺 Australia (AU)</option>
+                            <option value="AE">🇦🇪 United Arab Emirates (AE)</option>
+                        </select>
                     </div>
 
-                    <!-- Live Tracking Events Timeline (tracking_events Table) -->
-                    <div style="margin-top: 18px; background: #f8fafc; border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0;">
-                        <h5 style="font-size: 13px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-                            <span>📍 Real-Time Tracking Audit Log (tracking_events Table)</span>
-                            <span class="user-badge" style="background:#e0f2fe; color:#0369a1; font-size:10px;">JPA: TrackingEvent</span>
-                        </h5>
-                        <div id="trackModalEventsList" style="font-size: 11px; color: #334155; display: flex; flex-direction: column; gap: 8px;">
-                            <div style="text-align:center; color:var(--text-muted);">Loading live tracking events...</div>
-                        </div>
+                    <div class="form-group" style="margin-bottom: 8px;">
+                        <label class="form-label" for="custAddress" style="font-size: 11px;">Street Address & City
+                            <span>*</span></label>
+                        <input type="text" id="custAddress" class="form-control"
+                               style="padding-left: 10px; font-size: 12px;" placeholder="Enter street address, city"
+                               required>
                     </div>
 
-                </div>
+                    <div class="form-group" style="margin-bottom: 14px;">
+                        <label class="form-label" for="custPayment" style="font-size: 11px;">Payment Settlement
+                            <span>*</span></label>
+                        <select id="custPayment" class="form-control" style="padding-left: 10px; font-size: 12px;"
+                                required>
+                            <option value="CARD">💳 Instant Credit Card</option>
+                            <option value="JTA_TRANSFER">🔐 JTA Bank Settlement (Commit)</option>
+                            <option value="WIRE">🏦 Corporate Wire Transfer</option>
+                        </select>
+                    </div>
 
-                <!-- Modal Footer -->
-                <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-                    <button type="button" id="btnConfirmDeliveryModal" class="btn-primary" style="width: auto; margin: 0; padding: 8px 18px; font-size: 12px; background: linear-gradient(135deg, #059669 0%, #047857 100%);">
-                        📦 Mark Package Received & Confirm Delivery
+                    <button type="submit" id="btnCheckout" class="btn-primary"
+                            style="width: 100%; margin-top: 0; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
+                        <span class="spinner"></span>
+                        <span class="btn-text">💳 Place Order & Save to Database</span>
                     </button>
-                    <button type="button" id="btnDoneTrackModal" class="btn-secondary" style="width: auto; margin: 0; padding: 8px 20px; font-size: 12px; background: #e2e8f0; color: #475569;">
-                        Close Journey Dossier
-                    </button>
-                </div>
-
+                </form>
             </div>
         </div>
 
-        <footer>
-            &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-        </footer>
+        <!-- Customer Orders History Manifest -->
+        <div style="margin-top: 24px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px;">
+                📜 Customer Orders & Package Tracking History
+            </h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>Order Ref</th>
+                        <th>Customer & Phone</th>
+                        <th>Route & Freight Type</th>
+                        <th>Shipping Cost</th>
+                        <th>Total Amount</th>
+                        <th>Estimate</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: var(--text-muted);">No placed orders yet.
+                            Submit your first order above!
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    </main>
+
+    <!-- Complete End-to-End Order & Carrier Tracking Modal -->
+    <div id="modalOrderTracking" class="modal-overlay"
+         style="display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(4px); z-index: 9999; align-items: center; justify-content: center; padding: 16px;">
+        <div style="background: #ffffff; width: 100%; max-width: 780px; border-radius: 20px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); overflow: hidden; animation: modalSlideIn 0.3s ease;">
+
+            <!-- Modal Header -->
+            <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: #ffffff; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <h3 style="font-size: 18px; font-weight: 700; margin: 0; color: #ffffff;"
+                            id="trackModalOrderRef">#ORD-2026-00109</h3>
+                        <span class="user-badge" id="trackModalStatusBadge"
+                              style="background: #38bdf8; color: #0f172a; font-size: 11px;">IN TRANSIT</span>
+                    </div>
+                    <p style="font-size: 12px; color: #94a3b8; margin: 4px 0 0 0;" id="trackModalCustomerDesc">Customer:
+                        John Doe | Tracking Ref: TRK-DHL-91823</p>
+                </div>
+                <button type="button" id="btnCloseTrackModal"
+                        style="background: rgba(255,255,255,0.1); border: none; color: #ffffff; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div style="padding: 24px; max-height: 80vh; overflow-y: auto;">
+
+                <!-- 5-Step Supply Chain Stepper -->
+                <div style="margin-bottom: 24px;">
+                    <h4 style="font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 14px;">
+                        📦 Live Cross-Border Supply Chain Journey
+                    </h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 14px; gap: 6px; flex-wrap: wrap;"
+                         id="trackModalStepper">
+                        <!-- Step items will be injected by js -->
+                    </div>
+                </div>
+
+                <!-- Order Details & Carrier Info Grid -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+
+                    <!-- Left Box: Order & Product Items -->
+                    <div style="background: #f1f5f9; border-radius: 12px; padding: 16px; border: 1px solid #cbd5e1;">
+                        <h5 style="font-size: 13px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 10px;">
+                            🛍️ Product Order Breakdown
+                        </h5>
+                        <div style="font-size: 12px; color: #334155; line-height: 1.6;" id="trackModalProductItems">
+                            Loading items...
+                        </div>
+                    </div>
+
+                    <!-- Right Box: Customs & Carrier Dispatch -->
+                    <div style="background: #eff6ff; border-radius: 12px; padding: 16px; border: 1px solid #bfdbfe;">
+                        <h5 style="font-size: 13px; font-weight: 700; color: #1e40af; margin-top: 0; margin-bottom: 10px;">
+                            ✈️ Carrier Dispatch & Customs Clearance
+                        </h5>
+                        <div style="font-size: 12px; color: #1e3a8a; line-height: 1.6;">
+                            <div><strong>Assigned Freight Carrier:</strong> <span id="trackModalCarrierName"
+                                                                                  style="color: #2563eb; font-weight: 700;">DHL Express International</span>
+                            </div>
+                            <div><strong>Local Driver Agent:</strong> <span id="trackModalDriverName"
+                                                                            style="color: #047857; font-weight: 700;">Agent K. Perera</span>
+                            </div>
+                            <div><strong>Dispatch Vehicle License:</strong> <span id="trackModalVehicleNo"
+                                                                                  style="color: #1e40af; font-weight: 700;">WP-BC-8910</span>
+                            </div>
+                            <div><strong>Origin Depot:</strong> <span id="trackModalOriginDepot">USA New York Air Cargo Hub (US)</span>
+                            </div>
+                            <div><strong>Customs Clearance:</strong> <span id="trackModalCustomsStatus"
+                                                                           style="color: #059669; font-weight: 700;">APPROVED & PASSED</span>
+                            </div>
+                            <div><strong>Import Tariff Duty:</strong> <span id="trackModalDutyStatus"
+                                                                            style="color: #15803d; font-weight: 700;">SETTLED BY FINANCE</span>
+                            </div>
+                            <div><strong>Estimated Delivery:</strong> <span
+                                    id="trackModalEstimate">3-5 Business Days</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Tracking Events Timeline (tracking_events Table) -->
+                <div style="margin-top: 18px; background: #f8fafc; border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0;">
+                    <h5 style="font-size: 13px; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+                        <span>📍 Real-Time Tracking Audit Log (tracking_events Table)</span>
+                        <span class="user-badge" style="background:#e0f2fe; color:#0369a1; font-size:10px;">JPA: TrackingEvent</span>
+                    </h5>
+                    <div id="trackModalEventsList"
+                         style="font-size: 11px; color: #334155; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="text-align:center; color:var(--text-muted);">Loading live tracking events...</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer -->
+            <div style="background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                <button type="button" id="btnConfirmDeliveryModal" class="btn-primary"
+                        style="width: auto; margin: 0; padding: 8px 18px; font-size: 12px; background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                    📦 Mark Package Received & Confirm Delivery
+                </button>
+                <button type="button" id="btnDoneTrackModal" class="btn-secondary"
+                        style="width: auto; margin: 0; padding: 8px 20px; font-size: 12px; background: #e2e8f0; color: #475569;">
+                    Close Journey Dossier
+                </button>
+            </div>
+
+        </div>
     </div>
 
-    <script src="js/customer.js"></script>
+    <footer>
+        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+    </footer>
+</div>
+
+<script src="js/customer.js"></script>
 </body>
 </html>

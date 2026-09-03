@@ -242,8 +242,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/inventory/products`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ sku, name, price, weightKg, hsCode, description, categoryId, brandId })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({sku, name, price, weightKg, hsCode, description, categoryId, brandId})
             });
 
             const data = await res.json();
@@ -278,8 +278,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/inventory/items`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ warehouseId, productId, vendorId, unitPrice, availableQty, reorderThreshold })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({warehouseId, productId, vendorId, unitPrice, availableQty, reorderThreshold})
             });
 
             const data = await res.json();
@@ -305,15 +305,17 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/inventory/categories`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name})
             });
             if (res.ok) {
                 addCategoryForm.reset();
                 loadCategories();
                 showAlert(`Category "${name}" added!`, 'success');
             }
-        } catch (err) { console.error(err); }
+        } catch (err) {
+            console.error(err);
+        }
     });
 
     addBrandForm?.addEventListener('submit', async (e) => {
@@ -323,15 +325,17 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/inventory/brands`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name})
             });
             if (res.ok) {
                 addBrandForm.reset();
                 loadBrands();
                 showAlert(`Brand "${name}" added!`, 'success');
             }
-        } catch (err) { console.error(err); }
+        } catch (err) {
+            console.error(err);
+        }
     });
 
     // Load Stock Movement Audit Log (inventory_transactions Table)

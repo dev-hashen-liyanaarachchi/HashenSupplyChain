@@ -1,5 +1,7 @@
 # Tests Directory
+
 Contains test suites for GlobalTrade Logistics Corporation:
+
 - `unit/`: Unit tests
 - `integration/`: EJB Integration tests
 - `security/`: JAAS & JWT Security tests

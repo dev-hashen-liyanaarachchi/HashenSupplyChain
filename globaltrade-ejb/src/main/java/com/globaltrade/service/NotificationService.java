@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import com.globaltrade.entity.Notification;
 import com.globaltrade.entity.User;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,7 @@ public class NotificationService {
 
     public Notification createNotification(String title, String message, String category, String severity) {
         LOGGER.info("[NOTIFICATION SERVICE] Creating System Notification: [" + category + "] " + title + " - " + message);
-        
+
         List<User> users = em.createQuery("SELECT u FROM User u", User.class).setMaxResults(1).getResultList();
         User recipient = users.isEmpty() ? null : users.get(0);
 

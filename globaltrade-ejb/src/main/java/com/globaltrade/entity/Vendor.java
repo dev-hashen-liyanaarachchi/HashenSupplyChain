@@ -2,6 +2,7 @@ package com.globaltrade.entity;
 
 import jakarta.persistence.*;
 import com.globaltrade.enums.VendorStatus;
+
 import java.io.Serializable;
 
 @Entity
@@ -30,7 +31,8 @@ public class Vendor implements Serializable {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    public Vendor() {}
+    public Vendor() {
+    }
 
     public Vendor(String companyName) {
         this.companyName = companyName;
@@ -49,7 +51,8 @@ public class Vendor implements Serializable {
             if (user != null && user.getEmail() != null) {
                 return user.getEmail();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
         return "supplier@" + (companyName != null ? companyName.toLowerCase().replaceAll("[^a-z]", "") : "vendor") + ".com";
     }
 
@@ -57,21 +60,51 @@ public class Vendor implements Serializable {
         return companyName;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getCompanyName() { return companyName; }
-    public void setCompanyName(String companyName) { this.companyName = companyName; }
+    public User getUser() {
+        return user;
+    }
 
-    public String getTaxIdentificationNumber() { return taxIdentificationNumber; }
-    public void setTaxIdentificationNumber(String taxIdentificationNumber) { this.taxIdentificationNumber = taxIdentificationNumber; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public VendorStatus getStatus() { return status; }
-    public void setStatus(VendorStatus status) { this.status = status; }
+    public String getCompanyName() {
+        return companyName;
+    }
 
-    public Address getAddress() { return address; }
-    public void setAddress(Address address) { this.address = address; }
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getTaxIdentificationNumber() {
+        return taxIdentificationNumber;
+    }
+
+    public void setTaxIdentificationNumber(String taxIdentificationNumber) {
+        this.taxIdentificationNumber = taxIdentificationNumber;
+    }
+
+    public VendorStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(VendorStatus status) {
+        this.status = status;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

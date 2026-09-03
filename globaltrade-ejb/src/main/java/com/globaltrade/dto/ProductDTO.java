@@ -12,7 +12,8 @@ public class ProductDTO implements Serializable {
     private Long brandId;
     private String hsCode;
 
-    public ProductDTO() {}
+    public ProductDTO() {
+    }
 
     public ProductDTO(String sku, String name, Double price, Double weightKg, String hsCode) {
         this.sku = sku;
@@ -22,27 +23,67 @@ public class ProductDTO implements Serializable {
         this.hsCode = hsCode;
     }
 
-    public String getSku() { return sku; }
-    public void setSku(String sku) { this.sku = sku; }
+    public String getSku() {
+        return sku;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public String getName() {
+        return name;
+    }
 
-    public Double getPrice() { return price; }
-    public void setPrice(Double price) { this.price = price; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Double getWeightKg() { return weightKg; }
-    public void setWeightKg(Double weightKg) { this.weightKg = weightKg; }
+    public String getDescription() {
+        return description;
+    }
 
-    public Long getCategoryId() { return categoryId; }
-    public void setCategoryId(Long categoryId) { this.categoryId = categoryId; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public Long getBrandId() { return brandId; }
-    public void setBrandId(Long brandId) { this.brandId = brandId; }
+    public Double getPrice() {
+        return price;
+    }
 
-    public String getHsCode() { return hsCode; }
-    public void setHsCode(String hsCode) { this.hsCode = hsCode; }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getWeightKg() {
+        return weightKg;
+    }
+
+    public void setWeightKg(Double weightKg) {
+        this.weightKg = weightKg;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Long getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getHsCode() {
+        return hsCode;
+    }
+
+    public void setHsCode(String hsCode) {
+        this.hsCode = hsCode;
+    }
 }

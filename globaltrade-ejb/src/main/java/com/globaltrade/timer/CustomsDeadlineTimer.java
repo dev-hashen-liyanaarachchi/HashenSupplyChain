@@ -2,6 +2,7 @@ package com.globaltrade.timer;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.*;
+
 import java.io.Serializable;
 import java.util.logging.Logger;
 
@@ -34,7 +35,13 @@ public class CustomsDeadlineTimer {
 
     public static class CustomsDeadlineData implements Serializable {
         private final Long documentId;
-        public CustomsDeadlineData(Long documentId) { this.documentId = documentId; }
-        public Long getDocumentId() { return documentId; }
+
+        public CustomsDeadlineData(Long documentId) {
+            this.documentId = documentId;
+        }
+
+        public Long getDocumentId() {
+            return documentId;
+        }
     }
 }

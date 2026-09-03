@@ -2,6 +2,7 @@ package com.globaltrade.entity;
 
 import jakarta.persistence.*;
 import com.globaltrade.enums.OrderStatus;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -45,7 +46,8 @@ public class Order implements Serializable {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    public Order() {}
+    public Order() {
+    }
 
     public Order(String orderNumber, Customer customer, Double totalAmount) {
         this.orderNumber = orderNumber;
@@ -69,33 +71,83 @@ public class Order implements Serializable {
         this.totalAmount = totalAmount;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getOrderNumber() { return orderNumber; }
-    public void setOrderNumber(String orderNumber) { this.orderNumber = orderNumber; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Customer getCustomer() { return customer; }
-    public void setCustomer(Customer customer) { this.customer = customer; }
+    public String getOrderNumber() {
+        return orderNumber;
+    }
 
-    public Address getShippingAddress() { return shippingAddress; }
-    public void setShippingAddress(Address shippingAddress) { this.shippingAddress = shippingAddress; }
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
-    public List<OrderItem> getOrderItems() { return orderItems; }
-    public void setOrderItems(List<OrderItem> orderItems) { this.orderItems = orderItems; }
+    public Customer getCustomer() {
+        return customer;
+    }
 
-    public OrderStatus getStatus() { return status; }
-    public void setStatus(OrderStatus status) { this.status = status; }
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
-    public Double getItemsSubtotal() { return itemsSubtotal; }
-    public void setItemsSubtotal(Double itemsSubtotal) { this.itemsSubtotal = itemsSubtotal; }
+    public Address getShippingAddress() {
+        return shippingAddress;
+    }
 
-    public Double getShippingCost() { return shippingCost; }
-    public void setShippingCost(Double shippingCost) { this.shippingCost = shippingCost; }
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
 
-    public Double getTotalAmount() { return totalAmount; }
-    public void setTotalAmount(Double totalAmount) { this.totalAmount = totalAmount; }
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
+    }
+
+    public Double getItemsSubtotal() {
+        return itemsSubtotal;
+    }
+
+    public void setItemsSubtotal(Double itemsSubtotal) {
+        this.itemsSubtotal = itemsSubtotal;
+    }
+
+    public Double getShippingCost() {
+        return shippingCost;
+    }
+
+    public void setShippingCost(Double shippingCost) {
+        this.shippingCost = shippingCost;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 }

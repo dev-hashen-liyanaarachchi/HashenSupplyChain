@@ -16,6 +16,7 @@ import com.globaltrade.exception.UserAlreadyExistsException;
 import com.globaltrade.security.LoginService;
 import com.globaltrade.security.RefreshTokenService;
 import com.globaltrade.web.security.JwtUtil;
+
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -34,9 +35,14 @@ public class AuthResource {
     @EJB
     private RefreshTokenService refreshTokenService;
 
-    public record LoginRequest(String username, String password) {}
-    public record RegisterRequest(String username, String email, String password, String role) {}
-    public record RefreshRequest(String refreshToken) {}
+    public record LoginRequest(String username, String password) {
+    }
+
+    public record RegisterRequest(String username, String email, String password, String role) {
+    }
+
+    public record RefreshRequest(String refreshToken) {
+    }
 
     @Path("/login")
     @POST

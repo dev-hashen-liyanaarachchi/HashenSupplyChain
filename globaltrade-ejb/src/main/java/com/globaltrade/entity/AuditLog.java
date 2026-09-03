@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -33,7 +34,8 @@ public class AuditLog implements Serializable {
     @Column(name = "timestamp", nullable = false, updatable = false)
     private LocalDateTime timestamp = LocalDateTime.now();
 
-    public AuditLog() {}
+    public AuditLog() {
+    }
 
     public AuditLog(String username, String userRole, String action, String targetMethod, String ipAddress, Long durationMs) {
         this.username = username;
@@ -44,27 +46,67 @@ public class AuditLog implements Serializable {
         this.durationMs = durationMs;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getUserRole() { return userRole; }
-    public void setUserRole(String userRole) { this.userRole = userRole; }
+    public String getUsername() {
+        return username;
+    }
 
-    public String getAction() { return action; }
-    public void setAction(String action) { this.action = action; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getTargetMethod() { return targetMethod; }
-    public void setTargetMethod(String targetMethod) { this.targetMethod = targetMethod; }
+    public String getUserRole() {
+        return userRole;
+    }
 
-    public String getIpAddress() { return ipAddress; }
-    public void setIpAddress(String ipAddress) { this.ipAddress = ipAddress; }
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
 
-    public Long getDurationMs() { return durationMs; }
-    public void setDurationMs(Long durationMs) { this.durationMs = durationMs; }
+    public String getAction() {
+        return action;
+    }
 
-    public LocalDateTime getTimestamp() { return timestamp; }
-    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
+    public void setAction(String action) {
+        this.action = action;
+    }
+
+    public String getTargetMethod() {
+        return targetMethod;
+    }
+
+    public void setTargetMethod(String targetMethod) {
+        this.targetMethod = targetMethod;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
+
+    public void setIpAddress(String ipAddress) {
+        this.ipAddress = ipAddress;
+    }
+
+    public Long getDurationMs() {
+        return durationMs;
+    }
+
+    public void setDurationMs(Long durationMs) {
+        this.durationMs = durationMs;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 }

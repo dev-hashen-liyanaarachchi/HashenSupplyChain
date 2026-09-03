@@ -8,7 +8,8 @@ public class InventoryDTO implements Serializable {
     private Integer availableQty;
     private Integer reorderThreshold;
 
-    public InventoryDTO() {}
+    public InventoryDTO() {
+    }
 
     public InventoryDTO(Long warehouseId, Long productId, Integer availableQty, Integer reorderThreshold) {
         this.warehouseId = warehouseId;
@@ -17,15 +18,35 @@ public class InventoryDTO implements Serializable {
         this.reorderThreshold = reorderThreshold;
     }
 
-    public Long getWarehouseId() { return warehouseId; }
-    public void setWarehouseId(Long warehouseId) { this.warehouseId = warehouseId; }
+    public Long getWarehouseId() {
+        return warehouseId;
+    }
 
-    public Long getProductId() { return productId; }
-    public void setProductId(Long productId) { this.productId = productId; }
+    public void setWarehouseId(Long warehouseId) {
+        this.warehouseId = warehouseId;
+    }
 
-    public Integer getAvailableQty() { return availableQty; }
-    public void setAvailableQty(Integer availableQty) { this.availableQty = availableQty; }
+    public Long getProductId() {
+        return productId;
+    }
 
-    public Integer getReorderThreshold() { return reorderThreshold; }
-    public void setReorderThreshold(Integer reorderThreshold) { this.reorderThreshold = reorderThreshold; }
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Integer getAvailableQty() {
+        return availableQty;
+    }
+
+    public void setAvailableQty(Integer availableQty) {
+        this.availableQty = availableQty;
+    }
+
+    public Integer getReorderThreshold() {
+        return reorderThreshold;
+    }
+
+    public void setReorderThreshold(Integer reorderThreshold) {
+        this.reorderThreshold = reorderThreshold;
+    }
 }

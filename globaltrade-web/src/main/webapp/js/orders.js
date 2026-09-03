@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <td><strong>${o.customerName}</strong><br><small style="color:var(--text-muted);">${o.email}</small></td>
                             <td><span class="badge-status badge-active" style="background:#eff6ff; color:#1d4ed8;">${o.destinationCountry || 'LK'}</span></td>
                             <td><small style="font-weight:600; color:#334155;">${itemsSummary}</small></td>
-                            <td><strong>$${(o.totalAmount || 0).toLocaleString(undefined, {minimumFractionDigits:2})}</strong></td>
+                            <td><strong>$${(o.totalAmount || 0).toLocaleString(undefined, {minimumFractionDigits: 2})}</strong></td>
                             <td><span class="badge-status ${statusClass}">${o.status}</span></td>
                             <td>
                                 <div style="display:flex; gap:6px; flex-wrap:wrap;">
@@ -181,8 +181,8 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const res = await fetch(`${API_BASE}/storefront/orders/status`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ orderId, status })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({orderId, status})
             });
 
             const data = await res.json();

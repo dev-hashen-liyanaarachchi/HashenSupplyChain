@@ -9,6 +9,7 @@ import com.globaltrade.entity.Role;
 import com.globaltrade.entity.Vendor;
 import com.globaltrade.enums.VendorStatus;
 import com.globaltrade.exception.UserAlreadyExistsException;
+
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;

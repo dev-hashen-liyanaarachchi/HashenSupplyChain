@@ -13,8 +13,10 @@ public class GlobalTradeEJBUnitTest {
     @DisplayName("Test 1: InventoryException Rollback Validation")
     public void testInventoryExceptionRollback() {
         InventoryException exception = assertThrows(
-            InventoryException.class,
-            () -> { throw new InventoryException("MED-9018-X", 500, 100); }
+                InventoryException.class,
+                () -> {
+                    throw new InventoryException("MED-9018-X", 500, 100);
+                }
         );
 
         assertEquals("MED-9018-X", exception.getSku());
@@ -26,8 +28,10 @@ public class GlobalTradeEJBUnitTest {
     @DisplayName("Test 2: CustomsException Trade Compliance Failure")
     public void testCustomsExceptionValidation() {
         CustomsException exception = assertThrows(
-            CustomsException.class,
-            () -> { throw new CustomsException("9999.00", "Blacklisted HS Code detected."); }
+                CustomsException.class,
+                () -> {
+                    throw new CustomsException("9999.00", "Blacklisted HS Code detected.");
+                }
         );
 
         assertEquals("9999.00", exception.getHsCode());

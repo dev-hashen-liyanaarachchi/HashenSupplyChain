@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -28,7 +29,8 @@ public class VendorPerformance implements Serializable {
     @Column(name = "evaluated_at", nullable = false, updatable = false)
     private LocalDateTime evaluatedAt = LocalDateTime.now();
 
-    public VendorPerformance() {}
+    public VendorPerformance() {
+    }
 
     public VendorPerformance(Vendor vendor, Double fulfillmentScore, Double onTimeDeliveryRate, Double qualityRating) {
         this.vendor = vendor;
@@ -37,21 +39,51 @@ public class VendorPerformance implements Serializable {
         this.qualityRating = qualityRating;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Vendor getVendor() { return vendor; }
-    public void setVendor(Vendor vendor) { this.vendor = vendor; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Double getFulfillmentScore() { return fulfillmentScore; }
-    public void setFulfillmentScore(Double fulfillmentScore) { this.fulfillmentScore = fulfillmentScore; }
+    public Vendor getVendor() {
+        return vendor;
+    }
 
-    public Double getOnTimeDeliveryRate() { return onTimeDeliveryRate; }
-    public void setOnTimeDeliveryRate(Double onTimeDeliveryRate) { this.onTimeDeliveryRate = onTimeDeliveryRate; }
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
 
-    public Double getQualityRating() { return qualityRating; }
-    public void setQualityRating(Double qualityRating) { this.qualityRating = qualityRating; }
+    public Double getFulfillmentScore() {
+        return fulfillmentScore;
+    }
 
-    public LocalDateTime getEvaluatedAt() { return evaluatedAt; }
-    public void setEvaluatedAt(LocalDateTime evaluatedAt) { this.evaluatedAt = evaluatedAt; }
+    public void setFulfillmentScore(Double fulfillmentScore) {
+        this.fulfillmentScore = fulfillmentScore;
+    }
+
+    public Double getOnTimeDeliveryRate() {
+        return onTimeDeliveryRate;
+    }
+
+    public void setOnTimeDeliveryRate(Double onTimeDeliveryRate) {
+        this.onTimeDeliveryRate = onTimeDeliveryRate;
+    }
+
+    public Double getQualityRating() {
+        return qualityRating;
+    }
+
+    public void setQualityRating(Double qualityRating) {
+        this.qualityRating = qualityRating;
+    }
+
+    public LocalDateTime getEvaluatedAt() {
+        return evaluatedAt;
+    }
+
+    public void setEvaluatedAt(LocalDateTime evaluatedAt) {
+        this.evaluatedAt = evaluatedAt;
+    }
 }

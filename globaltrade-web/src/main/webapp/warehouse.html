@@ -7,157 +7,214 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
 </head>
 <body>
 
-    <div class="app-container wide">
-        <!-- Brand Header with Back to Admin Button -->
-        <header class="brand-header">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                    <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
-                        👑 Back to Admin Control
-                    </a>
-                    <a href="orders.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
-                        📦 Orders & Pick-Pack Hub
-                    </a>
-                    <a href="index.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none;">
-                        Main Portal
-                    </a>
-                </div>
-                <div class="brand-logo" style="margin-bottom:0;">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                </div>
+<nav class="gt-navbar">
+    <div class="gt-nav-container">
+        <a href="index.html" class="gt-brand">
+            <div class="gt-brand-logo">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
+                </svg>
             </div>
-            <h1 class="brand-name">Warehouse Management Hub</h1>
-            <p class="brand-subtitle">Global Inventory Depots & Capacity Allocation Portal</p>
-        </header>
-
-        <!-- Main Card Container -->
-        <main class="auth-card">
-            <!-- Alert Banner -->
-            <div id="alertBox" class="alert"></div>
-
-            <!-- Section 1: Add Warehouse Form -->
-            <div style="margin-bottom: 32px; border-bottom: 1px solid var(--border-color); padding-bottom: 24px;">
-                <h2 style="font-size: 18px; font-weight: 700; color: var(--primary-color); margin-bottom: 16px;">
-                    ➕ Register New Warehouse Hub
-                </h2>
-                
-                <form id="warehouseForm">
-                    <div class="form-group">
-                        <label class="form-label" for="whName">Warehouse Name <span>*</span></label>
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                            </span>
-                            <input type="text" id="whName" class="form-control" placeholder="e.g. Colombo International Export Depot" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="whStreet">Street Address <span>*</span></label>
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
-                            </span>
-                            <input type="text" id="whStreet" class="form-control" placeholder="e.g. 100 Port Highway, Sector 4" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="whCity">City <span>*</span></label>
-                            <input type="text" id="whCity" class="form-control" style="padding-left:14px;" placeholder="Colombo" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="whState">State / Province</label>
-                            <input type="text" id="whState" class="form-control" style="padding-left:14px;" placeholder="Western">
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="whPostalCode">Postal Code</label>
-                            <input type="text" id="whPostalCode" class="form-control" style="padding-left:14px;" placeholder="00100">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="whCountryCode">Country Code <span>*</span></label>
-                            <select id="whCountryCode" class="form-control" style="padding-left:14px;" required>
-                                <option value="LK">LK - Sri Lanka</option>
-                                <option value="DE">DE - Germany</option>
-                                <option value="US">US - United States</option>
-                                <option value="SG">SG - Singapore</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="whMaxCapacity">Maximum Storage Capacity (Units) <span>*</span></label>
-                        <div class="input-wrapper">
-                            <span class="input-icon">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                            </span>
-                            <input type="number" id="whMaxCapacity" class="form-control" placeholder="50000" min="100" required>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-primary">
-                        <span class="spinner"></span>
-                        <span class="btn-text">Save Warehouse to Database</span>
-                    </button>
-                </form>
-            </div>
-
-            <!-- Section 2: Registered Warehouses List -->
             <div>
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                    <h2 style="font-size: 16px; font-weight: 700; color: var(--text-dark);">
-                        🏬 Active Registered Warehouse Hubs
-                    </h2>
-                    <button type="button" id="btnRefreshWarehouses" class="btn-secondary" style="width: auto; padding: 6px 12px; font-size: 12px;">
-                        🔄 Refresh List
-                    </button>
-                </div>
-
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Warehouse Name</th>
-                                <th>Location Address</th>
-                                <th>Max Capacity</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="whTableBody">
-                            <tr>
-                                <td colspan="6" style="text-align: center; color: var(--text-muted);">Loading warehouses...</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <div class="gt-brand-title">GlobalTrade Logistics</div>
+                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
             </div>
+        </a>
+        <div class="gt-nav-links">
+            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
+            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
+            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
+            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
+            <a href="vendor.html" class="gt-nav-link">🤝 Vendor</a>
+            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
+            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
+            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
+            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
+            <a href="admin.html" class="gt-nav-link">👑 Admin</a>
+        </div>
+        <div class="gt-user-profile">
+            <span class="user-badge">Warehouse Supervisor</span>
+        </div>
+    </div>
+</nav>
 
-            <!-- Action Buttons -->
-            <div class="actions-grid" style="margin-top: 24px;">
-                <a href="admin.html" class="btn-secondary" style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+<div class="app-container wide">
+    <!-- Brand Header with Back to Admin Button -->
+    <header class="brand-header">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <a href="admin.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
                     👑 Back to Admin Control
                 </a>
-                <a href="index.html" class="btn-primary" style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
-                    Sign Out
+                <a href="orders.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
+                    📦 Orders & Pick-Pack Hub
+                </a>
+                <a href="index.html" class="btn-secondary"
+                   style="width: auto; padding: 8px 16px; text-decoration: none;">
+                    Main Portal
                 </a>
             </div>
-        </main>
+            <div class="brand-logo" style="margin-bottom:0;">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+            </div>
+        </div>
+        <h1 class="brand-name">Warehouse Management Hub</h1>
+        <p class="brand-subtitle">Global Inventory Depots & Capacity Allocation Portal</p>
+    </header>
 
-        <footer>
-            &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-        </footer>
-    </div>
+    <!-- Main Card Container -->
+    <main class="auth-card">
+        <!-- Alert Banner -->
+        <div id="alertBox" class="alert"></div>
 
-    <script src="js/warehouse.js"></script>
+        <!-- Section 1: Add Warehouse Form -->
+        <div style="margin-bottom: 32px; border-bottom: 1px solid var(--border-color); padding-bottom: 24px;">
+            <h2 style="font-size: 18px; font-weight: 700; color: var(--primary-color); margin-bottom: 16px;">
+                ➕ Register New Warehouse Hub
+            </h2>
+
+            <form id="warehouseForm">
+                <div class="form-group">
+                    <label class="form-label" for="whName">Warehouse Name <span>*</span></label>
+                    <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round"
+                                                                                                 stroke-linejoin="round"
+                                                                                                 stroke-width="2"
+                                                                                                 d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            </span>
+                        <input type="text" id="whName" class="form-control"
+                               placeholder="e.g. Colombo International Export Depot" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="whStreet">Street Address <span>*</span></label>
+                    <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round"
+                                                                                                 stroke-linejoin="round"
+                                                                                                 stroke-width="2"
+                                                                                                 d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path></svg>
+                            </span>
+                        <input type="text" id="whStreet" class="form-control"
+                               placeholder="e.g. 100 Port Highway, Sector 4" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="whCity">City <span>*</span></label>
+                        <input type="text" id="whCity" class="form-control" style="padding-left:14px;"
+                               placeholder="Colombo" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="whState">State / Province</label>
+                        <input type="text" id="whState" class="form-control" style="padding-left:14px;"
+                               placeholder="Western">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="whPostalCode">Postal Code</label>
+                        <input type="text" id="whPostalCode" class="form-control" style="padding-left:14px;"
+                               placeholder="00100">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="whCountryCode">Country Code <span>*</span></label>
+                        <select id="whCountryCode" class="form-control" style="padding-left:14px;" required>
+                            <option value="LK">LK - Sri Lanka</option>
+                            <option value="DE">DE - Germany</option>
+                            <option value="US">US - United States</option>
+                            <option value="SG">SG - Singapore</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="whMaxCapacity">Maximum Storage Capacity (Units)
+                        <span>*</span></label>
+                    <div class="input-wrapper">
+                            <span class="input-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round"
+                                                                                                 stroke-linejoin="round"
+                                                                                                 stroke-width="2"
+                                                                                                 d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                            </span>
+                        <input type="number" id="whMaxCapacity" class="form-control" placeholder="50000" min="100"
+                               required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span class="spinner"></span>
+                    <span class="btn-text">Save Warehouse to Database</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Section 2: Registered Warehouses List -->
+        <div>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <h2 style="font-size: 16px; font-weight: 700; color: var(--text-dark);">
+                    🏬 Active Registered Warehouse Hubs
+                </h2>
+                <button type="button" id="btnRefreshWarehouses" class="btn-secondary"
+                        style="width: auto; padding: 6px 12px; font-size: 12px;">
+                    🔄 Refresh List
+                </button>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Warehouse Name</th>
+                        <th>Location Address</th>
+                        <th>Max Capacity</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="whTableBody">
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--text-muted);">Loading warehouses...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions-grid" style="margin-top: 24px;">
+            <a href="admin.html" class="btn-secondary"
+               style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+                👑 Back to Admin Control
+            </a>
+            <a href="index.html" class="btn-primary"
+               style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
+                Sign Out
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+    </footer>
+</div>
+
+<script src="js/warehouse.js"></script>
 </body>
 </html>

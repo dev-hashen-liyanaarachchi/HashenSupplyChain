@@ -21,7 +21,8 @@ public class SecurityResource {
     public record AssignPermissionsRequest(
             Long roleId,
             List<String> permissionNames
-    ) {}
+    ) {
+    }
 
     @GET
     @Path("/permissions")

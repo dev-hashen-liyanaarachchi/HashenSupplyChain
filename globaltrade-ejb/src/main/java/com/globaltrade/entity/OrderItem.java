@@ -1,6 +1,7 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -25,7 +26,8 @@ public class OrderItem implements Serializable {
     @Column(name = "unit_price", nullable = false)
     private Double unitPrice;
 
-    public OrderItem() {}
+    public OrderItem() {
+    }
 
     public OrderItem(Order order, Product product, Integer quantity, Double unitPrice) {
         this.order = order;
@@ -34,18 +36,43 @@ public class OrderItem implements Serializable {
         this.unitPrice = unitPrice;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public Order getOrder() { return order; }
-    public void setOrder(Order order) { this.order = order; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public Product getProduct() { return product; }
-    public void setProduct(Product product) { this.product = product; }
+    public Order getOrder() {
+        return order;
+    }
 
-    public Integer getQuantity() { return quantity; }
-    public void setQuantity(Integer quantity) { this.quantity = quantity; }
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
-    public Double getUnitPrice() { return unitPrice; }
-    public void setUnitPrice(Double unitPrice) { this.unitPrice = unitPrice; }
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
 }

@@ -18,9 +18,11 @@ public class CustomsResource {
     @EJB
     private CustomsService customsService;
 
-    public record DeclarationRequest(Long shipmentId, String hsCode, String documentType) {}
+    public record DeclarationRequest(Long shipmentId, String hsCode, String documentType) {
+    }
 
-    public record ReviewRequest(Long documentId, String officerName, Boolean approve, String notes) {}
+    public record ReviewRequest(Long documentId, String officerName, Boolean approve, String notes) {
+    }
 
     @GET
     @Path("/documents")

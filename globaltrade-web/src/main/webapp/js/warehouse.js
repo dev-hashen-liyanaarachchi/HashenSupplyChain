@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Delete Warehouse
     async function deleteWarehouse(id) {
         try {
-            const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+            const response = await fetch(`${API_URL}/${id}`, {method: 'DELETE'});
             if (response.ok) {
                 showAlert(`Warehouse #${id} deleted successfully.`, 'success');
                 loadWarehouses();
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(API_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     name,
                     street,

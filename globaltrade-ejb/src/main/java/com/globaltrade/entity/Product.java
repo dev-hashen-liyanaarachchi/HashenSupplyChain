@@ -2,6 +2,7 @@ package com.globaltrade.entity;
 
 import jakarta.persistence.*;
 import com.globaltrade.enums.ProductStatus;
+
 import java.io.Serializable;
 
 @Entity
@@ -42,7 +43,8 @@ public class Product implements Serializable {
     @Column(name = "hs_code", nullable = false, length = 30)
     private String hsCode;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(String sku, String name, Double price, String hsCode) {
         this.sku = sku;
@@ -59,33 +61,83 @@ public class Product implements Serializable {
         this.hsCode = hsCode;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getSku() { return sku; }
-    public void setSku(String sku) { this.sku = sku; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getSku() {
+        return sku;
+    }
 
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 
-    public Double getPrice() { return price; }
-    public void setPrice(Double price) { this.price = price; }
+    public String getName() {
+        return name;
+    }
 
-    public Double getWeightKg() { return weightKg; }
-    public void setWeightKg(Double weightKg) { this.weightKg = weightKg; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Category getCategory() { return category; }
-    public void setCategory(Category category) { this.category = category; }
+    public String getDescription() {
+        return description;
+    }
 
-    public Brand getBrand() { return brand; }
-    public void setBrand(Brand brand) { this.brand = brand; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public ProductStatus getStatus() { return status; }
-    public void setStatus(ProductStatus status) { this.status = status; }
+    public Double getPrice() {
+        return price;
+    }
 
-    public String getHsCode() { return hsCode; }
-    public void setHsCode(String hsCode) { this.hsCode = hsCode; }
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Double getWeightKg() {
+        return weightKg;
+    }
+
+    public void setWeightKg(Double weightKg) {
+        this.weightKg = weightKg;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public ProductStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ProductStatus status) {
+        this.status = status;
+    }
+
+    public String getHsCode() {
+        return hsCode;
+    }
+
+    public void setHsCode(String hsCode) {
+        this.hsCode = hsCode;
+    }
 }

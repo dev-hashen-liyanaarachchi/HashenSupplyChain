@@ -6,6 +6,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import com.globaltrade.entity.Warehouse;
 import com.globaltrade.service.WarehouseService;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,7 +27,8 @@ public class WarehouseResource {
             String postalCode,
             String countryCode,
             Integer maxCapacity
-    ) {}
+    ) {
+    }
 
     @GET
     public Response getAllWarehouses() {

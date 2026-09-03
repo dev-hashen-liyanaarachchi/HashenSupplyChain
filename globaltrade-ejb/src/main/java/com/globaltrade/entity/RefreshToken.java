@@ -1,14 +1,15 @@
 package com.globaltrade.entity;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "refresh_token",
         indexes = {
-            @Index(columnList = "token", unique = true),
-            @Index(columnList = "username"),
+                @Index(columnList = "token", unique = true),
+                @Index(columnList = "username"),
         })
 @NamedQueries({
         @NamedQuery(name = "RefreshToken.findByValidToken",
