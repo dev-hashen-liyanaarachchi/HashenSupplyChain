@@ -37,9 +37,7 @@
             }
         }
     </script>
-</head>
-<body class="bg-[#eef2f6] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
-
+    <style>
         /* Supply Chain Stepper */
         .stepper-container {
             display: flex;
@@ -65,11 +63,11 @@
         }
 
         .step-item.active {
-            color: #2563eb;
+            color: #ea580c;
         }
 
         .step-item.completed {
-            color: #059669;
+            color: #0d9488;
         }
 
         .step-num {
@@ -86,13 +84,13 @@
         }
 
         .step-item.active .step-num {
-            background: #2563eb;
+            background: #ea580c;
             color: #ffffff;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 4px 10px rgba(234, 88, 12, 0.3);
         }
 
         .step-item.completed .step-num {
-            background: #059669;
+            background: #0d9488;
             color: #ffffff;
         }
 
@@ -102,8 +100,8 @@
         }
 
         .badge-dispatched {
-            background: #dbeafe;
-            color: #1e40af;
+            background: #ffedd5;
+            color: #c2410c;
         }
 
         .badge-intransit {
@@ -112,12 +110,12 @@
         }
 
         .badge-delivered {
-            background: #dcfce7;
-            color: #15803d;
+            background: #f0fdf4;
+            color: #0f766e;
         }
     </style>
 </head>
-<body>
+<body class="bg-[#eef2f6] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
 <nav class="gt-navbar">
     <div class="gt-nav-container">
@@ -354,7 +352,7 @@
     </footer>
 </div>
 
-<script src="js/shipments.js"></script>
-<script src="js/notifications.js"></script>
+<script src="js/shipments.js?v=3.0"></script>
+<script src="js/notifications.js?v=3.0"></script>
 </body>
 </html>
