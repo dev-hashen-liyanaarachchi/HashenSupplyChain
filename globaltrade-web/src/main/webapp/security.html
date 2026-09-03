@@ -4,245 +4,222 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlobalTrade Logistics | Role Permissions & RBAC Security Station</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-    <style>
-        *, html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, strong, small, label, input, select, button, table, th, td, tr, thead, tbody {
-            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif !important;
-        }
-
-        .security-layout {
-            display: grid;
-            grid-template-columns: 1fr 400px;
-            gap: 24px;
-        }
-
-        @media (max-width: 960px) {
-            .security-layout {
-                grid-template-columns: 1fr;
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=3.0">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            900: '#7c2d12',
+                        },
+                        teal: {
+                            50: '#f0fdf4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    }
+                }
             }
         }
-
-        .perm-checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            max-height: 240px;
-            overflow-y: auto;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 10px;
-            background: #fff;
-        }
-
-        .perm-checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            color: #334155;
-        }
-
-        .perm-badge {
-            background: #f1f5f9;
-            color: #475569;
-            border: 1px solid #cbd5e1;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 10px;
-            font-weight: 600;
-            display: inline-block;
-            margin: 2px;
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-[#eef2f6] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-<nav class="gt-navbar">
-    <div class="gt-nav-container">
-        <a href="index.html" class="gt-brand">
-            <div class="gt-brand-logo">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<!-- Top Navigation -->
+<nav class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-red-500 flex items-center justify-center text-white shadow-lg shadow-rose-500/25 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
                 </svg>
             </div>
             <div>
-                <div class="gt-brand-title">GlobalTrade Logistics</div>
-                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
+                <div class="font-bold text-slate-900 tracking-tight text-base">GlobalTrade Logistics</div>
+                <div class="text-xs text-slate-500 font-medium">Enterprise Supply Chain Platform</div>
             </div>
         </a>
-        <div class="gt-nav-links">
-            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
-            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
-            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
-            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
-            <a href="vendor.html" class="gt-nav-link">🤝 Vendor</a>
-            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
-            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
-            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
-            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
-            <a href="admin.html" class="gt-nav-link active">👑 Admin</a>
+
+        <div class="hidden xl:flex items-center gap-1.5 text-sm font-medium">
+            <a href="index.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🔑 Auth</a>
+            <a href="customer.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🛒 Store</a>
+            <a href="orders.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🏬 Orders</a>
+            <a href="inventory.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">📦 Stock</a>
+            <a href="vendor.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🤝 Vendor</a>
+            <a href="logistics.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🚚 Logistics</a>
+            <a href="shipments.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">✈️ Shipments</a>
+            <a href="customs.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🛃 Customs</a>
+            <a href="finance.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">💳 Finance</a>
+            <a href="admin.html" class="px-3 py-2 rounded-lg bg-rose-50 text-rose-700 font-semibold shadow-sm">👑 Admin</a>
         </div>
-        <div class="gt-user-profile">
-            <span class="user-badge">Security Monitor</span>
+
+        <div class="flex items-center gap-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200 shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500 mr-1.5 animate-pulse"></span>
+                    Security Monitor
+                </span>
         </div>
     </div>
 </nav>
 
-<div class="app-container wide">
-    <!-- Brand Header -->
-    <header class="brand-header">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <a href="admin.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
+<!-- Main Content Container -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+
+    <!-- Header Section -->
+    <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 p-6 sm:p-8 mb-8 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-br from-rose-500/10 to-red-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+            <!-- Quick Navigation Pills -->
+            <div class="flex flex-wrap gap-2">
+                <a href="admin.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-all shadow-sm border border-indigo-100 flex items-center gap-1.5">
                     👑 Back to Admin Control
                 </a>
-                <a href="carriers.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0f2fe; color: #0369a1;">
-                    🚛 Regional Carrier Fleets
+                <a href="carriers.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 transition-all shadow-sm border border-blue-100 flex items-center gap-1.5">
+                    🚛 Regional Carriers
                 </a>
-                <a href="vendors.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
+                <a href="vendors.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-purple-50 text-purple-700 hover:bg-purple-100 transition-all shadow-sm border border-purple-100 flex items-center gap-1.5">
                     📊 Vendor SLA Analytics
                 </a>
-                <a href="shipments.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
-                    🚚 Logistics & Shipments
-                </a>
-                <a href="finance.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dcfce7; color: #15803d;">
-                    💳 Finance & Duty Billing
-                </a>
-                <a href="customs.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
-                    🛃 Customs Portal
-                </a>
-                <a href="timers.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #b45309;">
-                    ⏰ EJB Timers Monitor
-                </a>
-                <a href="index.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;">
+                <a href="index.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all shadow-sm border border-slate-200 flex items-center gap-1.5">
                     🌐 Main Portal
                 </a>
             </div>
-            <div class="brand-logo"
-                 style="margin-bottom:0; background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-rose-600 to-red-600 flex items-center justify-center text-white shadow-lg shadow-rose-500/25 flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
                 </svg>
             </div>
         </div>
-        <h1 class="brand-name">🛡️ Role Permissions & RBAC Security Management Station</h1>
-        <p class="brand-subtitle">Database-Backed Roles, Granular Permissions & Role-Permission Join Tables (roles,
-            permissions, role_permissions)</p>
-    </header>
 
-    <!-- Main Content -->
-    <main class="auth-card">
-        <!-- Alert Banner -->
-        <div id="alertBox" class="alert"></div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+            🛡️ Role Permissions & RBAC Security Management Station
+        </h1>
+        <p class="text-slate-600 text-sm sm:text-base max-w-3xl">
+            Database-Backed Roles, Granular Permissions & Role-Permission Join Tables (roles, permissions, role_permissions).
+        </p>
+    </div>
 
-        <!-- Role Badge Header -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-            <div>
-                <h2 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">
-                    Role-Based Access Control (RBAC) Security Ledger
-                </h2>
-                <p style="font-size: 12px; color: var(--text-muted);">Manage platform roles, grant granular security
-                    permissions, and persist mapping into role_permissions database table</p>
-            </div>
-            <span class="user-badge" style="background: #fee2e2; color: #991b1b;">🛡️ CHIEF_SECURITY_OFFICER</span>
+    <!-- Alert Notification Box -->
+    <div id="alertBox" class="hidden mb-6 p-4 rounded-xl border text-sm font-medium shadow-sm transition-all"></div>
+
+    <!-- Role Header Card -->
+    <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 p-6 mb-8 flex items-center justify-between flex-wrap gap-4">
+        <div>
+            <h2 class="text-lg font-bold text-slate-900 tracking-tight">
+                Role-Based Access Control (RBAC) Security Ledger
+            </h2>
+            <p class="text-xs text-slate-500">Manage platform roles, grant granular security permissions, and persist mapping into role_permissions</p>
         </div>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-rose-100 text-rose-800 border border-rose-200">
+                🛡️ CHIEF_SECURITY_OFFICER
+            </span>
+    </div>
 
-        <!-- Metrics Grid -->
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #ef4444;">🛡️</div>
-                <div>
-                    <div class="metric-val" id="cntRoles">6 System Roles</div>
-                    <div class="metric-label">Defined Security Roles</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #2563eb;">🔑</div>
-                <div>
-                    <div class="metric-val" id="cntPermissions">8 Permissions</div>
-                    <div class="metric-label">Granular Permissions</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #059669;">🔗</div>
-                <div>
-                    <div class="metric-val">100% Persisted</div>
-                    <div class="metric-label">role_permissions Join Table</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #7c3aed;">🔒</div>
-                <div>
-                    <div class="metric-val">Active Guards</div>
-                    <div class="metric-label">@RolesAllowed Security</div>
-                </div>
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl flex-shrink-0">🛡️</div>
+            <div>
+                <div class="text-2xl font-bold text-slate-900" id="cntRoles">6 System Roles</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Defined Security Roles</div>
             </div>
         </div>
 
-        <!-- Main Layout Grid -->
-        <div class="security-layout" style="margin-top: 28px;">
-
-            <!-- LEFT: ROLE PERMISSION MATRIX TABLE -->
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl flex-shrink-0">🔑</div>
             <div>
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                        📋 Defined Security Roles & Assigned Permissions (roles, role_permissions Table)
-                    </h3>
-                    <button type="button" id="btnRefreshSecurity" class="btn-secondary"
-                            style="width: auto; padding: 6px 12px; font-size: 11px;">
+                <div class="text-2xl font-bold text-slate-900" id="cntPermissions">8 Permissions</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Granular Permissions</div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl flex-shrink-0">🔗</div>
+            <div>
+                <div class="text-2xl font-bold text-slate-900">100% Persisted</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">role_permissions Table</div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl flex-shrink-0">🔒</div>
+            <div>
+                <div class="text-2xl font-bold text-slate-900">Active Guards</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">@RolesAllowed Security</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Layout Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        <!-- LEFT 2 COLUMNS: ROLE PERMISSION MATRIX TABLE -->
+        <div class="lg:col-span-2 space-y-6">
+            <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 p-6">
+                <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 tracking-tight">
+                            📋 Defined Security Roles & Assigned Permissions
+                        </h3>
+                        <p class="text-xs text-slate-500">View current role mappings in roles and role_permissions tables</p>
+                    </div>
+                    <button type="button" id="btnRefreshSecurity" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-all shadow-sm flex items-center gap-1.5">
                         🔄 Refresh RBAC Matrix
                     </button>
                 </div>
 
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
+                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                    <table class="w-full text-left border-collapse">
                         <thead>
-                        <tr>
-                            <th>Role ID & Name</th>
-                            <th>Assigned Permissions (role_permissions)</th>
-                            <th>Total Perms</th>
-                            <th>Action</th>
+                        <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider">
+                            <th class="py-3 px-4">Role ID & Name</th>
+                            <th class="py-3 px-4">Assigned Permissions (role_permissions)</th>
+                            <th class="py-3 px-4">Total Perms</th>
+                            <th class="py-3 px-4">Action</th>
                         </tr>
                         </thead>
-                        <tbody id="rolesTableBody">
+                        <tbody id="rolesTableBody" class="divide-y divide-slate-100 text-sm text-slate-700">
                         <tr>
-                            <td colspan="4" style="text-align: center; color: var(--text-muted);">Loading
-                                role-permission matrix...
-                            </td>
+                            <td colspan="4" class="text-center py-8 text-slate-400 font-medium">Loading role-permission matrix...</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
 
-            <!-- RIGHT: ASSIGN PERMISSIONS TO ROLE FORM -->
-            <div style="background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; position: sticky; top: 20px; height: fit-content;">
-                <h3 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin-top:0; margin-bottom: 14px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">
-                    ⚙️ Configure Role Permissions
-                </h3>
+        <!-- RIGHT 1 COLUMN: ASSIGN PERMISSIONS TO ROLE FORM -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 p-6 sticky top-24">
+                <div class="flex items-center justify-between pb-4 mb-5 border-b border-slate-200">
+                    <h3 class="text-base font-bold text-slate-900 tracking-tight flex items-center gap-2">
+                        ⚙️ Configure Role Permissions
+                    </h3>
+                </div>
 
-                <form id="assignPermissionsForm">
-                    <div class="form-group" style="margin-bottom: 12px;">
-                        <label class="form-label" for="selectRole" style="font-size: 11px;">Select Target Security Role
-                            <span>*</span></label>
-                        <select id="selectRole" class="form-control" style="padding-left: 10px; font-size: 12px;"
-                                required>
+                <form id="assignPermissionsForm" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider" for="selectRole">
+                            Select Target Security Role <span class="text-rose-500">*</span>
+                        </label>
+                        <select id="selectRole" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-rose-500 text-xs bg-white transition-all" required>
                             <option value="1">ADMIN</option>
                             <option value="2">CUSTOMS_OFFICER</option>
                             <option value="3">FINANCE_OFFICER</option>
@@ -252,41 +229,42 @@
                         </select>
                     </div>
 
-                    <div class="form-group" style="margin-bottom: 14px;">
-                        <label class="form-label" style="font-size: 11px;">Select Permissions to Assign
-                            (role_permissions) <span>*</span></label>
-                        <div class="perm-checkbox-group" id="permissionsCheckboxList">
-                            <div style="text-align:center; color:var(--text-muted);">Loading permissions...</div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1.5 uppercase tracking-wider">
+                            Select Permissions to Assign <span class="text-rose-500">*</span>
+                        </label>
+                        <div class="max-h-64 overflow-y-auto border border-slate-200 rounded-xl p-3 bg-slate-50 space-y-2.5 text-xs" id="permissionsCheckboxList">
+                            <div class="text-center py-4 text-slate-400 font-medium">Loading permissions...</div>
                         </div>
                     </div>
 
-                    <button type="submit" id="btnSavePermissionsSubmit" class="btn-primary"
-                            style="width: 100%; margin-top: 0; background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);">
-                        <span class="btn-text">🛡️ Update role_permissions Table</span>
+                    <button type="submit" id="btnSavePermissionsSubmit" class="w-full py-3.5 px-4 bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-700 hover:to-red-700 text-white font-bold rounded-xl shadow-lg shadow-rose-500/25 transition-all text-xs flex items-center justify-center gap-2 mt-4">
+                        <span>🛡️ Update role_permissions Table</span>
                     </button>
                 </form>
             </div>
-
         </div>
 
-        <!-- Action Buttons -->
-        <div class="actions-grid" style="margin-top: 36px;">
-            <a href="admin.html" class="btn-secondary"
-               style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
-                👑 Back to Admin Control
-            </a>
-            <a href="index.html" class="btn-primary"
-               style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
-                Sign Out
-            </a>
-        </div>
-    </main>
+    </div>
 
-    <footer>
-        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-    </footer>
-</div>
+    <!-- Footer Actions Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 pt-8 border-t border-slate-200">
+        <a href="admin.html" class="py-3 px-6 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-sm rounded-xl text-center border border-indigo-100 shadow-sm transition-all flex items-center justify-center gap-2">
+            👑 Back to Admin Control
+        </a>
+        <a href="index.html" class="py-3 px-6 bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white font-bold text-sm rounded-xl text-center shadow-lg shadow-rose-500/25 transition-all flex items-center justify-center gap-2">
+            Sign Out
+        </a>
+    </div>
 
+</main>
+
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-12">
+    &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+</footer>
+
+<!-- Scripts -->
 <script src="js/security.js"></script>
 <script src="js/notifications.js"></script>
 </body>

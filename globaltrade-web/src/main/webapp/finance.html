@@ -3,335 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalTrade Logistics | Financial Settlements & Cargo Carrier Handover Portal</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>GlobalTrade Logistics | Financial Settlement Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-    <style>
-        *, html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, strong, small, label, input, select, button, table, th, td, tr, thead, tbody {
-            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif !important;
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=3.0">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            900: '#7c2d12',
+                        },
+                        teal: {
+                            50: '#f0fdf4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    }
+                }
+            }
         }
-
-        /* Supply Chain Stepper */
-        .stepper-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #ffffff;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 18px 24px;
-            margin-bottom: 24px;
-            gap: 8px;
-            flex-wrap: wrap;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-        }
-
-        .step-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #64748b;
-        }
-
-        .step-item.active {
-            color: #2563eb;
-        }
-
-        .step-item.completed {
-            color: #059669;
-        }
-
-        .step-num {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 12px;
-        }
-
-        .step-item.active .step-num {
-            background: #2563eb;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-        }
-
-        .step-item.completed .step-num {
-            background: #059669;
-            color: #ffffff;
-        }
-
-        .step-arrow {
-            color: #cbd5e1;
-            font-weight: 700;
-        }
-
-        .badge-duty-pending {
-            background: #fef3c7;
-            color: #b45309;
-        }
-
-        .badge-duty-settled {
-            background: #dcfce7;
-            color: #15803d;
-        }
-    </style>
+    </script>
 </head>
-<body>
+<body class="bg-[#eef2f6] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-<nav class="gt-navbar">
-    <div class="gt-nav-container">
-        <a href="index.html" class="gt-brand">
-            <div class="gt-brand-logo">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<!-- Top Navigation -->
+<nav class="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/25 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
                 </svg>
             </div>
             <div>
-                <div class="gt-brand-title">GlobalTrade Logistics</div>
-                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
+                <div class="font-bold text-slate-900 tracking-tight text-base">GlobalTrade Logistics</div>
+                <div class="text-xs text-slate-500 font-medium">Enterprise Supply Chain Platform</div>
             </div>
         </a>
-        <div class="gt-nav-links">
-            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
-            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
-            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
-            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
-            <a href="vendor.html" class="gt-nav-link">🤝 Vendor</a>
-            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
-            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
-            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
-            <a href="finance.html" class="gt-nav-link active">💳 Finance</a>
-            <a href="admin.html" class="gt-nav-link">👑 Admin</a>
+
+        <div class="hidden xl:flex items-center gap-1.5 text-sm font-medium">
+            <a href="index.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🔑 Auth</a>
+            <a href="customer.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🛒 Store</a>
+            <a href="orders.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🏬 Orders</a>
+            <a href="inventory.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">📦 Stock</a>
+            <a href="vendor.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🤝 Vendor</a>
+            <a href="logistics.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">🚚 Logistics</a>
+            <a href="shipments.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">✈️ Shipments</a>
+            <a href="customs.html" class="px-3 py-2 rounded-lg bg-purple-50 text-purple-700 font-semibold shadow-sm">🛃 Customs</a>
+            <a href="finance.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">💳 Finance</a>
+            <a href="admin.html" class="px-3 py-2 rounded-lg text-slate-600 hover:bg-slate-100 transition-colors">👑 Admin</a>
         </div>
-        <div class="gt-user-profile">
-            <span class="user-badge">Financial Officer</span>
+
+        <div class="flex items-center gap-3">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200 shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mr-1.5 animate-pulse"></span>
+                    Customs Broker
+                </span>
         </div>
     </div>
 </nav>
 
-<div class="app-container wide">
-    <!-- Brand Header -->
-    <header class="brand-header">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <a href="admin.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
+<!-- Main Content Container -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+
+    <!-- Header Section -->
+    <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 p-6 sm:p-8 mb-8 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-6">
+            <!-- Quick Navigation Pills -->
+            <div class="flex flex-wrap gap-2">
+                <a href="admin.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-all shadow-sm border border-indigo-100 flex items-center gap-1.5">
                     👑 Back to Admin Control
                 </a>
-                <a href="customs.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
-                    🛃 Customs Portal
+                <a href="finance.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition-all shadow-sm border border-emerald-100 flex items-center gap-1.5">
+                    💳 Finance & Duty Billing
                 </a>
-                <a href="timers.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #b45309;">
+                <a href="timers.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-amber-50 text-amber-700 hover:bg-amber-100 transition-all shadow-sm border border-amber-100 flex items-center gap-1.5">
                     ⏰ EJB Timers Monitor
                 </a>
-                <a href="shipments.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
-                    🚚 Logistics Hub
-                </a>
-                <a href="index.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;">
-                    🌐 Main Portal
+                <a href="shipments.html" class="px-4 py-2 rounded-xl text-xs font-semibold bg-blue-50 text-blue-700 hover:bg-blue-100 transition-all shadow-sm border border-blue-100 flex items-center gap-1.5">
+                    🚚 Logistics & Shipments
                 </a>
             </div>
-            <div class="brand-logo"
-                 style="margin-bottom:0; background: linear-gradient(135deg, #059669 0%, #2563eb 100%);">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/25 flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
                 </svg>
             </div>
         </div>
-        <h1 class="brand-name">💳 Financial Duty Settlement & Carrier Handover Portal</h1>
-        <p class="brand-subtitle">Cross-Border Customs Duty Clearing, Import Freight Tax Billing & Authorized Cargo
-            Carrier Handover Workflow</p>
-    </header>
 
-    <!-- Main Content -->
-    <main class="auth-card">
-        <!-- Alert Banner -->
-        <div id="alertBox" class="alert"></div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
+            🛃 International Customs Clearance & Compliance Portal
+        </h1>
+        <p class="text-slate-600 text-sm sm:text-base max-w-3xl">
+            Cross-Border Cargo Tariff Verification, Import/Export Inspection & Customs Clearance Workflow.
+        </p>
+    </div>
 
-        <!-- Role Badge Header -->
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+    <!-- Alert Notification Box -->
+    <div id="alertBox" class="hidden mb-6 p-4 rounded-xl border text-sm font-medium shadow-sm transition-all"></div>
+
+    <!-- Role Header Card -->
+    <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 p-6 mb-8 flex items-center justify-between flex-wrap gap-4">
+        <div>
+            <h2 class="text-lg font-bold text-slate-900 tracking-tight">
+                Customs Officer Inspection Station
+            </h2>
+            <p class="text-xs text-slate-500">Review submitted HS Tariff documents and grant official customs release clearance</p>
+        </div>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-purple-100 text-purple-800 border border-purple-200">
+                🛃 CUSTOMS_OFFICER
+            </span>
+    </div>
+
+    <!-- Metrics Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl flex-shrink-0">📄</div>
             <div>
-                <h2 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">
-                    Customs Duty Settlement & Freight Carrier Dispatch Hub
-                </h2>
-                <p style="font-size: 12px; color: var(--text-muted);">Settle approved customs tariff duties and
-                    consolidate customer products for final carrier dispatch</p>
-            </div>
-            <span class="user-badge" style="background: #dcfce7; color: #15803d;">💳 CHIEF_FINANCIAL_OFFICER</span>
-        </div>
-
-        <!-- Visual Supply Chain Stepper -->
-        <div class="stepper-container">
-            <div class="step-item completed">
-                <div class="step-num">✓</div>
-                <span>1. Depot Pick-Pack</span>
-            </div>
-            <span class="step-arrow">➔</span>
-            <div class="step-item completed">
-                <div class="step-num">✓</div>
-                <span>2. Customs Clearance Pass</span>
-            </div>
-            <span class="step-arrow">➔</span>
-            <div class="step-item active">
-                <div class="step-num">3</div>
-                <span>3. Finance Duty Settlement</span>
-            </div>
-            <span class="step-arrow">➔</span>
-            <div class="step-item">
-                <div class="step-num">4</div>
-                <span>4. Carrier Cargo Handover</span>
-            </div>
-            <span class="step-arrow">➔</span>
-            <div class="step-item">
-                <div class="step-num">5</div>
-                <span>5. Final Customer Delivery</span>
+                <div class="text-2xl font-bold text-slate-900" id="cntTotalDocs">0</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Declarations</div>
             </div>
         </div>
 
-        <!-- Metrics Grid -->
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #059669;">💳</div>
-                <div>
-                    <div class="metric-val" id="valTotalDuty">$12,450.00</div>
-                    <div class="metric-label">Settled Import Duties</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #d97706;">⌛</div>
-                <div>
-                    <div class="metric-val" id="cntPendingDuty">0</div>
-                    <div class="metric-label">Pending Duty Settlement</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #2563eb;">🚚</div>
-                <div>
-                    <div class="metric-val" id="cntCarrierDispatched">0</div>
-                    <div class="metric-label">Dispatched to Carrier</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #7c3aed;">✈️</div>
-                <div>
-                    <div class="metric-val">4 Active Fleets</div>
-                    <div class="metric-label">Partner Carrier Networks</div>
-                </div>
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl flex-shrink-0">⏳</div>
+            <div>
+                <div class="text-2xl font-bold text-slate-900" id="cntPending">0</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pending Inspection</div>
             </div>
         </div>
 
-        <!-- Customs Duty Settlement Table -->
-        <div style="margin-top: 28px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-                <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                    📋 Cleared Customs Declarations & Duty Payment Queue
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl flex-shrink-0">✅</div>
+            <div>
+                <div class="text-2xl font-bold text-slate-900" id="cntApproved">0</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Cleared Customs</div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4 hover:shadow-md transition-shadow">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl flex-shrink-0">🚫</div>
+            <div>
+                <div class="text-2xl font-bold text-slate-900" id="cntRejected">0</div>
+                <div class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Customs Hold / Rejected</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customs Declarations Manifest Card -->
+    <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200/80 p-6 mb-8">
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+            <div>
+                <h3 class="text-lg font-bold text-slate-900 tracking-tight">
+                    📋 International Cargo Customs Declarations Manifest
                 </h3>
-                <button type="button" id="btnRefreshFinance" class="btn-secondary"
-                        style="width: auto; padding: 6px 12px; font-size: 11px;">
-                    🔄 Refresh Duty Ledger
+                <p class="text-xs text-slate-500">Inspect tariffs, item value declarations, and clearance statuses</p>
+            </div>
+            <button type="button" id="btnRefreshDocs" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition-all shadow-sm flex items-center gap-1.5">
+                🔄 Refresh Declarations
+            </button>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-slate-200">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                <tr class="bg-slate-50/70 border-b border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-wider">
+                    <th class="py-3 px-4">Doc ID & Type</th>
+                    <th class="py-3 px-4">Shipment Tracking</th>
+                    <th class="py-3 px-4">Export Depot ➔ Destination</th>
+                    <th class="py-3 px-4">Declared Goods Value</th>
+                    <th class="py-3 px-4">Import Duty Tariff (5%)</th>
+                    <th class="py-3 px-4">HS Tariff Code</th>
+                    <th class="py-3 px-4">Customs Status</th>
+                    <th class="py-3 px-4">Inspector Officer</th>
+                    <th class="py-3 px-4">Clearance Action</th>
+                </tr>
+                </thead>
+                <tbody id="customsTableBody" class="divide-y divide-slate-100 text-sm text-slate-700">
+                <tr>
+                    <td colspan="9" class="text-center py-8 text-slate-400 font-medium">Loading customs declarations manifest...</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Official Commercial Invoice & Customs Dossier Modal -->
+    <div id="dossierModal" class="hidden fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-slate-200">
+
+            <!-- Modal Header -->
+            <div class="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+                <div>
+                    <span class="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-800 mb-1">📜 GOVERNMENT CUSTOMS DOSSIER</span>
+                    <h3 class="text-base font-bold text-white m-0" id="modalDocTitle">Commercial Invoice & Packing List</h3>
+                </div>
+                <button type="button" id="btnCloseModal" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+                    ✕
                 </button>
             </div>
 
-            <div style="overflow-x: auto;">
-                <table class="data-table">
-                    <thead>
-                    <tr>
-                        <th>Doc ID & Type</th>
-                        <th>Shipment Tracking</th>
-                        <th>Route & Depot</th>
-                        <th>Declared Value</th>
-                        <th>Duty Tariff (5%)</th>
-                        <th>Customs Status</th>
-                        <th>Settlement & Carrier</th>
-                        <th>Assign Carrier & Settle Duty</th>
-                    </tr>
-                    </thead>
-                    <tbody id="financeTableBody">
-                    <tr>
-                        <td colspan="8" style="text-align: center; color: var(--text-muted);">Loading duty settlement
-                            queue...
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <!-- Modal Body -->
+            <div class="p-6 max-h-[70vh] overflow-y-auto space-y-4" id="modalDossierContent">
+                <!-- Dynamic Commercial Invoice Content -->
             </div>
-        </div>
 
-        <!-- Real-Time Payment Transactions Audit Ledger (payments Database Table) -->
-        <div style="margin-top: 32px; background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 20px;">
-            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
-                <h3 style="font-size: 16px; font-weight: 700; color: #059669; margin: 0; display: flex; align-items: center; gap: 8px;">
-                    <span>💳 Customer Payment Transactions Ledger (payments Table)</span>
-                    <span class="user-badge"
-                          style="background:#dcfce7; color:#15803d; font-size:10px;">JPA: Payment</span>
-                </h3>
-                <button type="button" id="btnRefreshPayments" class="btn-secondary"
-                        style="width: auto; padding: 6px 12px; font-size: 11px;">
-                    🔄 Refresh Payments
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 border-t border-slate-200 px-6 py-4 flex items-center justify-end gap-3">
+                <button type="button" id="btnModalHold" class="px-4 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs rounded-xl shadow-md transition-all">
+                    🚫 Place Customs Hold
+                </button>
+                <button type="button" id="btnModalApprove" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl shadow-md transition-all">
+                    ✅ Issue Customs Clearance Pass
                 </button>
             </div>
 
-            <div style="overflow-x: auto;">
-                <table class="data-table">
-                    <thead>
-                    <tr>
-                        <th>Txn Ref & Payment ID</th>
-                        <th>Order Ref</th>
-                        <th>Customer Name</th>
-                        <th>Payment Method</th>
-                        <th>Amount ($ USD)</th>
-                        <th>Transaction Date</th>
-                        <th>Payment Status</th>
-                    </tr>
-                    </thead>
-                    <tbody id="paymentsTableBody">
-                    <tr>
-                        <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading payment
-                            transactions...
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
+    </div>
 
-        <!-- Actions Grid -->
-        <div class="actions-grid" style="margin-top: 36px;">
-            <a href="admin.html" class="btn-secondary"
-               style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
-                👑 Back to Admin Control
-            </a>
-            <a href="index.html" class="btn-primary"
-               style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
-                Sign Out
-            </a>
-        </div>
-    </main>
+    <!-- Footer Actions Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 pt-8 border-t border-slate-200">
+        <a href="admin.html" class="py-3 px-6 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-sm rounded-xl text-center border border-indigo-100 shadow-sm transition-all flex items-center justify-center gap-2">
+            👑 Back to Admin Control
+        </a>
+        <a href="index.html" class="py-3 px-6 bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 text-white font-bold text-sm rounded-xl text-center shadow-lg shadow-rose-500/25 transition-all flex items-center justify-center gap-2">
+            Sign Out
+        </a>
+    </div>
 
-    <footer>
-        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-    </footer>
-</div>
+</main>
 
-<script src="js/finance.js"></script>
+<!-- Footer -->
+<footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500 mt-12">
+    &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+</footer>
+
+<!-- Scripts -->
+<script src="js/customs.js"></script>
 <script src="js/notifications.js"></script>
 </body>
 </html>

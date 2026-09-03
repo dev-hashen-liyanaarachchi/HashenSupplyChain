@@ -3,461 +3,354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalTrade Logistics | Master Admin Operations & Warehouse Fulfillment Portal</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>GlobalTrade Logistics | Master Admin & Warehouse Fulfillment Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=3.0">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            900: '#7c2d12',
+                        },
+                        teal: {
+                            50: '#f0fdf4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        *, html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, strong, small, label, input, select, button, table, th, td, tr, thead, tbody {
-            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif !important;
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .admin-tab-content {
-            display: none;
-        }
-
-        .admin-tab-content.active {
-            display: block;
-        }
-
-        .badge-status {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-        }
-
-        .status-processing {
-            background: #fef3c7;
-            color: #b45309;
-        }
-
-        .status-picking {
-            background: #e0e7ff;
-            color: #3730a3;
-        }
-
-        .status-packed {
-            background: #dcfce7;
-            color: #15803d;
-        }
-
-        .status-shipped {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        .status-delivered {
-            background: #ccfbf1;
-            color: #0f766e;
-        }
-
-        .status-customs {
-            background: #fae8ff;
-            color: #86198f;
-        }
-
-        .btn-act {
-            padding: 6px 12px;
-            font-size: 11px;
-            font-weight: 600;
-            border-radius: var(--radius-sm, 8px);
-            border: none;
-            cursor: pointer;
-            transition: var(--transition);
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .btn-act-pack {
-            background: #ccfbf1;
-            color: #0f766e;
-        }
-
-        .btn-act-pack:hover {
-            background: #0f766e;
-            color: #ffffff;
-        }
-
-        .btn-act-ready {
-            background: #d1fae5;
-            color: #047857;
-        }
-
-        .btn-act-ready:hover {
-            background: #047857;
-            color: #ffffff;
-        }
-
-        .btn-act-ship {
-            background: #e0e7ff;
-            color: #3730a3;
-        }
-
-        .btn-act-ship:hover {
-            background: #3730a3;
-            color: #ffffff;
-        }
-
-        .btn-act-customs {
-            background: #f3e8ff;
-            color: #6b21a8;
-        }
-
-        .btn-act-customs:hover {
-            background: #6b21a8;
-            color: #ffffff;
-        }
+        .animate-fade-in { animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     </style>
 </head>
-<body>
+<body class="bg-[#eef2f6] text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-<nav class="gt-navbar">
-    <div class="gt-nav-container">
-        <a href="index.html" class="gt-brand">
-            <div class="gt-brand-logo">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<!-- Top Navigation -->
+<nav class="bg-white/90 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-white shadow-md shadow-orange-500/25 group-hover:scale-105 transition-transform">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 005-5 5 5 0 00-5-5 5 5 0 00-5 5h-1a4 4 0 00-4-4V7a2 2 0 012-2h3.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293H20a2 2 0 012 2v2"></path>
                 </svg>
             </div>
             <div>
-                <div class="gt-brand-title">GlobalTrade Logistics</div>
-                <div class="gt-brand-subtitle">Enterprise Supply Chain Platform</div>
+                <div class="font-bold text-slate-900 tracking-tight text-base">GlobalTrade Logistics</div>
+                <div class="text-xs text-orange-600 font-semibold uppercase tracking-wide">Enterprise Supply Chain Platform</div>
             </div>
         </a>
-        <div class="gt-nav-links">
-            <a href="index.html" class="gt-nav-link">🔑 Auth</a>
-            <a href="customer.html" class="gt-nav-link">🛒 Store</a>
-            <a href="orders.html" class="gt-nav-link">🏬 Orders</a>
-            <a href="inventory.html" class="gt-nav-link">📦 Stock</a>
-            <a href="vendor.html" class="gt-nav-link">🤝 Vendor</a>
-            <a href="logistics.html" class="gt-nav-link">🚚 Logistics</a>
-            <a href="shipments.html" class="gt-nav-link">✈️ Shipments</a>
-            <a href="customs.html" class="gt-nav-link">🛃 Customs</a>
-            <a href="finance.html" class="gt-nav-link">💳 Finance</a>
-            <a href="admin.html" class="gt-nav-link active">👑 Admin</a>
+
+        <div class="hidden xl:flex items-center gap-1.5 text-sm font-medium">
+            <a href="index.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">🔑 Auth</a>
+            <a href="customer.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">🛒 Store</a>
+            <a href="orders.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">🏬 Orders</a>
+            <a href="inventory.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">📦 Stock</a>
+            <a href="vendor.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">🤝 Vendor</a>
+            <a href="logistics.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">🚚 Logistics</a>
+            <a href="shipments.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">✈️ Shipments</a>
+            <a href="customs.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">🛃 Customs</a>
+            <a href="finance.html" class="px-3 py-2 rounded-lg text-slate-600 hover:text-orange-600 hover:bg-orange-50/50 transition-colors">💳 Finance</a>
+            <a href="admin.html" class="px-3 py-2 rounded-lg bg-orange-50 text-orange-600 font-semibold border border-orange-200/60 shadow-sm">👑 Admin</a>
         </div>
-        <div class="gt-user-profile">
-            <span class="user-badge">Master Admin</span>
+
+        <div class="flex items-center gap-3">
+                👑
+            </div>
         </div>
     </div>
 </nav>
 
-<div class="app-container wide">
-    <!-- Brand Header -->
-    <header class="brand-header">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
-            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                <a href="customer.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #ccfbf1; color: #0f766e;">
-                    🛒 Customer Storefront
-                </a>
-                <a href="orders.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0f2fe; color: #0369a1;">
-                    📦 Pick-Pack Center
-                </a>
-                <a href="timers.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #b45309;">
-                    ⏰ EJB Timers Monitor
-                </a>
-                <a href="customs.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
-                    🛃 Customs Portal
-                </a>
-                <a href="finance.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dcfce7; color: #15803d;">
-                    💳 Finance & Duty Billing
-                </a>
-                <a href="shipments.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
-                    🚚 Logistics Hub
-                </a>
-                <a href="carriers.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0f2fe; color: #0369a1;">
-                    🚛 Regional Carrier Fleets
-                </a>
-                <a href="vendors.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
-                    📊 Vendor SLA Analytics
-                </a>
-                <a href="security.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #fee2e2; color: #991b1b;">
-                    🛡️ Role Permissions (RBAC)
-                </a>
-                <a href="index.html" class="btn-secondary"
-                   style="width: auto; padding: 8px 16px; text-decoration: none; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;">
-                    🌐 Main Portal
-                </a>
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <!-- Header Banner -->
+    <div class="relative overflow-hidden rounded-3xl bg-white border border-slate-200/80 p-8 shadow-xl shadow-slate-200/50">
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-xs font-bold tracking-wide uppercase mb-3">
+                    ⚡ Enterprise Control Panel v4.8
+                </div>
+                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 mb-2">
+                    Master Admin & Warehouse Fulfillment
+                </h1>
+                <p class="text-slate-600 text-sm max-w-2xl">
+                    Real-time global order dispatch, multi-depot warehouse pick & pack workflows, air cargo tracking, and automated customs compliance verification.
+                </p>
             </div>
-            <div class="brand-logo"
-                 style="margin-bottom:0; background: linear-gradient(135deg, #0f766e 0%, #2563eb 100%);">
-                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                </svg>
+            <div class="flex flex-wrap gap-2">
+                <a href="customer.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-xs font-bold text-slate-700 transition shadow-sm">
+                    🛒 Storefront
+                </a>
+                <a href="timers.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-orange-50 hover:bg-orange-100 border border-orange-200 text-xs font-bold text-orange-700 transition shadow-sm">
+                    ⏰ EJB Timers
+                </a>
+                <a href="security.html" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-xs font-bold text-rose-700 transition shadow-sm">
+                    🛡️ RBAC Config
+                </a>
             </div>
         </div>
-        <h1 class="brand-name">👑 Master Admin Operations & Warehouse Fulfillment Portal</h1>
-        <p class="brand-subtitle">Real-Time Global Order Dispatch, Warehouse Pick & Pack, Air Cargo Freight Tracking &
-            Customs Tariff Compliance</p>
-    </header>
+    </div>
 
-    <!-- Main Card Container -->
-    <main class="auth-card">
-        <!-- Alert Notification Box -->
-        <div id="alertBox" class="alert"></div>
+    <div id="alertBox" class="hidden rounded-2xl p-4 text-sm font-medium border"></div>
 
-        <!-- Metric Summary Cards -->
-        <div class="metrics-grid">
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #2563eb;">📦</div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-6 relative overflow-hidden shadow-lg shadow-slate-200/50 group hover:border-orange-300 transition">
+            <div class="absolute right-4 top-4 w-12 h-12 rounded-2xl bg-orange-50 border border-orange-200 flex items-center justify-center text-orange-600 text-xl group-hover:scale-110 transition">📦</div>
+            <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total System Orders</div>
+            <div class="text-3xl font-extrabold text-slate-900" id="kpiTotalOrders">0 Orders</div>
+            <div class="mt-2 text-[11px] text-teal-600 font-semibold flex items-center gap-1">↑ Real-time synchronization</div>
+        </div>
+
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-6 relative overflow-hidden shadow-lg shadow-slate-200/50 group hover:border-emerald-300 transition">
+            <div class="absolute right-4 top-4 w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 text-xl group-hover:scale-110 transition">💰</div>
+            <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Total Platform Revenue</div>
+            <div class="text-3xl font-extrabold text-slate-900" id="kpiTotalRevenue">$0.00</div>
+            <div class="mt-2 text-[11px] text-teal-600 font-semibold flex items-center gap-1">↑ Secure gateway active</div>
+        </div>
+
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-6 relative overflow-hidden shadow-lg shadow-slate-200/50 group hover:border-indigo-300 transition">
+            <div class="absolute right-4 top-4 w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 text-xl group-hover:scale-110 transition">✈️</div>
+            <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Active Freight Shipments</div>
+            <div class="text-3xl font-extrabold text-slate-900" id="kpiTotalShipments">0 Shipments</div>
+            <div class="mt-2 text-[11px] text-indigo-600 font-semibold flex items-center gap-1">Global air/sea vectors</div>
+        </div>
+
+        <div class="bg-white border border-slate-200/80 rounded-2xl p-6 relative overflow-hidden shadow-lg shadow-slate-200/50 group hover:border-amber-300 transition">
+            <div class="absolute right-4 top-4 w-12 h-12 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-600 text-xl group-hover:scale-110 transition">📜</div>
+            <div class="text-slate-500 text-xs font-bold uppercase tracking-wider mb-1">Customs Declarations</div>
+            <div class="text-3xl font-extrabold text-slate-900" id="kpiInCustoms">0 Docs</div>
+            <div class="mt-2 text-[11px] text-amber-600 font-semibold flex items-center gap-1">Tariff clearance queue</div>
+        </div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 bg-white border border-slate-200/80 p-2 rounded-2xl shadow-md">
+        <button class="admin-tab-btn flex-1 min-w-[220px] py-3 px-4 rounded-xl font-bold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/25" data-tab="tab-orders">
+            📦 All System Orders
+        </button>
+        <button class="admin-tab-btn flex-1 min-w-[220px] py-3 px-4 rounded-xl font-bold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2 text-slate-600 hover:text-orange-600 hover:bg-orange-50" data-tab="tab-warehouse-packing">
+            🏬 Warehouse Depot Pick & Pack
+        </button>
+        <button class="admin-tab-btn flex-1 min-w-[220px] py-3 px-4 rounded-xl font-bold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2 text-slate-600 hover:text-orange-600 hover:bg-orange-50" data-tab="tab-shipments">
+            ✈️ Freight Shipments Roster
+        </button>
+        <button class="admin-tab-btn flex-1 min-w-[220px] py-3 px-4 rounded-xl font-bold text-xs tracking-wide uppercase transition flex items-center justify-center gap-2 text-slate-600 hover:text-orange-600 hover:bg-orange-50" data-tab="tab-customs">
+            📜 Customs & Tariffs
+        </button>
+    </div>
+
+    <div class="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-200/60">
+
+        <!-- TAB 1: ALL ORDERS -->
+        <div id="tab-orders" class="tab-content active animate-fade-in space-y-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div>
-                    <div class="metric-val" id="kpiTotalOrders">0 Orders</div>
-                    <div class="metric-label">Total System Orders</div>
+                    <h3 class="text-lg font-bold text-slate-900">Master System Orders & Dispatch Roster</h3>
+                    <p class="text-xs text-slate-500">Monitor customer checkouts, freight channels, and update live fulfillment statuses.</p>
                 </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #059669;">💰</div>
-                <div>
-                    <div class="metric-val" id="kpiTotalRevenue">$0.00</div>
-                    <div class="metric-label">Total Platform Revenue</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #7c3aed;">✈️</div>
-                <div>
-                    <div class="metric-val" id="kpiTotalShipments">0 Shipments</div>
-                    <div class="metric-label">Active Freight Shipments</div>
-                </div>
-            </div>
-
-            <div class="metric-card">
-                <div class="metric-icon" style="color: #d97706;">📜</div>
-                <div>
-                    <div class="metric-val" id="kpiInCustoms">0 Docs</div>
-                    <div class="metric-label">Customs Tariff Declarations</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navigation Tabs -->
-        <div class="auth-tabs" style="margin-top: 24px; margin-bottom: 24px; flex-wrap: wrap; gap: 8px;">
-            <button class="tab-btn active admin-tab-btn" data-tab="tab-orders" type="button">
-                📦 All System Orders & Status Management
-            </button>
-            <button class="tab-btn admin-tab-btn" data-tab="tab-warehouse-packing" type="button">
-                🏬 Warehouse Depot Pick & Pack Hub
-            </button>
-            <button class="tab-btn admin-tab-btn" data-tab="tab-shipments" type="button">
-                ✈️ Global Freight Shipments Roster
-            </button>
-            <button class="tab-btn admin-tab-btn" data-tab="tab-customs" type="button">
-                📜 Customs & Tariff Documentation
-            </button>
-        </div>
-
-        <!-- TAB 1: ALL SYSTEM ORDERS -->
-        <div id="tab-orders" class="admin-tab-content active">
-            <div style="margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 12px;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                        📦 Master System Orders & Dispatch Roster
-                    </h3>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <select id="filterOrderStatus" class="form-control"
-                                style="width: auto; padding: 6px 12px; font-size: 12px;">
-                            <option value="ALL">All Order Statuses</option>
-                            <option value="PROCESSING">PROCESSING</option>
-                            <option value="PICKING_PACKING">PICKING & PACKING</option>
-                            <option value="PACKED_READY">PACKED & READY</option>
-                            <option value="SHIPPED">SHIPPED</option>
-                            <option value="DELIVERED">DELIVERED</option>
-                        </select>
-                        <button id="btnRefreshAdminOrders" class="btn-secondary"
-                                style="width: auto; padding: 6px 12px; font-size: 12px;">
-                            🔄 Refresh Orders
-                        </button>
-                    </div>
-                </div>
-
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                        <tr>
-                            <th>Order Ref & Tracking</th>
-                            <th>Customer & Email</th>
-                            <th>Assigned Origin Depot ➔ Destination</th>
-                            <th>Freight Type</th>
-                            <th>Shipping Fee</th>
-                            <th>Total Amount</th>
-                            <th>Order Status</th>
-                            <th>Admin Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tblAdminOrders">
-                        <tr>
-                            <td colspan="8" style="text-align: center; color: var(--text-muted);">Loading orders from
-                                database...
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 2: WAREHOUSE DEPOT PACKING HUB -->
-        <div id="tab-warehouse-packing" class="admin-tab-content">
-            <div style="margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 12px;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                        🏬 Single Warehouse Depot Pick & Pack Queue
-                    </h3>
-                    <div style="display: flex; gap: 10px; align-items: center;">
-                        <label style="font-size: 12px; font-weight: 600; color: var(--text-muted);">Filter
-                            Depot:</label>
-                        <select id="selectWarehouseFilter" class="form-control"
-                                style="width: auto; padding: 6px 12px; font-size: 12px; font-weight: 600;">
-                            <option value="ALL">All Warehouse Depots</option>
-                            <option value="LK">🇱🇰 Sri Lanka - Colombo Logistics Depot (LK)</option>
-                            <option value="DE">🇩🇪 Germany - Hamburg Export Hub (DE)</option>
-                            <option value="US">🇺🇸 USA - New York Air Cargo Center (US)</option>
-                            <option value="JP">🇯🇵 Japan - Tokyo Cargo Hub (JP)</option>
-                            <option value="SG">🇸🇬 Singapore - Port Sea Freight Hub (SG)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                        <tr>
-                            <th>Order Ref</th>
-                            <th>Customer</th>
-                            <th>Assigned Warehouse Depot</th>
-                            <th>Destination Country</th>
-                            <th>Total Amount</th>
-                            <th>Fulfillment Status</th>
-                            <th>Warehouse Action</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tblWarehousePacking">
-                        <tr>
-                            <td colspan="7" style="text-align: center; color: var(--text-muted);">Loading warehouse
-                                packing roster...
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- TAB 3: FREIGHT SHIPMENTS ROSTER -->
-        <div id="tab-shipments" class="admin-tab-content">
-            <div style="margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 12px;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                        ✈️ Global Freight Air & Sea Cargo Shipments
-                    </h3>
-                    <button id="btnRefreshShipments" class="btn-secondary"
-                            style="width: auto; padding: 6px 12px; font-size: 12px; background: #f3e8ff; color: #6b21a8;">
-                        🔄 Refresh Shipments
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <select id="filterOrderStatus" class="bg-white border border-slate-300 text-slate-800 text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-orange-500 w-full sm:w-auto font-medium shadow-sm">
+                        <option value="ALL">All Order Statuses</option>
+                        <option value="PROCESSING">PROCESSING</option>
+                        <option value="PICKING_PACKING">PICKING & PACKING</option>
+                        <option value="PACKED_READY">PACKED & READY</option>
+                        <option value="SHIPPED">SHIPPED</option>
+                        <option value="DELIVERED">DELIVERED</option>
+                    </select>
+                    <button id="btnRefreshAdminOrders" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs font-bold text-slate-700 transition shrink-0 shadow-sm">
+                        🔄 Refresh
                     </button>
                 </div>
+            </div>
 
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                        <tr>
-                            <th>Shipment ID</th>
-                            <th>Tracking Ref #</th>
-                            <th>Order Ref #</th>
-                            <th>Origin Hub ➔ Destination</th>
-                            <th>Freight Service Type</th>
-                            <th>Est. Delivery</th>
-                            <th>Tracking Status</th>
-                            <th>Shipment Action</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tblAdminShipments">
-                        <tr>
-                            <td colspan="8" style="text-align: center; color: var(--text-muted);">Loading shipments from
-                                database...
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead class="bg-slate-50 text-slate-600 uppercase tracking-wider font-bold border-b border-slate-200">
+                    <tr>
+                        <th class="p-4">Order Ref & Tracking</th>
+                        <th class="p-4">Customer & Email</th>
+                        <th class="p-4">Origin Depot ➔ Destination</th>
+                        <th class="p-4">Freight Type</th>
+                        <th class="p-4">Shipping Fee</th>
+                        <th class="p-4">Total Amount</th>
+                        <th class="p-4">Order Status</th>
+                        <th class="p-4 text-right">Admin Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tblAdminOrders" class="divide-y divide-slate-200 text-slate-700">
+                    <tr>
+                        <td colspan="8" class="p-8 text-center text-slate-500">Loading orders from enterprise database...</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- TAB 4: CUSTOMS & TARIFF DOCUMENTATION -->
-        <div id="tab-customs" class="admin-tab-content">
-            <div style="margin-bottom: 24px;">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; flex-wrap: wrap; gap: 12px;">
-                    <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
-                        📜 Customs Clearance & Tariff Compliance Center
-                    </h3>
-                    <button id="btnRefreshCustoms" class="btn-secondary"
-                            style="width: auto; padding: 6px 12px; font-size: 12px; background: #ecfdf5; color: #047857;">
-                        🔄 Refresh Customs Documents
-                    </button>
+        <!-- TAB 2: WAREHOUSE PACKING HUB -->
+        <div id="tab-warehouse-packing" class="tab-content animate-fade-in space-y-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-900">Warehouse Depot Pick & Pack Queue</h3>
+                    <p class="text-xs text-slate-500">Filter operational fulfillment tasks across global regional fulfillment depots.</p>
                 </div>
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <label class="text-xs font-semibold text-slate-600 whitespace-nowrap">Depot:</label>
+                    <select id="selectWarehouseFilter" class="bg-white border border-slate-300 text-slate-800 text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-orange-500 w-full sm:w-auto font-semibold shadow-sm">
+                        <option value="ALL">All Warehouse Depots</option>
+                        <option value="LK">🇱🇰 Sri Lanka - Colombo Depot (LK)</option>
+                        <option value="DE">🇩🇪 Germany - Hamburg Hub (DE)</option>
+                        <option value="US">🇺🇸 USA - New York Air Cargo (US)</option>
+                        <option value="JP">🇯🇵 Japan - Tokyo Cargo Hub (JP)</option>
+                        <option value="SG">🇸🇬 Singapore - Sea Freight Hub (SG)</option>
+                    </select>
+                </div>
+            </div>
 
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                        <tr>
-                            <th>Document ID</th>
-                            <th>Tracking Number</th>
-                            <th>Origin Logistics Hub</th>
-                            <th>Document Type</th>
-                            <th>HS Code Tariff</th>
-                            <th>Customs Status</th>
-                            <th>Inspector / Officer</th>
-                            <th>Clearance Action</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tblAdminCustoms">
-                        <tr>
-                            <td colspan="8" style="text-align: center; color: var(--text-muted);">Loading customs
-                                documents...
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead class="bg-slate-50 text-slate-600 uppercase tracking-wider font-bold border-b border-slate-200">
+                    <tr>
+                        <th class="p-4">Order Ref</th>
+                        <th class="p-4">Customer</th>
+                        <th class="p-4">Assigned Warehouse Depot</th>
+                        <th class="p-4">Destination Country</th>
+                        <th class="p-4">Total Amount</th>
+                        <th class="p-4">Fulfillment Status</th>
+                        <th class="p-4 text-right">Warehouse Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tblWarehousePacking" class="divide-y divide-slate-200 text-slate-700">
+                    <tr>
+                        <td colspan="7" class="p-8 text-center text-slate-500">Loading warehouse queue...</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <!-- Actions -->
-        <div class="actions-grid" style="margin-top: 32px;">
-            <a href="customer.html" class="btn-secondary"
-               style="text-decoration: none; text-align: center; background: #ccfbf1; color: #0f766e;">
-                🛒 Customer Storefront
-            </a>
-            <a href="index.html" class="btn-primary"
-               style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
-                Sign Out
-            </a>
-        </div>
-    </main>
+        <!-- TAB 3: FREIGHT SHIPMENTS -->
+        <div id="tab-shipments" class="tab-content animate-fade-in space-y-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-white">Global Freight Air & Sea Cargo Shipments</h3>
+                    <p class="text-xs text-slate-400">Track live container movements, air manifests, and carrier delivery milestones.</p>
+                </div>
+                <button id="btnRefreshShipments" class="px-4 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-500 text-xs font-bold text-white transition shadow-lg shadow-violet-600/30">
+                    🔄 Refresh Shipments
+                </button>
+            </div>
 
-    <footer>
-        &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
-    </footer>
-</div>
+            <div class="overflow-x-auto rounded-2xl border border-slate-800">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead class="bg-slate-950/80 text-slate-400 uppercase tracking-wider font-bold border-b border-slate-800">
+                    <tr>
+                        <th class="p-4">Shipment ID</th>
+                        <th class="p-4">Tracking Ref #</th>
+                        <th class="p-4">Order Ref #</th>
+                        <th class="p-4">Origin ➔ Destination</th>
+                        <th class="p-4">Freight Service</th>
+                        <th class="p-4">Est. Delivery</th>
+                        <th class="p-4">Tracking Status</th>
+                        <th class="p-4 text-right">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tblAdminShipments" class="divide-y divide-slate-800 text-slate-300">
+                    <tr>
+                        <td colspan="8" class="p-8 text-center text-slate-500">Loading freight shipments...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- TAB 4: CUSTOMS & TARIFFS -->
+        <div id="tab-customs" class="tab-content animate-fade-in space-y-6">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-white">Customs Clearance & Tariff Compliance Center</h3>
+                    <p class="text-xs text-slate-400">Verify HS code tariffs, border inspector clearances, and duty assessments.</p>
+                </div>
+                <button id="btnRefreshCustoms" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-bold text-white transition shadow-lg shadow-emerald-600/30">
+                    🔄 Refresh Customs Docs
+                </button>
+            </div>
+
+            <div class="overflow-x-auto rounded-2xl border border-slate-800">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead class="bg-slate-950/80 text-slate-400 uppercase tracking-wider font-bold border-b border-slate-800">
+                    <tr>
+                        <th class="p-4">Document ID</th>
+                        <th class="p-4">Tracking Number</th>
+                        <th class="p-4">Origin Hub</th>
+                        <th class="p-4">Document Type</th>
+                        <th class="p-4">HS Code Tariff</th>
+                        <th class="p-4">Customs Status</th>
+                        <th class="p-4">Inspector</th>
+                        <th class="p-4 text-right">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="tblAdminCustoms" class="divide-y divide-slate-800 text-slate-300">
+                    <tr>
+                        <td colspan="8" class="p-8 text-center text-slate-500">Loading customs records...</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<footer class="border-t border-slate-800/80 bg-slate-900/40 py-6 mt-12 text-center text-xs text-slate-500">
+    &copy; 2026 GlobalTrade Logistics Corporation. All Enterprise Rights Reserved.
+</footer>
 
 <script src="js/admin.js"></script>
 <script src="js/notifications.js"></script>
+<script>
+    // Tab switching interactivity
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const targetTab = btn.getAttribute('data-tab');
+
+            document.querySelectorAll('.admin-tab-btn').forEach(b => {
+                b.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+                b.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
+            });
+            btn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-600/30');
+            btn.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
+
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(targetTab).classList.add('active');
+        });
+    });
+</script>
 </body>
 </html>
