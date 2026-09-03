@@ -207,21 +207,21 @@ document.addEventListener('DOMContentLoaded', () => {
         hideAlert();
 
         const btn = registerForm.querySelector('button[type="submit"]');
-        const fullName = document.getElementById('regFullName')?.value.trim();
         const username = document.getElementById('regUsername')?.value.trim();
         const email = document.getElementById('regEmail')?.value.trim();
-        const phone = document.getElementById('regPhone')?.value.trim();
-        const country = document.getElementById('regCountry')?.value;
         const password = document.getElementById('regPassword')?.value.trim();
         const confirmPassword = document.getElementById('regConfirmPassword')?.value.trim();
-        const role = document.getElementById('regRole')?.value;
+        const role = document.getElementById('regRole')?.value || 'CUSTOMER';
+        const fullName = document.getElementById('regFullName')?.value.trim() || username;
+        const phone = document.getElementById('regPhone')?.value.trim() || 'N/A';
+        const country = document.getElementById('regCountry')?.value || 'Sri Lanka';
 
-        if (!fullName || !username || !email || !phone || !password) {
-            showAlert('Please fill in all required registration fields.');
+        if (!username || !email || !password) {
+            showAlert('Please fill in all required registration fields (Username, Email, Password).');
             return;
         }
 
-        if (password !== confirmPassword) {
+        if (confirmPassword && password !== confirmPassword) {
             showAlert('Passwords do not match. Please verify your password entry.');
             return;
         }

@@ -1,5 +1,6 @@
 package com.globaltrade.web.auth;
 
+import jakarta.annotation.security.PermitAll;
 import jakarta.ejb.EJB;
 import jakarta.ejb.EJBException;
 import jakarta.inject.Inject;
@@ -22,6 +23,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Path("/auth")
+@PermitAll
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AuthResource {
