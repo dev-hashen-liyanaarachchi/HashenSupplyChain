@@ -101,16 +101,16 @@
 
         <!-- Navigation Tabs -->
         <div class="flex flex-wrap gap-2 mb-6 border-b border-slate-200 pb-4" id="authTabs">
-            <button class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-blue-600 text-white shadow-sm" id="loginTab" type="button">Sign In</button>
-            <button class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" id="registerTab" type="button">User Sign-Up</button>
-            <button class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" id="vendorTab" type="button">Vendor Onboarding</button>
-            <a href="admin.html" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-900 text-sky-400 hover:bg-slate-800 ml-auto">
+            <button class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/25" id="loginTab" type="button" onclick="switchAuthTab('login')">Sign In</button>
+            <button class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" id="registerTab" type="button" onclick="switchAuthTab('register')">User Sign-Up</button>
+            <button class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" id="vendorTab" type="button" onclick="switchAuthTab('vendor')">Vendor Onboarding</button>
+            <a href="admin.html" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-orange-50 text-orange-600 border border-orange-200 hover:bg-orange-100 ml-auto">
                 👑 Admin Portal
             </a>
-            <a href="customer.html" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-emerald-50 text-emerald-700 hover:bg-emerald-100">
+            <a href="customer.html" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-teal-50 text-teal-700 border border-teal-200 hover:bg-teal-100">
                 🛒 Storefront
             </a>
-            <a href="customs.html" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-purple-50 text-purple-700 hover:bg-purple-100">
+            <a href="customs.html" class="px-4 py-2 rounded-xl text-xs font-bold transition-all bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100">
                 🛃 Customs
             </a>
         </div>

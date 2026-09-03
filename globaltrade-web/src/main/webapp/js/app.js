@@ -22,38 +22,72 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const API_BASE = getApiBaseUrl();
 
-    // Tab Switching
-    loginTab?.addEventListener('click', () => switchTab('login'));
-    registerTab?.addEventListener('click', () => switchTab('register'));
-    vendorTab?.addEventListener('click', () => switchTab('vendor'));
+    // Global Tab Switching Helper Function
+    window.switchAuthTab = function(tab) {
+        if (typeof hideAlert === 'function') hideAlert();
+        if (appContainer) appContainer.classList.remove('wide');
 
-    function switchTab(tab) {
-        hideAlert();
-        appContainer.classList.remove('wide');
+        const activeTabClass = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/25";
+        const inactiveTabClass = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
 
-        loginTab.classList.toggle('active', tab === 'login');
-        registerTab.classList.toggle('active', tab === 'register');
-        vendorTab.classList.toggle('active', tab === 'vendor');
+        if (loginTab) loginTab.className = tab === 'login' ? activeTabClass : inactiveTabClass;
+        if (registerTab) registerTab.className = tab === 'register' ? activeTabClass : inactiveTabClass;
+        if (vendorTab) vendorTab.className = tab === 'vendor' ? "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-500/25" : inactiveTabClass;
 
-        loginForm.style.display = tab === 'login' ? 'block' : 'none';
-        registerForm.style.display = tab === 'register' ? 'block' : 'none';
-        vendorForm.style.display = tab === 'vendor' ? 'block' : 'none';
-    }
+        if (loginForm) {
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                loginForm.style.display = 'block';
+            } else {
+                loginForm.classList.add('hidden');
+                loginForm.style.display = 'none';
+            }
+        }
+        if (registerForm) {
+            if (tab === 'register') {
+                registerForm.classList.remove('hidden');
+                registerForm.style.display = 'block';
+            } else {
+                registerForm.classList.add('hidden');
+                registerForm.style.display = 'none';
+            }
+        }
+        if (vendorForm) {
+            if (tab === 'vendor') {
+                vendorForm.classList.remove('hidden');
+                vendorForm.style.display = 'block';
+            } else {
+                vendorForm.classList.add('hidden');
+                vendorForm.style.display = 'none';
+            }
+        }
+    };
+
+    // Tab Event Listeners
+    loginTab?.addEventListener('click', () => window.switchAuthTab('login'));
+    registerTab?.addEventListener('click', () => window.switchAuthTab('register'));
+    vendorTab?.addEventListener('click', () => window.switchAuthTab('vendor'));
 
     // Helper: Show Alert
     function showAlert(message, type = 'error') {
-        alertBox.className = `alert alert-${type}`;
+        if (!alertBox) return;
+        alertBox.className = `p-4 rounded-xl border text-sm font-medium shadow-sm transition-all flex items-center gap-2 ${
+            type === 'error' ? 'bg-rose-50 border-rose-200 text-rose-700' : 'bg-emerald-50 border-emerald-200 text-emerald-700'
+        }`;
         alertBox.innerHTML = `
-            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                     d="${type === 'error' ? 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' : 'M5 13l4 4L19 7'}"/>
             </svg>
             <span>${message}</span>
         `;
+        alertBox.classList.remove('hidden');
         alertBox.style.display = 'flex';
     }
 
     function hideAlert() {
+        if (!alertBox) return;
+        alertBox.classList.add('hidden');
         alertBox.style.display = 'none';
     }
 
