@@ -14,7 +14,9 @@
         <developer>
             <id>hashen</id>
             <name>Hashen Liyanaarachchi</name>
-            <role>Author / Lead Developer</role>
+            <roles>
+                <role>Author / Lead Developer</role>
+            </roles>
         </developer>
     </developers>
 
