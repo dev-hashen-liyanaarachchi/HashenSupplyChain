@@ -1,3 +1,55 @@
+// Global Tab Switching Helper Function (Callable from inline HTML or JS)
+window.switchAuthTab = function(tab) {
+    const alertBox = document.getElementById('alertBox');
+    if (alertBox) {
+        alertBox.classList.add('hidden');
+        alertBox.style.display = 'none';
+    }
+
+    const loginTab = document.getElementById('loginTab');
+    const registerTab = document.getElementById('registerTab');
+    const vendorTab = document.getElementById('vendorTab');
+
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const vendorForm = document.getElementById('vendorForm');
+
+    const activeTabClass = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/25";
+    const inactiveTabClass = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+
+    if (loginTab) loginTab.className = tab === 'login' ? activeTabClass : inactiveTabClass;
+    if (registerTab) registerTab.className = tab === 'register' ? activeTabClass : inactiveTabClass;
+    if (vendorTab) vendorTab.className = tab === 'vendor' ? "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-500/25" : inactiveTabClass;
+
+    if (loginForm) {
+        if (tab === 'login') {
+            loginForm.classList.remove('hidden');
+            loginForm.style.display = 'block';
+        } else {
+            loginForm.classList.add('hidden');
+            loginForm.style.display = 'none';
+        }
+    }
+    if (registerForm) {
+        if (tab === 'register') {
+            registerForm.classList.remove('hidden');
+            registerForm.style.display = 'block';
+        } else {
+            registerForm.classList.add('hidden');
+            registerForm.style.display = 'none';
+        }
+    }
+    if (vendorForm) {
+        if (tab === 'vendor') {
+            vendorForm.classList.remove('hidden');
+            vendorForm.style.display = 'block';
+        } else {
+            vendorForm.classList.add('hidden');
+            vendorForm.style.display = 'none';
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginTab = document.getElementById('loginTab');
     const registerTab = document.getElementById('registerTab');
@@ -21,47 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const API_BASE = getApiBaseUrl();
-
-    // Global Tab Switching Helper Function
-    window.switchAuthTab = function(tab) {
-        if (typeof hideAlert === 'function') hideAlert();
-        if (appContainer) appContainer.classList.remove('wide');
-
-        const activeTabClass = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-amber-500 to-orange-500 text-white shadow-md shadow-orange-500/25";
-        const inactiveTabClass = "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
-
-        if (loginTab) loginTab.className = tab === 'login' ? activeTabClass : inactiveTabClass;
-        if (registerTab) registerTab.className = tab === 'register' ? activeTabClass : inactiveTabClass;
-        if (vendorTab) vendorTab.className = tab === 'vendor' ? "px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-md shadow-teal-500/25" : inactiveTabClass;
-
-        if (loginForm) {
-            if (tab === 'login') {
-                loginForm.classList.remove('hidden');
-                loginForm.style.display = 'block';
-            } else {
-                loginForm.classList.add('hidden');
-                loginForm.style.display = 'none';
-            }
-        }
-        if (registerForm) {
-            if (tab === 'register') {
-                registerForm.classList.remove('hidden');
-                registerForm.style.display = 'block';
-            } else {
-                registerForm.classList.add('hidden');
-                registerForm.style.display = 'none';
-            }
-        }
-        if (vendorForm) {
-            if (tab === 'vendor') {
-                vendorForm.classList.remove('hidden');
-                vendorForm.style.display = 'block';
-            } else {
-                vendorForm.classList.add('hidden');
-                vendorForm.style.display = 'none';
-            }
-        }
-    };
 
     // Tab Event Listeners
     loginTab?.addEventListener('click', () => window.switchAuthTab('login'));
