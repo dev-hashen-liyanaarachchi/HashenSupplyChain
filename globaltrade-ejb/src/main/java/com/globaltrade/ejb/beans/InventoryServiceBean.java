@@ -14,6 +14,8 @@ import com.globaltrade.entity.Product;
 import com.globaltrade.entity.Warehouse;
 import com.globaltrade.dto.InventoryDTO;
 import com.globaltrade.exception.InventoryException;
+import com.globaltrade.exception.InsufficientStockException;
+import com.globaltrade.exception.ResourceNotFoundException;
 import com.globaltrade.repository.InventoryRepository;
 
 import java.util.List;
@@ -41,10 +43,8 @@ public class InventoryServiceBean implements InventoryService {
                 .orElse(null);
 
         if (inventory == null || inventory.getAvailableQty() < quantity) {
-            Product product = em.find(Product.class, productId);
-            String sku = product != null ? product.getSku() : "UNKNOWN";
             int avail = inventory != null ? inventory.getAvailableQty() : 0;
-            throw new InventoryException(sku, quantity, avail);
+            throw new InsufficientStockException(productId, quantity, avail);
         }
 
         inventory.setAvailableQty(inventory.getAvailableQty() - quantity);

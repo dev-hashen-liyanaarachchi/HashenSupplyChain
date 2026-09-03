@@ -20,6 +20,8 @@ import com.globaltrade.dto.ShipmentDTO;
 import com.globaltrade.enums.ShipmentStatus;
 import com.globaltrade.exception.CustomsException;
 import com.globaltrade.exception.ShipmentException;
+import com.globaltrade.exception.FreightDispatchException;
+import com.globaltrade.exception.ResourceNotFoundException;
 import com.globaltrade.repository.ShipmentRepository;
 
 import java.time.LocalDateTime;
@@ -56,7 +58,7 @@ public class ShipmentServiceBean implements ShipmentService {
 
             if (order == null || origin == null || destination == null) {
                 userTransaction.rollback();
-                throw new ShipmentException("INVALID", "Invalid Order, Warehouse, or Address ID.");
+                throw new ResourceNotFoundException("Order/Warehouse/Address", dto.getOrderId());
             }
 
             String trackingNo = "GTX-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
@@ -64,6 +66,10 @@ public class ShipmentServiceBean implements ShipmentService {
 
             if (dto.getCarrierId() != null) {
                 Carrier carrier = em.find(Carrier.class, dto.getCarrierId());
+                if (carrier == null) {
+                    userTransaction.rollback();
+                    throw new FreightDispatchException(trackingNo, "Carrier specified with ID [" + dto.getCarrierId() + "] was not found.");
+                }
                 shipment.setCarrier(carrier);
             }
 
@@ -84,7 +90,8 @@ public class ShipmentServiceBean implements ShipmentService {
             }
             if (ex instanceof CustomsException) throw (CustomsException) ex;
             if (ex instanceof ShipmentException) throw (ShipmentException) ex;
-            throw new ShipmentException("CREATION_FAILED", ex.getMessage());
+            if (ex instanceof ResourceNotFoundException) throw (ResourceNotFoundException) ex;
+            throw new FreightDispatchException("GTX-PENDING", ex.getMessage());
         }
     }
 
@@ -119,6 +126,7 @@ public class ShipmentServiceBean implements ShipmentService {
 
     @Override
     public Shipment getShipmentByTrackingNumber(String trackingNumber) {
-        return shipmentRepository.findByTrackingNumber(trackingNumber).orElse(null);
+        return shipmentRepository.findByTrackingNumber(trackingNumber)
+                .orElseThrow(() -> new ResourceNotFoundException("Shipment", trackingNumber));
     }
 }

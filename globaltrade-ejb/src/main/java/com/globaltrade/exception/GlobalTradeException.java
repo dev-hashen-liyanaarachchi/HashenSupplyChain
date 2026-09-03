@@ -1,6 +1,6 @@
 package com.globaltrade.exception;
 
-public class GlobalTradeException extends Exception {
+public class GlobalTradeException extends RuntimeException {
 
     public GlobalTradeException(String message) {
         super(message);
