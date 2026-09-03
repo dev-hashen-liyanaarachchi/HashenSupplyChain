@@ -1,0 +1,17 @@
+<!-- WildFly Server Datasource Snippet for GlobalTrade Logistics Corporation -->
+<datasource jndi-name="java:jboss/datasources/GlobalTradeDS" pool-name="GlobalTradeDS" enabled="true" use-java-context="true">
+    <connection-url>jdbc:mysql://localhost:3306/globaltrade_db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC</connection-url>
+    <driver>mysql</driver>
+    <security>
+        <user-name>root</user-name>
+        <password>root123</password>
+    </security>
+    <validation>
+        <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mysql.MySQLValidConnectionChecker"/>
+        <validate-on-match>true</validate-on-match>
+        <background-validation>false</background-validation>
+    </validation>
+    <statement>
+        <share-prepared-statements>false</share-prepared-statements>
+    </statement>
+</datasource>

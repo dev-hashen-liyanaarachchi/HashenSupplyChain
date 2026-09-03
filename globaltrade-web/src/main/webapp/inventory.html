@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalTrade Logistics | Inventory & Product Master Control</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .tabs-nav {
+            display: flex;
+            gap: 8px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab-btn-item {
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tab-btn-item.active {
+            background: #ffffff;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+            border-bottom: 2px solid #ffffff;
+            margin-bottom: -2px;
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        .forms-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 900px) {
+            .forms-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container wide">
+        <!-- Brand Header -->
+        <header class="brand-header">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+                <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
+                    👑 Back to Admin Control
+                </a>
+                <div class="brand-logo" style="margin-bottom:0;">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                </div>
+            </div>
+            <h1 class="brand-name">📦 Enterprise Inventory & Product Master Control</h1>
+            <p class="brand-subtitle">Multi-Vendor Stock Allocation, HS Customs Code Lookup, All Products & Brand/Category Management</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="auth-card">
+            <!-- Alert Banner -->
+            <div id="alertBox" class="alert"></div>
+
+            <!-- TABS NAVIGATION BAR -->
+            <div class="tabs-nav">
+                <button type="button" class="tab-btn-item active" data-tab="tab-forms">
+                    📝 1. Product & Stock Forms
+                </button>
+                <button type="button" class="tab-btn-item" data-tab="tab-manifest">
+                    📊 2. Live Inventory Stock Manifest
+                </button>
+                <button type="button" class="tab-btn-item" data-tab="tab-allproducts">
+                    🛍️ 3. All Master Products Catalog
+                </button>
+                <button type="button" class="tab-btn-item" data-tab="tab-catbrand">
+                    🏷️ 4. Categories & Brands Master
+                </button>
+            </div>
+
+            <!-- TAB 1: FORMS (ADD PRODUCT & ALLOCATE INVENTORY) -->
+            <div id="tab-forms" class="tab-pane active">
+                <div class="forms-row">
+                    <!-- Form 1: Add Master Product -->
+                    <div style="background: #ffffff; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                        <h2 style="font-size: 15px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid var(--border-color); padding-bottom: 6px;">
+                            📦 1. Create Master Product (Catalog)
+                        </h2>
+                        <form id="addProductForm">
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label class="form-label" for="prodSku" style="font-size: 11px;">Product SKU Code <span>*</span></label>
+                                <input type="text" id="prodSku" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="e.g. MED-9018-X" required>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label class="form-label" for="prodName" style="font-size: 11px;">Product Name <span>*</span></label>
+                                <input type="text" id="prodName" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="e.g. Precision Ultrasound Probe" required>
+                            </div>
+
+                            <div class="form-row" style="margin-bottom: 10px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="prodCategory" style="font-size: 11px;">Product Category</label>
+                                    <select id="prodCategory" class="form-control" style="padding-left: 6px; font-size: 12px;">
+                                        <option value="">Loading Categories...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="prodBrand" style="font-size: 11px;">Product Brand</label>
+                                    <select id="prodBrand" class="form-control" style="padding-left: 6px; font-size: 12px;">
+                                        <option value="">Loading Brands...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="margin-bottom: 10px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="prodPrice" style="font-size: 11px;">Base Market Price ($) <span>*</span></label>
+                                    <input type="number" step="0.01" id="prodPrice" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="4500.00" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="prodWeight" style="font-size: 11px;">Gross Weight (kg) <span>*</span></label>
+                                    <input type="number" step="0.01" id="prodWeight" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="2.50" value="1.0" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label class="form-label" for="prodHsCode" style="font-size: 11px;">HS Customs Tariff Code <span>*</span></label>
+                                <select id="prodHsCode" class="form-control" style="padding-left: 6px; font-size: 12px;" required>
+                                    <option value="9018.90">9018.90 - Medical Instruments (5% Duty Rate)</option>
+                                    <option value="8504.40">8504.40 - Power Transformers (7.5% Duty Rate)</option>
+                                    <option value="8471.30">8471.30 - Data Processors (0% Duty Free)</option>
+                                    <option value="3004.90">3004.90 - Medicaments (0% Duty Free)</option>
+                                    <option value="8703.23">8703.23 - Motor Vehicles (15% Duty Rate)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group" style="margin-bottom: 12px;">
+                                <label class="form-label" for="prodDescription" style="font-size: 11px;">Description</label>
+                                <input type="text" id="prodDescription" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="Diagnostic transducer unit">
+                            </div>
+
+                            <button type="submit" id="btnAddProduct" class="btn-primary" style="width: 100%; margin-top: 0; padding: 8px 12px; font-size: 13px;">
+                                <span class="spinner"></span>
+                                <span class="btn-text">➕ Save Master Product</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Form 2: Add Inventory Allocation -->
+                    <div style="background: #ffffff; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                        <h2 style="font-size: 15px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid var(--border-color); padding-bottom: 6px;">
+                            🏬 2. Allocate Stock to Warehouse Inventory
+                        </h2>
+                        <form id="addInventoryForm">
+                            <div class="form-row" style="margin-bottom: 10px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="invProduct" style="font-size: 11px;">Select Product <span>*</span></label>
+                                    <select id="invProduct" class="form-control" style="padding-left: 6px; font-size: 12px;" required>
+                                        <option value="">Loading Products...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="invVendor" style="font-size: 11px;">Supplying Vendor <span>*</span></label>
+                                    <select id="invVendor" class="form-control" style="padding-left: 6px; font-size: 12px;" required>
+                                        <option value="">Loading Vendors...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="margin-bottom: 10px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="invWarehouse" style="font-size: 11px;">Target Warehouse Depot <span>*</span></label>
+                                    <select id="invWarehouse" class="form-control" style="padding-left: 6px; font-size: 12px;" required>
+                                        <option value="">Loading Warehouses...</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="invUnitPrice" style="font-size: 11px;">Unit Price ($) <span>*</span></label>
+                                    <input type="number" step="0.01" id="invUnitPrice" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="4500.00" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row" style="margin-bottom: 12px;">
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="invAvailableQty" style="font-size: 11px;">Available Stock Qty <span>*</span></label>
+                                    <input type="number" id="invAvailableQty" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="1000" required>
+                                </div>
+                                <div class="form-group" style="margin-bottom:0;">
+                                    <label class="form-label" for="invReorder" style="font-size: 11px;">Reorder Threshold</label>
+                                    <input type="number" id="invReorder" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="100">
+                                </div>
+                            </div>
+
+                            <button type="submit" id="btnAddInventory" class="btn-primary" style="width: 100%; margin-top: 0; padding: 8px 12px; font-size: 13px; background: linear-gradient(135deg, #059669 0%, #047857 100%);">
+                                <span class="spinner"></span>
+                                <span class="btn-text">🏢 Allocate Stock to Warehouse</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: LIVE MULTI-VENDOR WAREHOUSE INVENTORY MANIFEST TABLE -->
+            <div id="tab-manifest" class="tab-pane">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <h2 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin:0;">
+                        📊 Live Multi-Vendor Warehouse Inventory Stock Manifest
+                    </h2>
+                    <button type="button" id="btnRefreshManifest" class="btn-secondary" style="width: auto; padding: 4px 10px; font-size: 11px;">
+                        🔄 Refresh Stock Manifest
+                    </button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Warehouse Depot</th>
+                                <th>Product SKU & Name</th>
+                                <th>Supplying Vendor</th>
+                                <th>Unit Price ($)</th>
+                                <th>HS Customs Tariff</th>
+                                <th>Available Stock Qty</th>
+                                <th>Reorder Threshold</th>
+                                <th>Stock Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                            <tr>
+                                <td colspan="8" style="text-align: center; color: var(--text-muted);">Loading inventory manifest data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Live Stock Movement Audit Ledger (inventory_transactions Table) -->
+                <div style="margin-top: 24px; background: #f8fafc; border-radius: 12px; padding: 16px; border: 1px solid #cbd5e1;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+                        <h3 style="font-size: 14px; font-weight: 700; color: #0f172a; margin: 0; display: flex; align-items: center; gap: 8px;">
+                            <span>📊 Stock Movement Audit Log (inventory_transactions Table)</span>
+                            <span class="user-badge" style="background:#e0f2fe; color:#0369a1; font-size:10px;">JPA: InventoryTransaction</span>
+                        </h3>
+                        <button type="button" id="btnRefreshTransactions" class="btn-secondary" style="width: auto; padding: 4px 10px; font-size: 11px;">
+                            🔄 Refresh Audit Log
+                        </button>
+                    </div>
+
+                    <div style="overflow-x: auto;">
+                        <table class="data-table" style="font-size:11px;">
+                            <thead>
+                                <tr>
+                                    <th>Txn ID</th>
+                                    <th>Product & Depot</th>
+                                    <th>Movement Type</th>
+                                    <th>Qty Changed</th>
+                                    <th>Trigger / Performed By</th>
+                                    <th>Timestamp</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inventoryTxBody">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; color: var(--text-muted);">Loading stock movement audit history...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 3: ALL MASTER PRODUCTS CATALOG TABLE -->
+            <div id="tab-allproducts" class="tab-pane">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                    <h2 style="font-size: 16px; font-weight: 700; color: var(--primary-color); margin:0;">
+                        🛍️ All Master Products Catalog Roster
+                    </h2>
+                    <button type="button" id="btnRefreshProducts" class="btn-secondary" style="width: auto; padding: 4px 10px; font-size: 11px;">
+                        🔄 Refresh Products
+                    </button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>SKU Code</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Brand</th>
+                                <th>Base Market Price ($)</th>
+                                <th>Gross Weight (kg)</th>
+                                <th>HS Tariff Code</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allProductsTableBody">
+                            <tr>
+                                <td colspan="10" style="text-align: center; color: var(--text-muted);">Loading products catalog...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TAB 4: CATEGORIES & BRANDS MASTER MANAGEMENT -->
+            <div id="tab-catbrand" class="tab-pane">
+                <div class="forms-row">
+                    <!-- Category Management -->
+                    <div style="background: #ffffff; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                        <h3 style="font-size: 15px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid var(--border-color); padding-bottom: 6px;">
+                            🏷️ Product Categories Master
+                        </h3>
+
+                        <form id="addCategoryForm" style="margin-bottom: 16px;">
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label class="form-label" for="catName" style="font-size: 11px;">Category Name <span>*</span></label>
+                                <input type="text" id="catName" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="e.g. Medical Equipment" required>
+                            </div>
+                            <button type="submit" id="btnAddCategory" class="btn-primary" style="width: 100%; margin-top: 0; padding: 6px 12px; font-size: 12px;">
+                                ➕ Add New Category
+                            </button>
+                        </form>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Category Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="categoriesTableBody">
+                                    <tr><td colspan="2" style="text-align:center;">Loading categories...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Brand Management -->
+                    <div style="background: #ffffff; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 18px;">
+                        <h3 style="font-size: 15px; font-weight: 700; color: var(--primary-color); margin-bottom: 12px; border-bottom: 2px solid var(--border-color); padding-bottom: 6px;">
+                            🏢 Product Brands Master
+                        </h3>
+
+                        <form id="addBrandForm" style="margin-bottom: 16px;">
+                            <div class="form-group" style="margin-bottom: 10px;">
+                                <label class="form-label" for="brandName" style="font-size: 11px;">Brand Name <span>*</span></label>
+                                <input type="text" id="brandName" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="e.g. Bosch Healthcare" required>
+                            </div>
+                            <button type="submit" id="btnAddBrand" class="btn-primary" style="width: 100%; margin-top: 0; padding: 6px 12px; font-size: 12px;">
+                                🏢 Add New Brand
+                            </button>
+                        </form>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Brand Name</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="brandsTableBody">
+                                    <tr><td colspan="2" style="text-align:center;">Loading brands...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions-grid" style="margin-top: 24px;">
+                <a href="admin.html" class="btn-secondary" style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+                    👑 Back to Admin Control
+                </a>
+                <a href="index.html" class="btn-primary" style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
+                    Sign Out
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script src="js/inventory.js"></script>
+</body>
+</html>

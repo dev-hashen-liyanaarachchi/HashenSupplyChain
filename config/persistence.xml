@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <persistence-unit name="GlobalTradePU" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>jdbc/GlobalTradeDS</jta-data-source>
+
+        <!-- Managed Entity Classes -->
+        <class>com.globaltrade.entity.User</class>
+        <class>com.globaltrade.entity.Role</class>
+        <class>com.globaltrade.entity.Permission</class>
+        <class>com.globaltrade.entity.Customer</class>
+        <class>com.globaltrade.entity.Vendor</class>
+        <class>com.globaltrade.entity.Product</class>
+        <class>com.globaltrade.entity.Category</class>
+        <class>com.globaltrade.entity.Brand</class>
+        <class>com.globaltrade.entity.ProductImage</class>
+        <class>com.globaltrade.entity.Country</class>
+        <class>com.globaltrade.entity.Address</class>
+        <class>com.globaltrade.entity.Warehouse</class>
+        <class>com.globaltrade.entity.Inventory</class>
+        <class>com.globaltrade.entity.InventoryTransaction</class>
+        <class>com.globaltrade.entity.ReplenishmentRequest</class>
+        <class>com.globaltrade.entity.Order</class>
+        <class>com.globaltrade.entity.OrderItem</class>
+        <class>com.globaltrade.entity.Payment</class>
+        <class>com.globaltrade.entity.Shipment</class>
+        <class>com.globaltrade.entity.ShipmentItem</class>
+        <class>com.globaltrade.entity.TrackingEvent</class>
+        <class>com.globaltrade.entity.Carrier</class>
+        <class>com.globaltrade.entity.CustomsDocument</class>
+        <class>com.globaltrade.entity.VendorPerformance</class>
+        <class>com.globaltrade.entity.Notification</class>
+        <class>com.globaltrade.entity.AuditLog</class>
+        <class>com.globaltrade.entity.RefreshToken</class>
+        <class>com.globaltrade.entity.HsCode</class>
+
+        <properties>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobalTrade Logistics | Partner Carriers & Destination Handover Station</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, strong, small, label, input, select, button, table, th, td, tr, thead, tbody {
+            font-family: 'Poppins', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif !important;
+        }
+
+        .carrier-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 24px;
+        }
+
+        @media (max-width: 960px) {
+            .carrier-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .badge-lk { background: #dcfce7; color: #15803d; }
+        .badge-de { background: #e0f2fe; color: #0369a1; }
+        .badge-us { background: #fef3c7; color: #b45309; }
+        .badge-sg { background: #f3e8ff; color: #6b21a8; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container wide">
+        <!-- Brand Header -->
+        <header class="brand-header">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; flex-wrap: wrap;">
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <a href="admin.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #e0e7ff; color: #3730a3;">
+                        👑 Back to Admin Control
+                    </a>
+                    <a href="shipments.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #dbeafe; color: #1e40af;">
+                        🚚 Logistics & Shipments
+                    </a>
+                    <a href="finance.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #dcfce7; color: #15803d;">
+                        💳 Finance & Duty Billing
+                    </a>
+                    <a href="customs.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #f3e8ff; color: #6b21a8;">
+                        🛃 Customs Portal
+                    </a>
+                    <a href="timers.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #fef3c7; color: #b45309;">
+                        ⏰ EJB Timers Monitor
+                    </a>
+                    <a href="index.html" class="btn-secondary" style="width: auto; padding: 8px 16px; text-decoration: none; background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1;">
+                        🌐 Main Portal
+                    </a>
+                </div>
+                <div class="brand-logo" style="margin-bottom:0; background: linear-gradient(135deg, #2563eb 0%, #059669 100%);">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"></path></svg>
+                </div>
+            </div>
+            <h1 class="brand-name">🚛 Registered Logistics Carriers & Destination Cargo Handover Portal</h1>
+            <p class="brand-subtitle">Manage Regional Logistics Carriers, Destination Country Port Arrival Verification & Driver Cargo Handover</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="auth-card">
+            <!-- Alert Banner -->
+            <div id="alertBox" class="alert"></div>
+
+            <!-- Role Badge Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+                <div>
+                    <h2 style="font-size: 18px; font-weight: 700; color: var(--text-dark);">
+                        Regional Carrier Directory & Destination Handover Station
+                    </h2>
+                    <p style="font-size: 12px; color: var(--text-muted);">Assign local country carrier agents (Driver & Vehicle) when cargo arrives at destination port</p>
+                </div>
+                <span class="user-badge" style="background: #e0f2fe; color: #0369a1;">🚛 CARRIER_FLEET_MANAGER</span>
+            </div>
+
+            <!-- Metrics Grid -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon" style="color: #2563eb;">🚛</div>
+                    <div>
+                        <div class="metric-val" id="cntTotalCarriers">5 Active Fleets</div>
+                        <div class="metric-label">Registered Partner Carriers</div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon" style="color: #059669;">🇱🇰</div>
+                    <div>
+                        <div class="metric-val">2 Carriers (LK)</div>
+                        <div class="metric-label">Sri Lanka Local Fleet</div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon" style="color: #d97706;">📦</div>
+                    <div>
+                        <div class="metric-val" id="cntArrivedCargo">100% Handed Over</div>
+                        <div class="metric-label">Destination Cargo Handover</div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon" style="color: #7c3aed;">👮</div>
+                    <div>
+                        <div class="metric-val">100% Active</div>
+                        <div class="metric-label">Driver Agent Verification</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Layout Grid -->
+            <div class="carrier-layout" style="margin-top: 28px;">
+                
+                <!-- LEFT: CARRIER DIRECTORY & HANDOVER TABLE -->
+                <div>
+                    <!-- Registered Carriers Table -->
+                    <div style="margin-bottom: 28px;">
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                            <h3 style="font-size: 16px; font-weight: 700; color: var(--primary-color);">
+                                📋 Registered Destination Country Carrier Fleets
+                            </h3>
+                            <button type="button" id="btnRefreshCarriers" class="btn-secondary" style="width: auto; padding: 6px 12px; font-size: 11px;">
+                                🔄 Refresh Carrier Directory
+                            </button>
+                        </div>
+
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Carrier ID & Name</th>
+                                        <th>Country</th>
+                                        <th>Freight Type</th>
+                                        <th>Contact Phone & Email</th>
+                                        <th>Fleet Size</th>
+                                        <th>Operating Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="carriersTableBody">
+                                    <tr>
+                                        <td colspan="6" style="text-align: center; color: var(--text-muted);">Loading carrier directory...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Destination Cargo Handover Table -->
+                    <div>
+                        <h3 style="font-size: 16px; font-weight: 700; color: #047857; margin-bottom: 12px;">
+                            🛬 Destination Cargo Arrival & Local Carrier Handover Queue
+                        </h3>
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Shipment Tracking</th>
+                                        <th>Destination Port</th>
+                                        <th>Select Local Destination Carrier</th>
+                                        <th>Driver & Vehicle Info</th>
+                                        <th>Assign Local Carrier Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="handoverQueueTableBody">
+                                    <tr>
+                                        <td colspan="5" style="text-align: center; color: var(--text-muted);">Loading cargo arrival queue...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: REGISTER NEW PARTNER CARRIER FORM -->
+                <div style="background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; position: sticky; top: 20px; height: fit-content;">
+                    <h3 style="font-size: 16px; font-weight: 700; color: var(--text-dark); margin-top:0; margin-bottom: 14px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">
+                        ➕ Register New Partner Carrier
+                    </h3>
+
+                    <form id="addCarrierForm">
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <label class="form-label" for="newCarrierName" style="font-size: 11px;">Carrier Company Name <span>*</span></label>
+                            <input type="text" id="newCarrierName" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="e.g. Sri Lanka Express Logistics" required>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <label class="form-label" for="newCarrierCountry" style="font-size: 11px;">Destination Country <span>*</span></label>
+                            <select id="newCarrierCountry" class="form-control" style="padding-left: 10px; font-size: 12px;" required>
+                                <option value="LK">🇱🇰 Sri Lanka (LK)</option>
+                                <option value="DE">🇩🇪 Germany (DE)</option>
+                                <option value="US">🇺🇸 United States (US)</option>
+                                <option value="SG">🇸🇬 Singapore (SG)</option>
+                                <option value="JP">🇯🇵 Japan (JP)</option>
+                                <option value="GB">🇬🇧 United Kingdom (GB)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <label class="form-label" for="newCarrierType" style="font-size: 11px;">Freight Transport Type <span>*</span></label>
+                            <select id="newCarrierType" class="form-control" style="padding-left: 10px; font-size: 12px;" required>
+                                <option value="ROAD_EXPRESS">🚚 Road Express Vans & Trucks</option>
+                                <option value="AIR_FREIGHT">✈️ Air Freight Cargo Fleet</option>
+                                <option value="SEA_FREIGHT">🚢 Sea Cargo Feeder Ships</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <label class="form-label" for="newCarrierPhone" style="font-size: 11px;">Dispatch Phone <span>*</span></label>
+                            <input type="text" id="newCarrierPhone" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="+94 11 234 5678" required>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 10px;">
+                            <label class="form-label" for="newCarrierEmail" style="font-size: 11px;">Dispatch Email <span>*</span></label>
+                            <input type="email" id="newCarrierEmail" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="dispatch@company.lk" required>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 14px;">
+                            <label class="form-label" for="newCarrierFleet" style="font-size: 11px;">Fleet Capacity <span>*</span></label>
+                            <input type="text" id="newCarrierFleet" class="form-control" style="padding-left: 10px; font-size: 12px;" placeholder="e.g. 30 Delivery Trucks" required>
+                        </div>
+
+                        <button type="submit" id="btnAddCarrierSubmit" class="btn-primary" style="width: 100%; margin-top: 0; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                            <span class="btn-text">➕ Save Carrier to Database</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions-grid" style="margin-top: 36px;">
+                <a href="admin.html" class="btn-secondary" style="text-decoration: none; text-align: center; background: #e0e7ff; color: #3730a3;">
+                    👑 Back to Admin Control
+                </a>
+                <a href="index.html" class="btn-primary" style="margin-top:0; background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); text-decoration: none; text-align: center;">
+                    Sign Out
+                </a>
+            </div>
+        </main>
+
+        <footer>
+            &copy; 2026 GlobalTrade Logistics Corporation. All Rights Reserved.
+        </footer>
+    </div>
+
+    <script src="js/carriers.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+</html>
