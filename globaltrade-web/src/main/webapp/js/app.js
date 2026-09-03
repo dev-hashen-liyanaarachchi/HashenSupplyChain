@@ -142,19 +142,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Password Visibility Toggle Helper
+    window.togglePasswordVisibility = function(inputId, btn) {
+        const input = document.getElementById(inputId);
+        if (input) {
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.textContent = '🙈';
+            } else {
+                input.type = 'password';
+                btn.textContent = '👁️';
+            }
+        }
+    };
+
     // 2. USER SIGN-UP FORM SUBMIT
     registerForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         hideAlert();
 
         const btn = registerForm.querySelector('button[type="submit"]');
-        const username = document.getElementById('regUsername').value.trim();
-        const email = document.getElementById('regEmail').value.trim();
-        const password = document.getElementById('regPassword').value.trim();
-        const role = document.getElementById('regRole').value;
+        const fullName = document.getElementById('regFullName')?.value.trim();
+        const username = document.getElementById('regUsername')?.value.trim();
+        const email = document.getElementById('regEmail')?.value.trim();
+        const phone = document.getElementById('regPhone')?.value.trim();
+        const country = document.getElementById('regCountry')?.value;
+        const password = document.getElementById('regPassword')?.value.trim();
+        const confirmPassword = document.getElementById('regConfirmPassword')?.value.trim();
+        const role = document.getElementById('regRole')?.value;
 
-        if (!username || !email || !password) {
-            showAlert('Please fill in all required fields.');
+        if (!fullName || !username || !email || !phone || !password) {
+            showAlert('Please fill in all required registration fields.');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            showAlert('Passwords do not match. Please verify your password entry.');
             return;
         }
 
@@ -164,14 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`${API_BASE}/auth/register`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({username, email, password, role})
+                body: JSON.stringify({username, email, password, role, fullName, phone, country})
             });
 
             const data = await response.json();
 
             if (response.ok || response.status === 201) {
                 saveSession(data);
-                showAlert(`Account created for ${role}! Loading dedicated portal...`, 'success');
+                showAlert(`Account created successfully for ${fullName || username}! Loading dedicated portal...`, 'success');
                 setTimeout(() => redirectToRolePortal(role), 800);
             } else {
                 showAlert(data.error || data.message || 'Registration failed.');
@@ -184,34 +207,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. VENDOR REGISTER FORM SUBMIT
+    // 3. VENDOR REGISTER & ONBOARDING FORM SUBMIT
     vendorForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
         hideAlert();
 
         const btn = vendorForm.querySelector('button[type="submit"]');
-        const companyName = document.getElementById('venCompanyName').value.trim();
-        const username = document.getElementById('venUsername').value.trim();
-        const taxId = document.getElementById('venTaxId').value.trim();
-        const email = document.getElementById('venEmail').value.trim();
-        const password = document.getElementById('venPassword').value.trim();
+        const companyName = document.getElementById('venCompanyName')?.value.trim();
+        const taxId = document.getElementById('venTaxId')?.value.trim();
+        const category = document.getElementById('venCategory')?.value;
+        const email = document.getElementById('venEmail')?.value.trim();
+        const phone = document.getElementById('venPhone')?.value.trim();
+        const country = document.getElementById('venCountry')?.value;
+        const streetAddress = document.getElementById('venStreetAddress')?.value.trim();
+        const username = document.getElementById('venUsername')?.value.trim();
+        const password = document.getElementById('venPassword')?.value.trim();
 
-        if (!companyName || !username || !taxId || !email || !password) {
-            showAlert('Please fill in all vendor registration details.');
+        if (!companyName || !taxId || !email || !phone || !streetAddress || !username || !password) {
+            showAlert('Please fill in all corporate vendor onboarding details.');
             return;
         }
 
         setLoading(btn, true);
 
         try {
-            const response = await fetch(`${API_BASE}/auth/register`, {
+            const response = await fetch(`${API_BASE}/auth/vendor-onboard`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
-                    username: username,
-                    email: email,
-                    password: password,
-                    role: 'VENDOR'
+                    companyName,
+                    taxId,
+                    email,
+                    phone,
+                    country,
+                    streetAddress,
+                    businessCategory: category,
+                    username,
+                    password
                 })
             });
 
@@ -221,13 +253,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('gt_vendor_company', companyName);
                 localStorage.setItem('gt_vendor_taxid', taxId);
                 saveSession(data);
-                showAlert(`Vendor "${companyName}" registered! Redirecting to Vendor Portal...`, 'success');
+                showAlert(`Corporate Vendor "${companyName}" Onboarded Successfully! Redirecting to Vendor Portal...`, 'success');
                 setTimeout(() => window.location.href = 'vendor.html', 800);
             } else {
-                showAlert(data.error || 'Vendor registration failed.');
+                showAlert(data.error || 'Vendor onboarding failed.');
             }
         } catch (err) {
-            showAlert('Network Error during vendor registration.');
+            showAlert('Network Error during vendor onboarding.');
+            console.error('Vendor onboarding error:', err);
         } finally {
             setLoading(btn, false);
         }

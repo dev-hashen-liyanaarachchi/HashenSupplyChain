@@ -35,10 +35,26 @@ public class AuthResource {
     @EJB
     private RefreshTokenService refreshTokenService;
 
+    @EJB
+    private com.globaltrade.ejb.interfaces.VendorService vendorService;
+
     public record LoginRequest(String username, String password) {
     }
 
-    public record RegisterRequest(String username, String email, String password, String role) {
+    public record RegisterRequest(String username, String email, String password, String role, String fullName, String phone, String country) {
+    }
+
+    public record VendorOnboardRequest(
+            String companyName,
+            String taxId,
+            String email,
+            String phone,
+            String country,
+            String streetAddress,
+            String businessCategory,
+            String username,
+            String password
+    ) {
     }
 
     public record RefreshRequest(String refreshToken) {
@@ -96,6 +112,7 @@ public class AuthResource {
                             "message", "User registered successfully",
                             "username", user.getUsername(),
                             "email", user.getEmail(),
+                            "fullName", request.fullName() != null ? request.fullName() : "",
                             "accessToken", token,
                             "refreshToken", refreshToken.getToken(),
                             "roles", roles
@@ -113,6 +130,54 @@ public class AuthResource {
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                     .entity(Map.of("error", "Registration error: " + e.getMessage()))
+                    .build();
+        }
+    }
+
+    @Path("/vendor-onboard")
+    @POST
+    public Response vendorOnboard(VendorOnboardRequest request) {
+        if (request == null || request.companyName() == null || request.taxId() == null || request.email() == null || request.username() == null || request.password() == null) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("error", "Missing required vendor onboarding fields (Company Name, Tax ID, Email, Username, Password)"))
+                    .build();
+        }
+
+        try {
+            User user = loginService.registerUser(request.username(), request.email(), request.password(), "VENDOR");
+            
+            com.globaltrade.dto.VendorDTO dto = new com.globaltrade.dto.VendorDTO();
+            dto.setCompanyName(request.companyName());
+            dto.setTaxIdentificationNumber(request.taxId());
+            dto.setEmail(request.email());
+            dto.setPhone(request.phone());
+            dto.setCountry(request.country());
+            dto.setStreetAddress(request.streetAddress());
+            dto.setBusinessCategory(request.businessCategory());
+            
+            if (vendorService != null) {
+                vendorService.registerVendor(dto);
+            }
+
+            Set<String> roles = Set.of("VENDOR");
+            String token = JwtUtil.generateToken(user.getUsername(), roles);
+            RefreshToken refreshToken = refreshTokenService.create(user.getUsername());
+
+            return Response.status(Response.Status.CREATED)
+                    .entity(Map.of(
+                            "message", "Corporate Vendor Onboarded successfully",
+                            "companyName", request.companyName(),
+                            "taxId", request.taxId(),
+                            "username", user.getUsername(),
+                            "email", user.getEmail(),
+                            "accessToken", token,
+                            "refreshToken", refreshToken.getToken(),
+                            "roles", roles
+                    ))
+                    .build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.BAD_REQUEST)
+                    .entity(Map.of("error", "Vendor Onboarding Failed: " + e.getMessage()))
                     .build();
         }
     }
